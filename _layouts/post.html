@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} - Jake Wharton</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700" type="text/css">
+    <link rel="stylesheet" href="/static/app.css" type="text/css">
+    <link rel="stylesheet" href="/static/syntax.css" type="text/css">
+    {% feed_meta %}
+    <meta name="theme-color" content="#111111">
+
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="{{ page.title }} – Jake Wharton">
+    <meta name="og:description" content="{{ page.lead }}">
+    <meta name="og:site_name" content="Jake Wharton">
+    <meta name="og:url" content="{{ site.url }}{{ page.url }}">
+    {% if page.image %}
+    <meta name="og:image" content="{{ site.url }}{{ page.image }}">
+    {% else %}
+    <meta name="og:image" content="{{ site.url }}/static/default_image.png">
+    {% endif %}
+    <meta property="article:published_time" content="{{ page.date | date: "%Y-%m-%d" }}">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@JakeWharton">
+    <meta name="twitter:domain" content="jakewharton.com">
+    <meta name="twitter:title" content="{{ page.title }} – Jake Wharton">
+    <meta name="twitter:description" content="{{ page.lead }}">
+    {% if page.image %}
+    <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+    {% else %}
+    <meta name="twitter:image" content="{{ site.url }}/static/default_image.png">
+    {% endif %}
+    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Jake Wharton</a></h1>
+    </header>
+
+    <div class="content post">
+      <h2>{{ page.title }}</h2>
+      <p class="date">{{ page.date | date:"%d %B %Y" }}</p>
+
+      {{ content }}
+
+      <p class="signature">&mdash; Jake Wharton</p>
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-3637749-19', 'jakewharton.com');
+      ga('send', 'pageview');
+
+      (function () {
+        anchors.options.placement = 'right';
+        anchors.add('.content > h3, .content > h4, .content > h5, .content > h6');
+      })();
+    </script>
+  </body>
+</html>
