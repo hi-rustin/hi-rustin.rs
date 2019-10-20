@@ -3,7 +3,7 @@ const compareImages = require('resemblejs/compareImages');
 const puppeteer = require('puppeteer');
 
 const localHost = 'http://localhost:4000';
-const productionHost = 'https://jakewharton.com';
+const productionHost = 'https://liudongpo.cn';
 
 async function loadAndCapture(page, url) {
   await page.goto(url, {
