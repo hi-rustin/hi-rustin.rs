@@ -30,7 +30,7 @@ The content of the site (blog posts, presentation slides, etc.) are licensed as 
 
 The code powering the site is licensed as:
 
-    Copyright 2017 Jake Wharton
+    Copyright 2017 Rustin Liu
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
