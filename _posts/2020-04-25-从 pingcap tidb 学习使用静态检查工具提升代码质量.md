@@ -15,8 +15,8 @@ tags:
 
 ## 简介
 
-从去年开始接触到 TiDB 我开始尝试在社区帮忙修复一些简单的 Bug。最近，我在阅读代码的过程中发现 TiDB 的代码库中有大量的没有必要的类型转换，我就用 GoLand 分析检查出大部分的无效的类型转化，
-然后提了一个 [PR](https://github.com/pingcap/tidb/pull/16262) （CEO 半夜 review 代码，哈哈哈）。在这个 PR 中 [zz-jason](https://github.com/zz-jason) 评论希能够通过静态检查工具来检测这个问题。
+从去年接触到 TiDB 就开始尝试在社区帮忙修复一些简单的 Bug。最近，我在阅读代码的过程中发现 TiDB 的代码库中有大量的没有必要的类型转换，我就用 GoLand 分析检查出大部分的无效的类型转化，
+然后提了一个 [PR](https://github.com/pingcap/tidb/pull/16262) （CEO 半夜 review 代码，哈哈哈）修复。在这个 PR 中 [zz-jason 大神](https://github.com/zz-jason) 评论希望能够通过静态检查工具来检测无效的类型转换。
 
 我经过一些研究，决定使用 [unconvert](https://github.com/mdempsky/unconvert) 来检测无效的类型转换，然后在这个 [PR](https://github.com/pingcap/tidb/pull/16549) 解决了这个问题。
 **最近我终于有机会在公司写 Go了，所以我也想在公司的项目上配置和使用一些静态检查工具来提升代码质量。** 在经过一下午的努力之后终于把 TiDB 的大部分检查工具移植到了公司项目上，并且在 github 上创建了一个模板项目 
@@ -58,7 +58,7 @@ func main() {
 }
 ```
 
-在 foo 函数我为了测试 go tidy 功能，专门引入了一个三方的随机生成测试数据的库：go get github.com/Pallinder/go-randomdata，在代码中也是简单的生成一个随机数并测试：
+在 foo 函数我为了测试 go tidy 功能，专门引入了一个第三方的随机生成测试数据的库：go get github.com/Pallinder/go-randomdata。在代码中简单的生成一个随机数并测试：
 
 ```go
 // foo.go
@@ -119,8 +119,8 @@ PACKAGE_DIRECTORIES := $(PACKAGE_LIST) | sed 's|github.com/Rustin-Liu/$(PROJECT)
 FILES     := $$(find $$($(PACKAGE_DIRECTORIES)) -name "*.go")
 ```
 
-这些通用的变量有有两个地方需要注意：
-   - 我们定义了一个 FAIL_ON_STDOUT 的 [awk](https://zh.wikipedia.org/zh-hans/AWK) 命令，该命令会检测是否有错误信息输出我们在后面会多次使用，NR 是内置的变量，表示 number of record。如果我们检测到其他输出信息就失败退出。
+这些通用的变量中有两个地方需要注意：
+   - 我们定义了一个 FAIL_ON_STDOUT 的 [awk](https://zh.wikipedia.org/zh-hans/AWK) 命令，该命令会检测是否有错误信息输出，我们在后面会多次使用到该命令。NR 是内置的变量表示 number of record。如果我们检测到其他输出信息就失败退出（**输出信息也就是错误信息，我们会做输出重定向**）。
    - 我们匹配和查找出了包下的所有 go 文件，因为我这只是个简单的模板项目没有其他的 package，所以我在 [sed](https://zh.wikipedia.org/wiki/Sed) 中只替换和匹配了第一层 package：`sed 's|github.com/Rustin-Liu/$(PROJECT)||'`。如果你有很多子 package，就需要修改这个替换规则。 
 
 
@@ -150,7 +150,7 @@ go mod init github.com/Rustin-Liu/go-boilerplate/_tools
         └── go.mod
 ```
 
-有了改模块，我们就可以将工具直接编译到该目录下来使用，下面我就开始介绍目前我的模板项目中用到的一些很有帮助的检查工具：
+有了该模块，我们就可以将工具直接编译到其目录下来使用。下面我就开始介绍目前我的模板项目中用到的一些很有帮助的检查工具：
 
 1.gofmt 
 
@@ -160,7 +160,7 @@ fmt:
 	@gofmt -s -l -w $(FILES) 2>&1 | $(FAIL_ON_STDOUT)
 ```
 
-首先就是 Go 自带的 fmt 检查，列出错误，通过 2>&1 将标准错误输出**重定向**到标准输出，然后利用我们上面定义的 FAIL_ON_STDOUT 命令来检测结果。
+首先就是 Go 自带的 fmt 检查代码格式并输出错误，**通过 2>&1 将标准错误输出重定向到标准输出**，然后利用我们上面定义的 FAIL_ON_STDOUT 命令来检测结果。
 
 2.[goword](https://github.com/chzchzchz/goword)
 
@@ -175,7 +175,7 @@ goword:tools/bin/goword
 	tools/bin/goword $(FILES) 2>&1 | $(FAIL_ON_STDOUT)
 ```
 
-该工具主要是检测你代码中 godoc 函数注释的拼写错误，我们检测了包下的所有文件。
+该工具主要是检测你代码中 godoc 函数注释的拼写错误，在这里我们检测了包下的所有文件。
 
 3.[gosec](https://github.com/securego/gosec)
 
@@ -190,7 +190,7 @@ gosec:tools/bin/gosec
 	tools/bin/gosec ./...
 ```
 
-该工具主要是检测你代码中可能的安全问题，我们在这里使用了 ./.. 匹配所有文件。
+该工具主要是检测你代码中可能的安全问题，在这里我们使用了 ./.. 匹配所有文件。
 
 4.[golangci-lint](https://github.com/golangci/golangci-lint)
 
@@ -207,8 +207,9 @@ check-static: tools/bin/golangci-lint
 	  $$($(PACKAGE_DIRECTORIES))
 ```
 
-该工具其实非常强大，并且它是插件化的，可以集成使用很多其他的检查工具，在这里我们用 `--disable-all` 先关掉了所有的插件，然后用 `--enable=misspell --enable=ineffassign` 只打开这两个检测去检测拼写错误和无效的变量分配和赋值。
-这个工具实际上能集成几乎所有的静态检查工具，而且还可以做 CI 支持。**如果你的项目足够复杂，我建议你直接启用所有插件只使用这一个工具就能搞定大部分问题。**
+该工具非常强大并且它是插件化的，可以集成使用很多其他的检查工具，在这里我们用 `--disable-all` 先关掉了所有的插件，然后用 `--enable=misspell --enable=ineffassign` 只打开这两个检测工具去检测拼写错误和无效的变量分配和赋值。
+
+这个工具实际上能集成几乎所有的静态检查工具，而且还可以做 CI 支持。**如果你的项目足够复杂建议直接启用所有插件，使用这一个工具就能搞定大部分问题。**
 
 5.[errcheck](https://github.com/kisielk/errcheck)
 
@@ -223,7 +224,7 @@ errcheck:tools/bin/errcheck
 	@echo "errcheck"
 	@GO111MODULE=on tools/bin/errcheck -exclude ./tools/check/errcheck_excludes.txt -ignoretests -blank $(PACKAGES)
 ```
-该工具主要是做错误处理的检测，强制要求你处理错误。可以看到我们在命令参数中还排除了一些错误处理的检测，如果有些错误你不想处理即可将其放入其中。注意我们在这里检测的是 PACKAGES。
+该工具主要是做错误处理的检测，强制要求你处理错误。可以看到我们在命令参数中还排除了一些错误处理的检测。**如果有些错误你不想处理即可将其放入其中。注意我们在这里检测的是 PACKAGES。**
 
 ```text
 # errcheck_excludes.txt
@@ -248,7 +249,7 @@ unconvert:tools/bin/unconvert
 	@GO111MODULE=on tools/bin/unconvert ./...
 ```
 
-这就是我给 TiDB 添加用于检测无效转换的工具。
+这就是我给 TiDB 添加用于检测无效类型转换的工具。
 
 7.[revive](https://github.com/mgechev/revive)
 
@@ -264,7 +265,7 @@ lint:tools/bin/revive
 	@tools/bin/revive -formatter friendly -config tools/check/revive.toml $(FILES)
 ```
 
-该工具是一个代码风格格式化工具，可以看到我们定义了一个 revite.toml 文件来检测是否符合其中定义的规则。我们在这个地方检测了所有文件。
+该工具是一个代码风格格式化工具，可以看到我们定义了一个 revite.toml 规则文件来确定标准。在这里我们检测了所有文件。
 
 ```text
 # revive.toml
@@ -316,7 +317,7 @@ staticcheck:tools/bin/staticcheck
 	@GO111MODULE=on tools/bin/staticcheck ./...
 ```
 
-该工具主要检测一些无用代码和变量，并且会提供一些简化代码的建议。
+该工具主要检测一些无用代码和变量，并且会提供一些简化和优化代码的建议。
 
 10.tidy
 
@@ -326,7 +327,7 @@ tidy:
 	./tools/check/check-tidy.sh
 ```
 
-我们也利用 Go 自带的 tidy 功能来防止依赖被污染，我们创建了一个而脚本来检测依赖是否有效：
+我们也利用 Go 自带的 tidy 功能来防止依赖被污染，我们创建了一个脚本来检测依赖是否正常：
 
 ```shell
 set -euo pipefail
@@ -339,7 +340,7 @@ GO111MODULE=on go mod tidy
 diff -q go.sum /tmp/go.sum.before
 ```
 
-该脚本会执行 tidy 命令并且和你原来的 sum 文件比较，我编写 foo 引入第三方库就是为了测试该脚本。
+**该脚本会执行 [tidy](https://golang.org/cmd/go/) 命令并且和你原来的 sum 文件比较。** 我编写 foo 函数时引入第三方库就是为了测试该脚本。
 
 最终的目录结构：
 
@@ -389,7 +390,7 @@ test:
 	@>&2 echo "Great, all tests passed."
 ```
 
-现在我们所有的命令都就绪，我们就可以开始封装整合命令：
+现在我们所有的命令都就绪了，就可以开始封装整合命令：
 
 ```text
 dev: check test
@@ -399,7 +400,8 @@ check: fmt errcheck unconvert lint tidy check-static vet staticcheck goword
 
 我们整合出了两个命令，一个是 check 它会执行所有的检测任务，另外一个是 dev 它不仅可以进行检查还跑了单元测试。我们在开发完成之后就可以进行检测并提交，甚至将其作为 CI 任务运行。
 
-到此为止，我们就基本完善了项目的静态检查工具。我将该项目在 github 整理作为 [template 项目](https://github.com/Rustin-Liu/go-boilerplate) 开源，大家可以直接使用 [github template](https://github.com/Rustin-Liu/go-boilerplate/generate) 功能初始化你的项目。
+**到此为止，我们就基本完善了项目的静态检查工具链。该项目在 github 整理作为 [template 项目](https://github.com/Rustin-Liu/go-boilerplate) 开源，大家可以直接使用 [github template](https://github.com/Rustin-Liu/go-boilerplate/generate) 功能初始化你的项目。** 
+希望这篇文章对你集成静态代码分析工具有帮助！
 
 ---
 
