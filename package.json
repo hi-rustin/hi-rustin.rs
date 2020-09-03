@@ -4,7 +4,7 @@
   "dependencies": {
     "mz": "^2.7.0",
     "puppeteer": "^3.2.0",
-    "resemblejs": "^3.2.4"
+    "resemblejs": "^3.2.5"
   },
   "scripts": {
     "capture": "node scripts/capture.js"
