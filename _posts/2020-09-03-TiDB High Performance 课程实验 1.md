@@ -11,13 +11,13 @@ tags:
 - tikv
 ---
 
-大家好，我是 [Rustin](https://github.com/Rustin-Liu) 。最近开始做贵司推出的 TiDB High Performance 课程，所以开个课程实验记录的坑！
+大家好，我是 [Rustin](https://github.com/Rustin-Liu). 最近开始做贵司推出的 TiDB High Performance 课程，所以开个课程实验记录的坑！
 
-此博客在 [GitHub](https://github.com/Rustin-Liu/blog) 上公开发布. 如果您有任何问题或疑问，请在此处打开一个 [issue](https://github.com/Rustin-Liu/blog/issues)。
+此博客在 [GitHub](https://github.com/Rustin-Liu/blog) 上公开发布. 如果您有任何问题或疑问，请在此处打开一个 [issue](https://github.com/Rustin-Liu/blog/issues).
 
 ## 简介
 
-可以在高性能挑战赛的 [文档](https://docs.qq.com/sheet/DSlBwS3VCb01kTnZw?tab=BB08J2) 中找到第一节课的实验描述，需要分别下载和编译 TiDB, TiKV 和 PD，
+在高性能挑战赛的 [文档](https://docs.qq.com/sheet/DSlBwS3VCb01kTnZw?tab=BB08J2) 中找到第一节课的实验描述，实验需要分别下载和编译 TiDB, TiKV 和 PD，
 并且需要修改 TiDB 源码让其在启动事务的时候，打印一句 `hello transation` 的日志。下面我就简单记录一下整个实验过程。
 
 ## 克隆源码并编译
@@ -118,7 +118,7 @@ pd-server: ${PD_SERVER_DEP}
 ## 使用 TiUP 部署本地集群
 
 可以尝试使用 [tiup](https://tiup.io/) 来部署本地集群测试。TiUP 是贵司在 TiDB 4.0 时研发的一个新的部署工具，据说是受到 [rustup](https://rustup.rs/) 的启发做的。
-利用 TiUP 使用自己编译的二进制文件即可快速的部署一套本地的集群测试。但是似乎 TiUP 官网的文档链接主要是针服务器上部署的问题，可以在 [TiDB in action](https://book.tidb.io/session2/chapter1/tiup-playground.html)
+利用 TiUP 使用自己编译的二进制文件即可快速的部署一套本地的集群测试。但是似乎 TiUP 官网的文档链接主要是针服务器上的部署，但是可以在 [TiDB in action](https://book.tidb.io/session2/chapter1/tiup-playground.html)
 的 TiUP 部署本地测试环境章节中找到通过指定二进制文件路径来启动本地集群的参数。
 
 参数如下所示：
@@ -168,3 +168,117 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> use test;
 Database changed
 ```
+
+## 输出 `hello transation`
+
+### 输出到 `warnings`
+
+原来的题目描述中其实并没有要求输出到日志中，所以我想要不直接输出到 `warnings` 中。为了找到与事务开始的相关的代码，我先去 ast 包中搜索 begin 关键字找到了 begin 语句的定义。
+然后通过 `GoLand` 搜索引用，找到了相关的引用：
+
+![](../static/files/post-images/2020-09-03/usages.png)
+
+通过引用找到了执行 begin 语句的函数，它被定义在 `simple.go` 中。尝试直接添加输出到 warnings：
+
+```go
+// FILE: tidb/executor/simple.go
+
+func (e *SimpleExec) executeBegin(ctx context.Context, s *ast.BeginStmt) error {
+	// ...
+
+	e.ctx.GetSessionVars().StmtCtx.AppendNote(errors.New("hello transaction"))
+
+	// ...
+}
+```
+
+从当前执行器中获取语句 Context 然后在其中追加一句 Note，这样就可以在 begin 语句执行之后，在 warnings 中找到这个 Note.
+启动集群尝试执行一个事务：
+
+```sh
+➜  ~ mysql --host 127.0.0.1 --port 4000 -u root
+
+mysql> use test;
+Database changed
+mysql> begin;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> show warnings;
++-------+------+-------------------+
+| Level | Code | Message           |
++-------+------+-------------------+
+| Note  | 1105 | hello transaction |
++-------+------+-------------------+
+1 row in set (0.00 sec)
+```
+
+这样我们就实现了在事务 begin 语句执行后输出一句 `hello transation`.
+
+### 输出到日志
+
+后来题目改了要求，需要将 `hell transation` 输出到日志当中。输出到日志当中也十分简单，可以同样在 `simple.go` 的 **executeRollback** 
+找到如何打印日志的例子：
+
+```go
+// FILE: tidb/executor/simple.go
+
+func (e *SimpleExec) executeRollback(s *ast.RollbackStmt) error {
+	// ...
+
+	logutil.BgLogger().Debug("execute rollback statement", zap.Uint64("conn", sessVars.ConnectionID))
+	
+    // ...
+}
+```
+
+我们也可以在 **executeBegin** 中尝试添加日志：
+
+```go
+// FILE: tidb/executor/simple.go
+
+func (e *SimpleExec) executeBegin(ctx context.Context, s *ast.BeginStmt) error {
+	// ...
+
+	logutil.BgLogger().Info("hello transaction")
+
+	// ...
+}
+```
+
+再次提交事务测试后，可以去 `.tiup` 目录中找到该日志：
+
+```sh
+➜  tidb-0 pwd
+/Users/rustin/.tiup/data/SA3l5r6/tidb-0
+➜  tidb-0 less tidb.log
+# 搜索 hello 找到日志
+[2020/09/09 11:51:23.426 +08:00] [INFO] [simple.go:584] ["hello transaction"]
+```
+
+这样就输出了 `hello transaction` 到日志中。
+
+到这基本上就算是完成了实验，**但是整个实验中忽略了自动提交的情况**。目前最大的收获是学会了用 `TiUP` 快速的部署和搭建本地的测试环境。
+
+### 参考链接
+
+[三篇文章了解 TiDB 技术内幕 - 说存储](https://pingcap.com/blog-cn/tidb-internal-1/)
+
+[三篇文章了解 TiDB 技术内幕 - 说计算](https://pingcap.com/blog-cn/tidb-internal-2/)
+
+[三篇文章了解 TiDB 技术内幕 - 谈调度](https://pingcap.com/blog-cn/tidb-internal-3/)
+
+[TiDB In Action: based on 4.0](https://book.tidb.io/)
+
+### 文章链接
+
+文章首发于： [Rustin 的博客](https://rustin.cn/)
+
+同步更新：
+
+[知乎]()
+  
+[简书]()
+    
+[掘金]()
+    
+[segmentfault]()
