@@ -1,4 +1,4 @@
-rustin.cn
+hi-rustin.rs
 ============
 
 Blog posts, presentations, podcasts, and other things...
