@@ -18,7 +18,7 @@ tags:
 
 ## 简介
 
-前段时间过年的时候老板给我发来了一个 [X-lab](http://www.x-lab.info/) 实验室做的 GitHub 开源项目的[分析报告](http://www.x-lab.info/github-analysis-report/#/report)想让我看看我们是否可以学习和利用其中的分析方法和数据集。我就看看了这个报告，发现它其实背后是使用了另外一个开源项目 [GH Archive](https://github.com/igrigorik/gharchive.org) 归档的数据集并且配合 ClickHouse 生成了分析报告。所以我就简单的看了看这个项目，下面是这个归档项目的实现思路和使用方法。
+前段时间过年的时候老板给我发来了一个 [X-lab](http://www.x-lab.info/) 实验室做的 GitHub 开源项目的[分析报告](http://www.x-lab.info/github-analysis-report/#/report)想让我看看我们是否可以学习和利用其中的分析方法和数据集。我就看了看这个报告，发现它其实背后是使用了另外一个开源项目 [GH Archive](https://github.com/igrigorik/gharchive.org) 归档的数据集并配合 ClickHouse 生成了分析报告。所以我就简单的看了看这个项目，下面是这个 GitHub 归档项目的实现思路和使用方法。
 
 ## GH Archive 设计和实现思路
 
@@ -136,7 +136,7 @@ WHERE type = 'PushEvent' and org.login = 'pingcap' and repo.name = 'pingcap/tidb
 
 ## 与其他工具结合
 
-因为 GH Archive 存储的是 JSON 格式，所以我们完全可以将数据导入到其他工具中进行分析处理，比如 X-lab 就将数据导入了他们自己的 ClickHouse，并且按照他们报告需求对数据进行了[分析](https://github.com/X-lab2017/github-analysis-report/tree/master/sqls)。另外也有开源组织创建了一个公开的 [ClickHouse 数据集](https://github.com/github-sql/explorer)并且创建了大量的查询和分析样例。
+因为 GH Archive 存储的是 JSON 格式，所以我们完全可以将数据导入到其他工具中进行分析处理，比如 X-lab 就将数据导入了他们自己的 ClickHouse，并且按照他们的报告需求对数据进行了[分析](https://github.com/X-lab2017/github-analysis-report/tree/master/sqls)。另外也有开源组织创建了一个公开的 [ClickHouse 数据集](https://github.com/github-sql/explorer)并且创建了大量的查询和分析样例。
 
 更多与其他工具结合的例子可以参考 GH Archive 官网中的[资源](https://www.gharchive.org/#resources)。
 
