@@ -12,7 +12,7 @@ tags:
 - GH Archive
 ---
 
-大家好，我是 [Rustin](https://github.com/hi-rustin). 目前在 PingCAP 做社区的基础设施建设，最近应老板要求看了一个 X-lab 针对 GitHub 开源项目的[分析报告](http://www.x-lab.info/github-analysis-report/#/report)，发现了一个背后非常好用并且强大的[数据集](https://www.gharchive.org/)。所以简单介绍一下这个数据集的收集方式和使用方法。
+最近应老板要求看了一个 X-lab 针对 GitHub 开源项目的[分析报告](http://www.x-lab.info/github-analysis-report/#/report)，发现了一个背后非常好用并且强大的[数据集](https://www.gharchive.org/)。所以简单介绍一下这个数据集的收集方式和使用方法。
 
 此博客在 [GitHub](https://github.com/hi-rustin/blog) 上公开发布. 如果您有任何问题或疑问，请在此处打开一个 [issue](https://github.com/hi-rustin/blog/issues).
 
