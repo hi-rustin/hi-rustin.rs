@@ -3,11 +3,13 @@ hi-rustin.rs
 
 Blog posts, presentations, podcasts, and other things...
 
+> fork from [jakewharton.com](https://github.com/JakeWharton/jakewharton.com)
 
 Development
 ===========
 
-Ensure you have the correct version of Ruby installed (per `.ruby-version`). Also ensure you have the Bundler gem installed.
+Ensure you have the correct version of Ruby installed (per `.ruby-version`). Also ensure you have the Bundler gem
+installed.
 
 
 One-time setup
@@ -22,15 +24,14 @@ Running the site
 
     bundle exec jekyll serve
 
-
 License
 =======
 
-The content of the site (blog posts, presentation slides, etc.) are licensed as [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
+The content of the site (blog posts, presentation slides, etc.) are licensed
+as [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
 
 The code powering the site is licensed as:
-
-    Copyright 2017 Rustin Liu
+Copyright 2017 Jake Wharton Copyright 2019 Rustin Liu
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
