@@ -94,7 +94,7 @@ RUN wget -P /opt/flink/lib/ https://repo1.maven.org/maven2/org/apache/kafka/kafk
 RUN wget -P /opt/flink/lib/ https://repo1.maven.org/maven2/org/apache/flink/flink-connector-kafka_2.11/1.14.2/flink-connector-kafka_2.11-1.14.2.jar
 ```
 
-我们在原镜像的基础上，下载了 Kafka 的客户端包和 Flink 连接器的包。docker-compose 文件就不展开讲了，都是一些最基本的配置。
+我们在原镜像的基础上，下载了 Kafka 的客户端包和 Flink Kafka 连接器的包。docker-compose 文件就不展开讲了，都是一些最基本的配置。
 
 我们克隆该仓库之后在根目录通过一条命令就可以启动一个 Kafka 和 Flink 集群。
 
