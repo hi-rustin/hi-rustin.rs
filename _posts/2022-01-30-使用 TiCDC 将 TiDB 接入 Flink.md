@@ -78,7 +78,7 @@ Check Table Before Drop: false |
 可以看到我们启动了一个 nightly 版本的 TiDB 集群，我们使用 nightly 是因为过去几个月 TiCDC 团队对 `canal-json` 协议进行了大量的测试和问题修复，所以更推荐使用最新版本 TiCDC
 的 `canal-json` 实现。 这些修复也将在 v5.4.0 发布。
 
-说到 v5.4.0 ，可能大家可以看到一个奇怪的现象，上面的版本都到 v5.5.0 了，但是 v5.4.0 还没发布。这跟 TiDB 社区目前的发布和分支维护模型有关。因为我们现在已经切出了 v5.4 分支开始了发布前的测试，所以现在
+说到 v5.4.0 ，可能大家可以看到一个奇怪的现象，上面的版本都到 v5.5.0 了，但是 v5.4.0 还没发布。这跟 TiDB 社区目前的发布和分支维护模型有关。因为我们现在已经切出了 [v5.4 分支]开始了发布前的测试，所以现在
 master 上的 nightly 就只能用 v5.5.0-alpha 的版本标签了。
 
 ## 启动 Kafka 和 Flink 集群
@@ -227,6 +227,8 @@ from topic_test;
 
 
 [TiCDC]: https://docs.pingcap.com/tidb/stable/ticdc-overview/
+
+[v5.4 分支]: https://github.com/pingcap/tiflow/tree/release-5.4
 
 [Kafka Sink]: https://docs.pingcap.com/tidb/stable/manage-ticdc#configure-sink-uri-with-kafka
 
