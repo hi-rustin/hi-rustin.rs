@@ -85,7 +85,7 @@ master 上的 nightly 就只能用 v5.5.0-alpha 的版本标签了。
 
 在本地直接启动 Kafka 和 Flink 集群比较繁琐且坑比较多，所以我们可以使用 docker 和 docker-compose 快速的启动 Kafka 和 Flink 集群。
 
-我整理出了我在测试 Flink 时用到的 docker-compose，并将它分享到了 GitHub。我们这次使用的是 Kafka connector 如果直接使用 Flink 的官方镜像，你在执行 SQL 的时候就会遇到
+我整理出了我在测试 Flink 时用到的 docker-compose，并将它分享到了 [ticdc-test-compose]。我们这次使用的是 Kafka connector 如果直接使用 Flink 的官方镜像，你在执行 SQL 的时候就会遇到
 ClassNotFound 的 Java 异常，并且手动下载这些 Jar 包并重启 Flink 会比较麻烦，所以我自定义了一个 Dockerfile 来提前下载这些 Jar 包。
 
 ```Dockerfile
@@ -229,6 +229,8 @@ from topic_test;
 [TiCDC]: https://docs.pingcap.com/tidb/stable/ticdc-overview/
 
 [v5.4 分支]: https://github.com/pingcap/tiflow/tree/release-5.4
+
+[ticdc-test-compose]: https://github.com/hi-rustin/ticdc-test-compose
 
 [Kafka Sink]: https://docs.pingcap.com/tidb/stable/manage-ticdc#configure-sink-uri-with-kafka
 
