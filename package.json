@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "mz": "^2.7.0",
-    "puppeteer": "^8.0.0",
+    "puppeteer": "^13.1.2",
     "resemblejs": "^4.0.1"
   },
   "scripts": {
