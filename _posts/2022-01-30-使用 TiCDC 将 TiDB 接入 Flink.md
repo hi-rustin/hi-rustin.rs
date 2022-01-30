@@ -26,7 +26,7 @@ TiCDC Kafka Sink 支持多种协议格式，其中活跃维护的是 TiCDC 自�
 
 ## 启动 TiDB 和 TiCDC 集群
 
-推荐使用 TiUP 启动 TiDB 和 TiCDC 集群，因为今天只是简单演示所以我就用 TiUP 的 Playground 启动测试集群。
+推荐使用 [TiUP] 启动 TiDB 和 TiCDC 集群，因为今天只是简单演示所以我就用 TiUP 的 Playground 启动测试集群。
 
 使用以下命令启动集群：
 
@@ -235,3 +235,5 @@ from topic_test;
 [Flink]: https://flink.apache.org/
 
 [TiDB]: https://docs.pingcap.com/tidb/stable/
+
+[TiUP]: https://tiup.io/
