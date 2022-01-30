@@ -3,15 +3,5 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
-    time: "21:00"
+    interval: weekly
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: puppeteer
-    versions:
-    - 5.5.0
-    - 6.0.0
-    - 7.0.0
-    - 7.0.1
-    - 7.0.4
-    - 7.1.0
