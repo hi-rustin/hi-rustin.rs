@@ -140,8 +140,7 @@ Info: {"sink-uri":"kafka://localhost:9092/ticdc-test?protocol=canal-json","opts"
 在 changefeed 创建成功之后，我们就可以开始同步数据了。我们首先在 TiDB `test` 数据库中创建一个 `simple1` 表并插入数据：
 
 ```sql
-use
-test;
+use test;
 CREATE table test.simple1
 (
     id  int primary key,
