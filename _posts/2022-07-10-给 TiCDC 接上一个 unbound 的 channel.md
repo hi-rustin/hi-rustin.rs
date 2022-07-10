@@ -52,7 +52,7 @@ type Chann[T any] struct {
 }
 ```
 
-Chann 是一个范型结构体，它里面包含了一个 `in`，`out` channel，这就是我们能使用原生 channel 语法操作 chann 的入口和出口。
+Chann 是一个范型结构体，它里面维护了 `in` 和 `out` channel，这就是我们能使用原生 channel 语法操作 chann 的入口和出口。
 
 另外一个比较关键的字段是 `q`，它将负责存储 chann 的缓存。
 
