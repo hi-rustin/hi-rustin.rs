@@ -18,7 +18,7 @@ tags:
 此博客在 [GitHub](https://github.com/hi-rustin/hi-rustin.rs) 上公开发布。 如果您有任何问题或疑问，请在此处打开一个 [issue](https://github.com/hi-rustin/hi-rustin.rs/issues)。
 
 ## 简介
-该库由 golang 中文社区非常活跃的 [changkun] 编写，托管在他组建的 [golang-design] 组织下。
+该库由 golang 社区非常活跃的 [changkun] 编写，托管在他组建的 [golang-design] 组织下。
 
 它提供了统一的接口来创建不同类型的 channel，并且支持范型：
 ```go
