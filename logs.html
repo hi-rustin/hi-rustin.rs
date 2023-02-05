@@ -1,0 +1,12 @@
+---
+title: Logs
+layout: default
+---
+
+<ul class="presentation-list list-unstyled">
+{% for log in site.logs %}
+  <li class="presentation">
+    <a href="{{ log.url }}">{{ log.title }}</a>
+  </li>
+{% endfor %}
+</ul>

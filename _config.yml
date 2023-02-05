@@ -15,6 +15,8 @@ collections:
     output: true
     permalink: /:title/
 
-  podcasts:
+  logs:
+    output: true
+    permalink: /:title/
 
 exclude: ['node_modules', 'scripts', 'vendor']

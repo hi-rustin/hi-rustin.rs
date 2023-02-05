@@ -1,7 +1,7 @@
 hi-rustin.rs
 ============
 
-Blog posts, presentations, podcasts, and other things...
+Blog posts, presentations, logs, and other things...
 
 > fork from [jakewharton.com](https://github.com/JakeWharton/jakewharton.com)
 
@@ -32,7 +32,7 @@ as [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/lega
 
 The code powering the site is licensed as:
 
-    Copyright 2017 Jake Wharton 
+    Copyright 2017 Jake Wharton
     Copyright 2019 Rustin Liu
 
     Licensed under the Apache License, Version 2.0 (the "License");
