@@ -304,11 +304,217 @@ func (s *dmlSink) WriteEvents(rows ...*eventsink.RowChangeCallbackableEvent) err
 
 ## DDL Sink
 
-## 新建一个 Blackhole Sink
+在 TiCDC 中，DDL Event 比较特殊，因为 DDL 是全局共用的，所以我们只需要有一个 DDL Sink 按照顺序将 DDL 写入到外部系统中即可。它的主要接口如下：
+
+```golang
+type DDLEventSink interface {
+	// WriteDDLEvent 将 DDL 写入到外部系统中。
+	// 注意：这是一个同步且线程安全的方法。
+	WriteDDLEvent(ctx context.Context, ddl *model.DDLEvent) error
+	// WriteCheckpointTs 将 CheckpointTs 写入到外部系统中。
+	// 注意：这是一个同步且线程安全的方法。
+	// 目前只有 MQ DDL Sink 会实现这个方法。
+	WriteCheckpointTs(ctx context.Context, ts uint64, tables []*model.TableInfo) error
+	// Close 关闭 DDL Sink 和释放相关资源。
+	Close() error
+}
+```
+
+它的核心方法是 `WriteDDLEvent`，我们将 DDL Event 传入之后，它会将 DDL Event 进行编码，然后写入到外部系统中。例如：将 TiDB 的 DDL Event 编码为一条 Kafka 消息，然后调用 Kafka 生产者的 Produce 方法进行写入。**注意，这个方法的实现需要是同步的，因为 DDL 数量不会很多，所以我们可以将它的实现设置为同步的，这样可以避免一些并发问题，让实现变得简单。**
+
+值得一提的是，MQ DDL Sink 会实现 `WriteCheckpointTs` 方法，它会将 CheckpointTs 写入到 MQ 系统中。它会作为一个特殊的消息告诉下游系统当前的 CheckpointTs，我们可以把它理解成 MQ 系统中的 Watermark。这样，我们在消费 MQ 系统中的消息时，就可以通过 CheckpointTs 来进行过滤，排序等操作。
+
+## Log Sink 示例
+
+介绍了上面的各种 Sink 概念和实现之后，我们可以动手自己实现一个简单的 Log Sink 来了解如何为 TiCDC 添加一个新的 Sink。我们可以假设 Log Sink 的主要职责就是将所有的数据输出到日志中。我们调用 `log.Info()` 写入数据即可。
+
+首先，我们需要确认聚合策略，根据不同的聚合策略我们可以选用不同的 Table Sink 实现。因为我们的 Log Sink 只是简单的将数据写入到日志中，所以我们可以选择 `RowChangeEventAppender` 作为我们的 `Appender`。这样每一行数据都会被写入到日志中。
+
+接下来，我们只需要实现一个具体的 Event Sink 和一个 DDL Sink 即可。首先是 Event Sink：
+
+```golang
+
+// 断言 LogSink 实现了 EventSink 接口。
+var _ eventsink.EventSink[*model.RowChangedEvent] = (*LogSink)(nil)
+
+type LogSink struct{}
+
+// New 创建一个新的 LogSink。
+func New() *LogSink {
+	return &LogSink{}
+}
+
+func (s *LogSink) WriteEvents(rows ...*eventsink.CallbackableEvent[*model.RowChangedEvent]) error {
+	for _, row := range rows {
+		log.Info("LogSink: WriteEvents", zap.Any("row", row.Event))
+		// 不要忘记调用 Callback 方法来通知 Table Sink 该 Event 已经被处理。
+		row.Callback()
+	}
+
+	return nil
+}
+
+func (s *LogSink) Close() error {
+	return nil
+}
+```
+
+我们在实现 `WriteEvents` 方法时，只需要将每一行数据写入到日志中即可。在 此外，我们还需要调用 `Callback` 方法来通知 Table Sink 该 Event 已经被处理。**注意，所有的 `Callback` 方法是必须调用的，否则 Table Sink 会一直等待该 Event 被处理，这样会导致 TiCDC 数据同步卡住。**
+
+另外，我们可以注意到我在第一行代码中做了一个断言，这是为了确保我们的 Log Sink 实现了 `EventSink` 接口。这样，我们在编译时就可以发现一些错误。建议大家在实现 Sink 时都做这样的断言。
+
+接下来是 DDL Sink：
+
+```golang
+// 断言 LogSink 实现了 DDLEventSink 接口。
+var _ ddlsink.DDLEventSink = (*LogSink)(nil)
+
+type LogSink struct{}
+
+// New create a black hole DDL sink.
+func New() *LogSink {
+	return &LogSink{}
+}
+
+func (d *LogSink) WriteDDLEvent(ctx context.Context,
+	ddl *model.DDLEvent,
+) error {
+	log.Info("LogSink: DDL Event", zap.Any("ddl", ddl))
+	return nil
+}
+
+func (d *LogSink) WriteCheckpointTs(ctx context.Context,
+	ts uint64, tables []*model.TableInfo,
+) error {
+	log.Info("LogSink: Checkpoint Ts Event", zap.Uint64("ts", ts), zap.Any("tables", tables))
+	return nil
+}
+
+// Close do nothing.
+func (d *LogSink) Close() error {
+	return nil
+}
+```
+
+DDL Sink 的实现非常简单，我们只需要将 DDL Event 写入到日志中即可。
+
+有了具体的 Event Sink 和 DDL Sink 之后，我们就可以尝试将其接入到 TiCDC 中了。在接入之前，**我们需要了解一下 TiCDC 目前是如何构造 Sink 的。
+因为 golang 范型的限制，我们无法直接将一个带范型的 Event Sink 传递给 Table Sink。所以我们构建了一个构造工厂来解决这个问题：**
+
+```golang
+type SinkFactory struct {
+	sinkType sink.Type
+	rowSink  eventsink.EventSink[*model.RowChangedEvent]
+	txnSink  eventsink.EventSink[*model.SingleTableTxn]
+}
+
+// New 根据协议类型创建一个 SinkFactory。
+func New(ctx context.Context,
+	sinkURIStr string,
+	cfg *config.ReplicaConfig,
+	errCh chan error,
+) (*SinkFactory, error) {
+	sinkURI, err := config.GetSinkURIAndAdjustConfigWithSinkURI(sinkURIStr, cfg)
+	if err != nil {
+		return nil, err
+	}
+
+	s := &SinkFactory{}
+	schema := strings.ToLower(sinkURI.Scheme)
+	switch schema {
+	case sink.MySQLScheme, sink.MySQLSSLScheme, sink.TiDBScheme, sink.TiDBSSLScheme:
+		txnSink, err := txn.NewMySQLSink(ctx, sinkURI, cfg, errCh, txn.DefaultConflictDetectorSlots)
+		if err != nil {
+			return nil, err
+		}
+		s.txnSink = txnSink
+		s.sinkType = sink.TxnSink
+	case sink.KafkaScheme, sink.KafkaSSLScheme:
+		mqs, err := mq.NewKafkaDMLSink(ctx, sinkURI, cfg, errCh,
+			kafka.NewSaramaAdminClient, kafka.NewSaramaClient, dmlproducer.NewKafkaDMLProducer)
+		if err != nil {
+			return nil, err
+		}
+		s.rowSink = mqs
+		s.sinkType = sink.RowSink
+	...
+	default:
+		return nil,
+			cerror.ErrSinkURIInvalid.GenWithStack("the sink scheme (%s) is not supported", schema)
+	}
+
+	return s, nil
+}
+
+// CreateTableSink 创建一个 Table Sink，并且传入 Event Sink。
+func (s *SinkFactory) CreateTableSink(
+	changefeedID model.ChangeFeedID, span tablepb.Span, totalRowsCounter prometheus.Counter,
+) tablesink.TableSink {
+	switch s.sinkType {
+	case sink.RowSink:
+		// 我们需要在这里显式地指定 Event Sink 的类型。否则 golang 无法推断出该类型。
+		return tablesink.New[*model.RowChangedEvent](changefeedID, span,
+			s.rowSink, &eventsink.RowChangeEventAppender{}, totalRowsCounter)
+	case sink.TxnSink:
+		return tablesink.New[*model.SingleTableTxn](changefeedID, span,
+			s.txnSink, &eventsink.TxnEventAppender{}, totalRowsCounter)
+	default:
+		panic("unknown sink type")
+	}
+}
+```
+
+首先，我们通过 `New` 函数根据协议类型创建一个 SinkFactory。这个过程中我们会创建一个 Event Sink 的具体实例。比如我们新增了 Log Sink，那么我们就可以在这里创建一个 Log Sink 的实例：
+
+```diff
+func New(ctx context.Context,
+	sinkURIStr string,
+	cfg *config.ReplicaConfig,
+	errCh chan error,
+) (*SinkFactory, error) {
+	sinkURI, err := config.GetSinkURIAndAdjustConfigWithSinkURI(sinkURIStr, cfg)
+	if err != nil {
+		return nil, err
+	}
+
+	s := &SinkFactory{}
+	schema := strings.ToLower(sinkURI.Scheme)
+	switch schema {
+	...
+	...
++	case sink.LogScheme:
++		s.rowSink = logsink.New()
++		// 根据我们上面选择的聚合策略，我们选择 RowSink。
++		s.sinkType = sink.RowSink
+	default:
+		return nil,
+			cerror.ErrSinkURIInvalid.GenWithStack("the sink scheme (%s) is not supported", schema)
+	}
+
+	return s, nil
+}
+```
+
+在这里我们新增了一个 `LogScheme`，假设它为 `log://`，那么当用户传入 `--sink-uri="log://"` 时，我们就会创建一个 Log Sink 的实例。**在创建过程中我们使用了 `sink.RowSink` 作为 Table Sink 的类型，这是因为我们选择了以行为单位的聚合策略。**
+
+最后，我们需要关注一下 `CreateTableSink` 函数，这个函数会创建一个 Table Sink，并且传入 Event Sink。可以看到我们在这里根据 `sinkType` 指定的范型参数为 `*model.RowChangedEvent` 这样就实现了 Table Sink 和 Event Sink 的组合。
+
+这样我们就完整地实现了一个新的 Sink。接下来只需要指定 `--sink-uri="log://"` 即可使用我们的 Log Sink。
 
 ## 总结
 
-## 参考资料
+本文我介绍了 TiCDC 的 Sink 模块，我们了解了 Sink 详细设计，以及如何实现一个新的 Sink。但是要实现一个可用的 Sink，我们还需要考虑更多的问题，比如：
 
+- 数据写入的效率
+- 数据编码效率
+- 数据写入失败的处理
+- 参数和配置的处理
+- 单元测试的编写
+- 集成测试的编写
+- 模块的可观测性
+- 输出的数据如何被消费和使用
+- 输出的数据的正确性校验
+
+等等。**所以如果你真的希望自己动手实现一个生产级别的 Sink，那么你可以参考我们目前已经 GA 的 Sink 实现来实现你自己的 Sink。**如果你在实现过程中遇到了问题，欢迎在 TiCDC 的 Issue Tracker 中提出问题我们一起讨论和解决问题。
 
 [sink 模块]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2
