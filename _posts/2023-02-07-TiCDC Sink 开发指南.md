@@ -87,7 +87,7 @@ type TableSink interface {
 	// 注意：此方法是线程安全的。
 	GetCheckpointTs() model.ResolvedTs
 	// Close 关闭 Table Sink 并释放资源。
-	// 注意：我们需要保证这个方法是可取消或者中断的。
+	// 注意：我们需要保证这个方法是可取消或者可中断的。
 	Close(ctx context.Context)
 }
 ```
@@ -254,6 +254,53 @@ func (e *EventTableSink[E]) UpdateResolvedTs(resolvedTs model.ResolvedTs) error 
 以上就是 Table Sink 的核心实现，只要实现不同的 `Appender`，我们就可以实现不同的 Table Sink。目前 TiCDC 主要支持的就是上述的两种聚合策略，你可以根据自己的需求来选择不同的聚合策略。**一般来说，你不需要自己实现 Table Sink，目前的两种聚合策略已经能满足大部分的需求。**
 
 ## Event Sink
+
+在 TiCDC 中，Event Sink 是真实与外部系统交互的模块，它的主要职责是将 Table Sink 中的数据写入到外部系统中。它的主要接口如下：
+
+```golang
+type EventSink[E TableEvent] interface {
+	// WriteEvents 将数据写入到外部系统中。
+	// 注意：这是一个异步且线程安全的方法。
+	WriteEvents(events ...*CallbackableEvent[E]) error
+	// Close 关闭 Event Sink。
+	// 注意：我们需要保证这个方法是可取消或者可中断的。
+	Close() error
+}
+```
+
+这个接口的实现是与具体的外部系统相关的，我们以 MQ Event Sink 为例来看一下它的实现：
+
+```golang
+type dmlSink struct {
+	...
+	worker *worker
+	...
+	ctx    context.Context
+	cancel context.CancelFunc
+}
+```
+可以看到，它的实现中包含了一个 `worker`，这个 `worker` 用来处理写入到外部系统的数据。它的主要职责是将写入的数据进行编码，把 TiDB 的数据类型转化为 MQ 系统的数据类型，然后异步的将数据写入到 MQ 系统中。我们在这里就不展开讲解了，因为它的实现与具体的外部系统相关，你可以在 [Sink 模块] 中找到它的具体实现。
+
+我们来看一下 `WriteEvents` 方法的实现：
+
+```golang
+func (s *dmlSink) WriteEvents(rows ...*eventsink.RowChangeCallbackableEvent) error {
+	for _, row := range rows {
+		...
+		// 将数据通过 channel 发送到 worker 中。
+		s.worker.msgChan.In() <- mqEvent{
+			...
+			rowEvent: row,
+		}
+	}
+
+	return nil
+}
+```
+
+它的实现非常简单，就是将数据通过 channel 发送到 worker 中，然后 worker 封装了具体的写入逻辑，主要是将数据进行编码后调用外部系统的 API 进行写入。例如：将 TiDB 的数据编码为一条 Kafka 消息，然后调用 Kafka 生产者的 Produce 方法进行写入。
+
+**我们可以注意到，这里的 `rows` 都是从 Table Sink 中下发的可以回调的数据，在 worker 写入成功后，我们就可以通过回调的方式来通知 Table Sink 数据已经写入成功。**
 
 ## DDL Sink
 
