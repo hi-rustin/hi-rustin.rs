@@ -10,9 +10,9 @@ tags:
 - TiDB
 ---
 
-我过去近大半年的时间都在做 TiCDC [Sink 模块]的改造工作，目前新的 Sink 实现已经成功替换了旧的实现。最近有客户希望通过自己实现 Sink 的方式来接入 TiCDC，所以我想把这段时间的改造和设计经验分享出来，希望能帮助到大家。
+我近半年的时间都在做 [TiCDC] [Sink 模块]的改造工作，目前新的 Sink 实现已经成功替换了旧的实现。最近有客户希望通过自己实现 Sink 的方式来接入 TiCDC，所以我想把这段时间的改造和设计经验分享出来，希望能帮助到大家。
 
-此博客在 [GitHub](https://github.com/hi-rustin/hi-rustin.rs) 上公开发布。 如果您有任何问题或疑问，请在此处打开一个 [issue](https://github.com/hi-rustin/hi-rustin.rs/issues)。
+此博客在 [GitHub](https://github.com/hi-rustin/hi-rustin.rs) 上公开发布。 如果您有任何问题，请在此处打开一个 [issue](https://github.com/hi-rustin/hi-rustin.rs/issues)。
 
 > ⚠️ 注意：
 > 1. 该指南主要面向开发者，如果您只是想使用 TiCDC，请参阅 [TiCDC 使用文档](https://docs.pingcap.com/zh/tidb/stable/ticdc-overview)。
@@ -23,13 +23,13 @@ tags:
 > 可以先简单浏览这些子组件概念，后面会有详细的介绍。
 
 - Sink：TiCDC 的 Sink 模块负责将 TiCDC 的数据变更输出到外部系统中。目前 TiCDC 支持输出到 MySQL、TiDB、Kafka、S3 等外部系统中。
-- Table Sink：负责将 TiCDC 的数据变更按照表为单位进行聚合，然后输出到外部系统中。
-- Event Sink：负责与外部系统进行交互，将 TiCDC 的数据变更编码后输出到外部系统中。这里的 Event 主要指的是 TiCDC 的数据变更事件，比如 Insert、Update、Delete 等。
-- MQ Event Sink：负责将 TiCDC 的数据变更输出到 Message Queue 中。MQ Sink 会将数据变更事件编码为 MQ 消息，然后输出到 MQ 中。目前 TiCDC 支持输出到 Kafka 中。
-- Txn Event Sink：负责将 TiCDC 的数据变更按照事务为单位进行聚合，然后输出到外部系统中。目前 TiCDC 支持输出到 MySQL、TiDB 中。
-- DDL Sink：负责将 TiCDC 的 DDL 语句输出到外部系统中。目前 TiCDC 支持输出到 Kafka、MySQL、TiDB 中。
-- MQ DDL Sink：负责将 TiCDC 接受到的 DDL 语句输出到 Kafka 中。
-- Txn DDL Sink：，负责将 TiCDC 接受到的 DDL 语句输出到 MySQL、TiDB 中。
+- [Table Sink]：负责将 TiCDC 的数据变更按照表为单位进行聚合，然后输出到外部系统中。
+- [Event Sink]：负责与外部系统进行交互，将 TiCDC 的数据变更编码后输出到外部系统中。这里的 Event 主要指的是 TiCDC 的数据变更事件，比如 Insert、Update、Delete 等。
+- [MQ Event Sink]：负责将 TiCDC 的数据变更输出到 Message Queue 中。MQ Sink 会将数据变更事件编码为 MQ 消息，然后输出到 MQ 中。目前 TiCDC 支持输出到 Kafka 中。
+- [Txn Event Sink]：负责将 TiCDC 的数据变更按照事务为单位进行聚合，然后输出到外部系统中。目前 TiCDC 支持输出到 MySQL、TiDB 中。
+- [DDL Sink]：负责将 TiCDC 的 DDL 语句输出到外部系统中。目前 TiCDC 支持输出到 Kafka、MySQL、TiDB 中。
+- [MQ DDL Sink]：负责将 TiCDC 接受到的 DDL 语句输出到 Kafka 中。
+- [Txn DDL Sink]：，负责将 TiCDC 接受到的 DDL 语句输出到 MySQL、TiDB 中。
 
 ## 基本架构
 
@@ -518,3 +518,11 @@ func New(ctx context.Context,
 等等。**所以如果你真的希望自己动手实现一个生产级别的 Sink，那么你可以参考我们目前已经 GA 的 Sink 实现来实现你自己的 Sink。**如果你在实现过程中遇到了问题，欢迎在 TiCDC 的 Issue Tracker 中提出问题我们一起讨论和解决问题。
 
 [sink 模块]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2
+[ticdc]: https://docs.pingcap.com/tidb/dev/ticdc-overview/
+[table sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/tablesink
+[event sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/eventsink
+[mq event sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/eventsink/mq
+[txn event sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/eventsink/txn
+[ddl sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/ddlsink
+[mq ddl sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/ddlsink/mq
+[txn ddl sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/ddlsink/mysql
