@@ -37,9 +37,9 @@ tags:
 - DML：TiCDC 接收到的数据变更事件，比如 Insert、Update、Delete 等。
 - DDL：TiCDC 接收到的 DDL 语句。
 
-Sink 模块也根据上述不同的数据类型抽象出了不同的 Sink 子模块，分别是 Event Sink、DDL Sink。Event Sink 负责将过滤和聚合后的 DML 数据输出到外部系统中，DDL Sink 负责将过滤后的 DDL 数据输出到外部系统中。
+Sink 模块也根据上述不同的数据类型抽象出了不同的 Sink 子模块，分别是 [Event Sink]、[DDL Sink]。Event Sink 负责将过滤和聚合后的 DML 数据输出到外部系统中，DDL Sink 负责将过滤后的 DDL 数据输出到外部系统中。
 
-DDL Sink 很容易理解，因为它就是简单的将收到每张表的 DDL 语句编码后输出到外部系统。而 Event Sink 则更加复杂，我们会接收到大量不同表的变更数据，但是 TiCDC 需要按照表为单位进行数据同步。所以我们又引入了 Table Sink，它负责将收到的数据按照表进行聚合，然后输出到 Event Sink 中。
+DDL Sink 很容易理解，因为它就是简单的将收到每张表的 DDL 语句编码后输出到外部系统。而 Event Sink 则更加复杂，我们会接收到大量不同表的变更数据，但是 TiCDC 需要按照表为单位进行数据同步。所以我们又引入了 [Table Sink]，它负责将收到的数据按照表进行聚合，然后输出到 Event Sink 中。
 
 我们可以将 TiCDC 的 Sink 模块抽象为下面这个图：
 
@@ -48,14 +48,15 @@ DDL Sink 很容易理解，因为它就是简单的将收到每张表的 DDL 语
 有了这个基本的架构，我们就可以看看数据是如何在各个子模块之间流动的了。
 
 ## 数据流程
+
 数据同步流程也可以根据数据类型分为两部分，一部分是 DML 数据，另一部分是 DDL 数据。
 
 ### DML 数据
 TiCDC 从 TiKV 接受到变更数据后，会对数据进行排序，但是整个排序过程中数据都是所有表的数据放在一起进行排序的。排序完成后我们还需要以表为单位将数据进行分发，这个过程就是 Table Sink 负责的。所以其他组件跟 Sink 模块的交互都是通过调用 Table Sink 的接口来完成的。
 
-这个过程中 Table Sink 可以理解成一个缓冲区，它会将收到的数据按照表进行缓存，但是并不会真实的将数据写入外部系统。与外部系统的交互是通过 Event Sink 来完成的，通过这样的抽象，多个 Table Sink 可以共享一个 Event Sink，我们可以在底层并发的进行数据写入。并且我们能共用一些公共的资源，比如数据库连接池，Kafka 的生产者等等。
+这个过程中 Table Sink 可以理解成一个缓冲区，它会将收到的数据按照表进行缓存，但是并不会真实的将数据写入外部系统。与外部系统的交互是通过 Event Sink 来完成的，通过这样的抽象，多个 Table Sink 可以共享一个 Event Sink，我们可以在底层并发的进行数据写入。另外，我们也能共用一些公共的资源，比如数据库连接池，Kafka 的生产者等等。
 
-下面是 DML 数据在 MQ Event Sink 模块中流转的时序图：
+下面是 DML 数据在 [MQ Event Sink] 模块中流转的时序图：
 
 [![](https://www.plantuml.com/plantuml/png/VT2n2eCm40RWFKznTNSmeqEn5QSWL1Gwd_5AGsAK6FlyZQ6Kwj0bm_z_kOCh5e_EhwDX9_-aaM0sg2oRGwYacj5wwDeCS86amzuGjChgB3a0VW1y3-gcQgEe6wXUP7r4UoCY4FZG25StQN89Ozlgz1p_vo3H6BWxvIdEM4BB_xHRlDKYXvkRXbKI4v1-_QKKaSGexFbCACFJezJPRyaF9MS5sI4SxGq0)](https://www.plantuml.com/plantuml/uml/VT2n2eCm40RWFKznTNSmeqEn5QSWL1Gwd_5AGsAK6FlyZQ6Kwj0bm_z_kOCh5e_EhwDX9_-aaM0sg2oRGwYacj5wwDeCS86amzuGjChgB3a0VW1y3-gcQgEe6wXUP7r4UoCY4FZG25StQN89Ozlgz1p_vo3H6BWxvIdEM4BB_xHRlDKYXvkRXbKI4v1-_QKKaSGexFbCACFJezI_7Jzs1TaXdEmD)
 
@@ -64,7 +65,7 @@ TiCDC 从 TiKV 接受到变更数据后，会对数据进行排序，但是整�
 
 ### DDL 数据
 
-TiCDC 从 TiKV 接受到 DDL 变更数据后，会将数据直接发送到具体的 DDL Sink 实现中，这个过程是同步的，也就是说 TiCDC 会等待 DDL Sink 返回成功之后才会继续处理后续的 DDL 变更数据。在写入 DDL 的时候我们并没有使用 Table Sink，因为 DDL 数据是全局共用且有序的，所以我们可以直接将数据发送到 DDL Sink 中。
+TiCDC 从 TiKV 接受到 DDL 变更数据后，会将数据直接发送到具体的 [DDL Sink] 实现中，这个过程是同步的，也就是说 TiCDC 会等待 DDL Sink 返回成功之后才会继续处理后续的 DDL 变更数据。在写入 DDL 的时候我们并没有使用 Table Sink，因为 DDL 数据是全局共用且有序的，所以我们可以直接将数据发送到 DDL Sink 中。
 
 下面是 DDL 数据在 MQ DDL Sink 模块中流转的时序图：
 
@@ -75,6 +76,7 @@ TiCDC 从 TiKV 接受到 DDL 变更数据后，会将数据直接发送到具体
 在 Sink 模块中，Table Sink 是一个抽象的接口：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/tablesink/table_sink.go
 // 用于将数据以表为单位进行缓存。
 type TableSink interface {
 	// AppendRowChangedEvents 将行变更事件追加到 Table Sink 中。
@@ -97,6 +99,7 @@ type TableSink interface {
 因为针对的外部系统的不同，我们需要实现不同的聚合策略。所以我们为 Table Sink 的实现添加了一个范型参数 `E`，用于指定聚合策略：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/tablesink/table_sink.go
 type EventTableSink[E eventsink.TableEvent] struct {
 	...
 	// 就是具体的 Event Sink，比如 MQ Event Sink。
@@ -113,6 +116,7 @@ type EventTableSink[E eventsink.TableEvent] struct {
 可以看到范型参数 `E` 的类型为 `eventsink.TableEvent`，它是一个非常简单的接口：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/event.go
 type TableEvent interface {
 	// GetCommitTs 返回事件的 CommitTs。
 	GetCommitTs() uint64
@@ -121,12 +125,13 @@ type TableEvent interface {
 
 通过这个接口抽象，任何可以获取 CommitTs 的事件都可以作为 Table Sink 的缓存对象。在 TiCDC 中，我们实现了两种聚合策略：
 
-- `RowChangedEvent`：用于单行变更，比如 MQ Event Sink 就是将行变更一条一条发送到 Kafka 中。
-- `SingleTableTxn`：用于单表事务，比如 Txn Event Sink 就是以事务为单位提交到 MySQL 中。
+- `RowChangedEvent`：用于单行变更，比如 [MQ Event Sink] 就是将行变更一条一条发送到 Kafka 中。
+- `SingleTableTxn`：用于单表事务，比如 [Txn Event Sink] 就是以事务为单位提交到 MySQL 中。
 
 还记得我们在数据流程中提到 DML 数据的写入是异步的吗？所以我们需要为每个 Event 添加一个 Callback，用于在数据写入完成后通知 Table Sink：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/event.go
 type CallbackFunc func()
 
 type CallbackableEvent[E TableEvent] struct {
@@ -145,6 +150,7 @@ type TxnCallbackableEvent = CallbackableEvent[*model.SingleTableTxn]
 有了这两种不同的可以回调的 Event，我们就可以实现具体的聚合策略了。为了复用代码，我们将聚合策略抽象为一个接口：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/event_appender.go
 type Appender[E TableEvent] interface {
 	// Append 添加一批行变更事件到缓存中。
 	Append(buffer []E, rows ...*model.RowChangedEvent) []E
@@ -156,6 +162,7 @@ type Appender[E TableEvent] interface {
 对于 `RowChangeCallbackableEvent` 来说，我们并没有实际上的聚合操作，只是将行变更事件**顺序**追加到当前的缓存中：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/event_appender.go
 func (r *RowChangeEventAppender) Append(
 	buffer []*model.RowChangedEvent,
 	rows ...*model.RowChangedEvent,
@@ -167,6 +174,7 @@ func (r *RowChangeEventAppender) Append(
 对于 `TxnCallbackableEvent` 来说，我们需要将行变更事件聚合到一个事务中：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/event_appender.go
 func (t *TxnEventAppender) Append(
 	buffer []*model.SingleTableTxn,
 	rows ...*model.RowChangedEvent,
@@ -211,6 +219,7 @@ func (t *TxnEventAppender) Append(
 有了不同聚合策略的 `Appender`，我们就可以实现具体的 Table Sink 了。首先是 `AppendRowChangedEvents` 方法，得益于 `Appender` 的抽象，我们的具体实现可以非常简单：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/tablesink/table_sink.go
 func (e *EventTableSink[E]) AppendRowChangedEvents(rows ...*model.RowChangedEvent) {
 	e.eventBuffer = e.eventAppender.Append(e.eventBuffer, rows...)
 }
@@ -219,6 +228,7 @@ func (e *EventTableSink[E]) AppendRowChangedEvents(rows ...*model.RowChangedEven
 其次是 `UpdateResolvedTs` 方法，它会将当前的缓存中的所有 Event 写入到具体的 Event Sink 中：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/tablesink/table_sink.go
 func (e *EventTableSink[E]) UpdateResolvedTs(resolvedTs model.ResolvedTs) error {
 	...
 	// 从缓存中找到第一个大于 resolvedTs 的数据。
@@ -255,9 +265,10 @@ func (e *EventTableSink[E]) UpdateResolvedTs(resolvedTs model.ResolvedTs) error 
 
 ## Event Sink
 
-在 TiCDC 中，Event Sink 是真实与外部系统交互的模块，它的主要职责是将 Table Sink 中的数据写入到外部系统中。它的主要接口如下：
+在 TiCDC 中，[Event Sink] 是真实与外部系统交互的模块，它的主要职责是将 Table Sink 中的数据写入到外部系统中。它的主要接口如下：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/event_sink.go
 type EventSink[E TableEvent] interface {
 	// WriteEvents 将数据写入到外部系统中。
 	// 注意：这是一个异步且线程安全的方法。
@@ -268,9 +279,10 @@ type EventSink[E TableEvent] interface {
 }
 ```
 
-这个接口的实现是与具体的外部系统相关的，我们以 MQ Event Sink 为例来看一下它的实现：
+这个接口的实现是与具体的外部系统相关的，我们以 [MQ Event Sink] 为例来看一下它的实现：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/mq/mq_dml_sink.go
 type dmlSink struct {
 	...
 	worker *worker
@@ -284,6 +296,7 @@ type dmlSink struct {
 我们来看一下 `WriteEvents` 方法的实现：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/mq/mq_dml_sink.go
 func (s *dmlSink) WriteEvents(rows ...*eventsink.RowChangeCallbackableEvent) error {
 	for _, row := range rows {
 		...
@@ -307,6 +320,7 @@ func (s *dmlSink) WriteEvents(rows ...*eventsink.RowChangeCallbackableEvent) err
 在 TiCDC 中，DDL Event 比较特殊，因为 DDL 是全局共用的，所以我们只需要有一个 DDL Sink 按照顺序将 DDL 写入到外部系统中即可。它的主要接口如下：
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/ddlsink/ddl_sink.go
 type DDLEventSink interface {
 	// WriteDDLEvent 将 DDL 写入到外部系统中。
 	// 注意：这是一个同步且线程安全的方法。
@@ -399,9 +413,10 @@ func (d *LogSink) Close() error {
 DDL Sink 的实现非常简单，我们只需要将 DDL Event 写入到日志中即可。
 
 有了具体的 Event Sink 和 DDL Sink 之后，我们就可以尝试将其接入到 TiCDC 中了。在接入之前，**我们需要了解一下 TiCDC 目前是如何构造 Sink 的。
-因为 golang 范型的限制，我们无法直接将一个带范型的 Event Sink 传递给 Table Sink。所以我们构建了一个构造工厂来解决这个问题：**
+因为 golang 范型的限制，我们无法直接将一个带范型的 Event Sink 传递给 Table Sink。所以我们构建了一个[构造工厂]来解决这个问题：**
 
 ```golang
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/factory/factory.go
 type SinkFactory struct {
 	sinkType sink.Type
 	rowSink  eventsink.EventSink[*model.RowChangedEvent]
@@ -467,6 +482,7 @@ func (s *SinkFactory) CreateTableSink(
 首先，我们通过 `New` 函数根据协议类型创建一个 SinkFactory。这个过程中我们会创建一个 Event Sink 的具体实例。比如我们新增了 Log Sink，那么我们就可以在这里创建一个 Log Sink 的实例：
 
 ```diff
+// https://github.com/pingcap/tiflow/blob/master/cdc/sinkv2/eventsink/factory/factory.go
 func New(ctx context.Context,
 	sinkURIStr string,
 	cfg *config.ReplicaConfig,
@@ -511,6 +527,7 @@ func New(ctx context.Context,
 - 参数和配置的处理
 - 单元测试的编写
 - 集成测试的编写
+- 使用文档的编写
 - 模块的可观测性
 - 输出的数据如何被消费和使用
 - 输出的数据的正确性校验
@@ -526,3 +543,4 @@ func New(ctx context.Context,
 [ddl sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/ddlsink
 [mq ddl sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/ddlsink/mq
 [txn ddl sink]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/ddlsink/mysql
+[构造工厂]: https://github.com/pingcap/tiflow/tree/master/cdc/sinkv2/eventsink/factory
