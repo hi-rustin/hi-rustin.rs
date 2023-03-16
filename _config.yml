@@ -19,4 +19,8 @@ collections:
     output: true
     permalink: /:title/
 
-exclude: ['node_modules', 'scripts', 'vendor']
+  about:
+    output: true
+    permalink: /about/
+
+exclude: ["node_modules", "scripts", "vendor"]
