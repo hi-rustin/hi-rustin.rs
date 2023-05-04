@@ -3,13 +3,12 @@ title: 'About Me'
 layout: default
 ---
 
-# <img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30" /> Hello there!
+# <img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30" /> Hello there
 
-[![][resume-badge]][resume]{:target="_blank"} [![][github-badge]][github]{:target="_blank"} [![][linkedin-badge]][linkedin]{:target="_blank"}
+[![][resume-badge]][resume] [![][github-badge]][github] [![][linkedin-badge]][linkedin]
 
 I'm Rustin Liu, a software engineer from China and also a Rustacean in [Rust] community. I love Rust, running and open
-source. Currently contribute to ["Cargo: The Rust package manager"] and ["Rustup: The Rust toolchain installer"]
-regularly.
+source. Currently contribute to ["Cargo: The Rust package manager"] and ["Rustup: The Rust toolchain installer"] regularly. Recently, I have also been trying to understand and implement [continuous profiling](https://github.com/grafana/phlare).
 
 Things I code with: Rust, Golang, Node.js, web development, DevOps, finding bugs.
 
