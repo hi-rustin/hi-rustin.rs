@@ -5,12 +5,17 @@ layout: default
 
 # <img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30" /> Hello there
 
-[![][resume-badge]][resume] [![][github-badge]][github] [![][linkedin-badge]][linkedin]
+[![Resume][resume-badge]][resume] [![GitHub][github-badge]][github] [![Linkedin][linkedin-badge]][linkedin]
 
-I'm Rustin Liu, a software engineer from China and also a Rustacean in [Rust] community. I love Rust, running and open
-source. Currently contribute to ["Cargo: The Rust package manager"] and ["Rustup: The Rust toolchain installer"] regularly. Recently, I have also been trying to understand and implement [continuous profiling](https://github.com/grafana/phlare).
+My name is Rustin Liu and I'm a passionate developer interested in distributed systems, build systems, and performance.
 
-Things I code with: Rust, Golang, Node.js, web development, DevOps, finding bugs.
+As a software engineer at [PingCAP], my focus is on enhancing [TiCDC], which serves as the change data capture tool for [TiDB].
+
+Aside from my work, I am an active contributor to [Rust] community. Presently, I am working on two projects - ["Cargo: The Rust package manager"] and ["Rustup: The Rust toolchain installer"].
+
+Additionally, I am also exploring the field of [continuous profiling] and trying to build a tool to help developers profile their applications in production.
+
+Things I code with: Rust, Golang, TypeScript, JavaScript, etc.
 
 You can contact me by clicking badges above, or e-mail me directly (address is on the GitHub profile)😀.
 
@@ -20,6 +25,9 @@ You can contact me by clicking badges above, or e-mail me directly (address is o
 [github]: https://github.com/hi-rustin
 [linkedin-badge]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
 [linkedin]: https://www.linkedin.com/in/hi-rustin
+[PingCAP]: https://www.pingcap.com/
+[TiDB]: https://github.com/pingcap/tidb
 [Rust]: https://www.rust-lang.org/
 ["Cargo: The Rust package manager"]: https://github.com/rust-lang/cargo
 ["Rustup: The Rust toolchain installer"]: https://github.com/rust-lang/rustup
+[continuous profiling]: https://github.com/grafana/phlar
