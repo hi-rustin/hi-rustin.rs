@@ -27,6 +27,7 @@ You can contact me by clicking badges above, or e-mail me directly (address is o
 [linkedin]: https://www.linkedin.com/in/hi-rustin
 [PingCAP]: https://www.pingcap.com/
 [TiDB]: https://github.com/pingcap/tidb
+[TiCDC]: https://github.com/pingcap/tiflow
 [Rust]: https://www.rust-lang.org/
 ["Cargo: The Rust package manager"]: https://github.com/rust-lang/cargo
 ["Rustup: The Rust toolchain installer"]: https://github.com/rust-lang/rustup
