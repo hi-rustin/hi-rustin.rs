@@ -7,7 +7,7 @@ layout: default
 
 [![Resume][resume-badge]][resume] [![GitHub][github-badge]][github] [![Linkedin][linkedin-badge]][linkedin]
 
-My name is Rustin Liu and I'm a passionate developer interested in distributed systems, build systems, and performance.
+My name is Rustin Liu and I'm a passionate developer interested in distributed systems, build systems, and programming languages.
 
 As a software engineer at [PingCAP], my focus is on enhancing [TiCDC], which serves as the change data capture tool for [TiDB].
 
