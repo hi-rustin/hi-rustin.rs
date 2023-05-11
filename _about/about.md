@@ -28,6 +28,7 @@ Languages I primarily code in:
   - [Rustup: 110+ commits](https://github.com/rust-lang/rustup/commits?author=hi-rustin)
   - [Rust: 64+ commits](https://github.com/rust-lang/rust/commits?author=hi-rustin)
   - [TiKV: 45+ commits](https://github.com/tikv/tikv/commits?author=hi-rustin)
+  - [Build my own X: 449+ commits](https://github.com/hi-rustin/build-my-own-x/commits?author=hi-rustin)
 - Golang
   - [TiFlow: 299+ commits](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
   - [TiChi: 365+ commits](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
