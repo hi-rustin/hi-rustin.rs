@@ -15,28 +15,36 @@ I’m also a big believer in open source.
 
 I am an active contributor to [Rust] community, where I’m working on two projects:
 
-["Cargo: The Rust package manager"] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
+- ["Cargo: The Rust package manager"] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
 
-["Rustup: The Rust toolchain installer"] - Rustup installs The Rust Programming Language from the oﬀicial release channels, enabling you to easily switch between stable, beta, and nightly compilers and keep them updated.
+- ["Rustup: The Rust toolchain installer"] - Rustup installs Rust from the official release channels, enabling you to easily switch between stable, beta, and nightly compilers and keep them updated.
 
 Currently learning:  I am exploring the field of [continuous profiling] and trying to build a tool to help developers profile their applications in production.
 
-Languages I primarily code in:
+Programming languages I primarily code in:
 
 - Rust
-  - [Cargo](https://github.com/rust-lang/cargo/commits?author=hi-rustin)
-  - [Rustup](https://github.com/rust-lang/rustup/commits?author=hi-rustin)
-  - [Rust](https://github.com/rust-lang/rust/commits?author=hi-rustin)
-  - [TiKV](https://github.com/tikv/tikv/commits?author=hi-rustin)
-  - [Build my own X](https://github.com/hi-rustin/build-my-own-x/commits?author=hi-rustin)
+  - [![cargo-commits][cargo-commits]](<https://github.com/rust-lang/cargo/commits?author=hi-rustin>)
+  - [![rustup-commits][rustup-commits]](https://github.com/rust-lang/rustup/commits?author=hi-rustin)
+  - [![rust-commits][rust-commits]](https://github.com/rust-lang/rust/commits?author=hi-rustin)
+  - [![tikv-commits][tikv-commits]](https://github.com/tikv/tikv/commits?author=hi-rustin)
+  - [![built-my-own-x-commits][built-my-own-x-commits]](https://github.com/hi-rustin/build-my-own-x/commits?author=hi-rustin)
 - Golang
-  - [TiFlow](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
-  - [TiChi](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
-  - [Kubernetes Test Infra](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
-  - [Phlare](https://github.com/grafana/phlare/commits?author=hi-rustin)
+  - [![tiflow-commits][tiflow-commits]](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
+  - [![tichi-commits][tichi-commits]](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
+  - [![kubernetes-test-infra-commits][kubernetes-test-infra-commits]](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
+  - [![phlare-commits][phlare-commits]](https://github.com/grafana/phlare/commits?author=hi-rustin)
 - TypeScript/JavaScript
-  - [Ant Design](https://github.com/ant-design/ant-design/commits?author=hi-rustin)
-  - [TiSpace](https://github.com/tispace-dev/tispace/commits?author=hi-rustin)
+  - [![ant-design-commits][ant-design-commits]](https://github.com/ant-design/ant-design/commits?author=hi-rustin)
+  - [![tispace-commits][tispace-commits]](https://github.com/tispace-dev/tispace/commits?author=hi-rustin)
+
+Languages I speak:
+
+- English (Professional working proficiency)
+- Chinese (Native proficiency)
+  - Mandarin (Standard Chinese)
+  - Minxian (My hometown dialect)
+  - Yumen (My second hometown dialect)
 
 You can contact me by clicking badges above or below badges, or e-mailing me directly. My email address is on my GitHub profile 😀.
 
@@ -54,4 +62,15 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [Rust]: https://www.rust-lang.org/
 ["Cargo: The Rust package manager"]: https://github.com/rust-lang/cargo
 ["Rustup: The Rust toolchain installer"]: https://github.com/rust-lang/rustup
-[continuous profiling]: https://github.com/grafana/phlar
+[continuous profiling]: https://github.com/grafana/phlare
+[cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
+[rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
+[rust-commits]: https://img.shields.io/badge/64+commits-black?logoColor=balck&logo=rust&label=Rust&style=social
+[tikv-commits]: https://img.shields.io/badge/45+commits-black?logoColor=balck&logo=rust&label=TiKV&style=social
+[built-my-own-x-commits]: https://img.shields.io/badge/449+commits-black?logoColor=balck&logo=rust&label=Build%20my%20own%20X&style=social
+[tiflow-commits]: https://img.shields.io/badge/299+commits-black?logoColor=balck&logo=go&label=TiFlow&style=social
+[tichi-commits]: https://img.shields.io/badge/365+commits-black?logoColor=balck&logo=go&label=TiChi&style=social
+[kubernetes-test-infra-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=Kubernetes%20Test%20Infra&style=social
+[phlare-commits]: https://img.shields.io/badge/31+commits-black?logoColor=balck&logo=go&label=Phlare&style=social
+[ant-design-commits]: https://img.shields.io/badge/20+commits-black?logoColor=balck&logo=typescript&label=Ant%20Design&style=social
+[tispace-commits]: https://img.shields.io/badge/46+commits-black?logoColor=balck&logo=typescript&label=TiSpace&style=social
