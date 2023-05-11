@@ -46,7 +46,7 @@ Languages I speak:
   - Minxian (My hometown dialect)
   - Yumen (My second hometown dialect)
 
-You can contact me by clicking badges above or below badges, or e-mailing me directly. My email address is on my GitHub profile 😀.
+You can contact me by clicking badges above or below badges, or e-mailing me directly. My email address is on my GitHub profile.
 
 [![Resume][resume-badge]][resume] [![GitHub][github-badge]][github] [![Linkedin][linkedin-badge]][linkedin]
 
