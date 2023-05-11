@@ -11,9 +11,7 @@ My name is Rustin Liu and I’m a passionate software engineer who specializes i
 
 As a software engineer at [PingCAP], my main focus is on enhancing [TiCDC], which serves as the change data capture tool for [TiDB].
 
-I’m also a big believer in open source.
-
-I am an active contributor to [Rust] community, where I’m working on two projects:
+I am also a big believer in open source. I contribute to the [Rust] community, where I am working on two projects:
 
 - ["Cargo: The Rust package manager"] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
 
