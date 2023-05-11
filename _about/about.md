@@ -24,19 +24,19 @@ Currently learning:  I am exploring the field of [continuous profiling] and tryi
 Languages I primarily code in:
 
 - Rust
-  - [Cargo: 156+ commits](https://github.com/rust-lang/cargo/commits?author=hi-rustin)
-  - [Rustup: 110+ commits](https://github.com/rust-lang/rustup/commits?author=hi-rustin)
-  - [Rust: 64+ commits](https://github.com/rust-lang/rust/commits?author=hi-rustin)
-  - [TiKV: 45+ commits](https://github.com/tikv/tikv/commits?author=hi-rustin)
-  - [Build my own X: 449+ commits](https://github.com/hi-rustin/build-my-own-x/commits?author=hi-rustin)
+  - [Cargo](https://github.com/rust-lang/cargo/commits?author=hi-rustin)
+  - [Rustup](https://github.com/rust-lang/rustup/commits?author=hi-rustin)
+  - [Rust](https://github.com/rust-lang/rust/commits?author=hi-rustin)
+  - [TiKV](https://github.com/tikv/tikv/commits?author=hi-rustin)
+  - [Build my own X](https://github.com/hi-rustin/build-my-own-x/commits?author=hi-rustin)
 - Golang
-  - [TiFlow: 299+ commits](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
-  - [TiChi: 365+ commits](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
-  - [Kubernetes Test Infra: 39+ commits](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
-  - [Phlare: 31+ commits](https://github.com/grafana/phlare/commits?author=hi-rustin)
+  - [TiFlow](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
+  - [TiChi](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
+  - [Kubernetes Test Infra](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
+  - [Phlare](https://github.com/grafana/phlare/commits?author=hi-rustin)
 - TypeScript/JavaScript
-  - [Ant Design: 19+ commits](https://github.com/ant-design/ant-design/commits?author=hi-rustin)
-  - [TiSpace: 46+ commits](https://github.com/tispace-dev/tispace/commits?author=hi-rustin)
+  - [Ant Design](https://github.com/ant-design/ant-design/commits?author=hi-rustin)
+  - [TiSpace](https://github.com/tispace-dev/tispace/commits?author=hi-rustin)
 
 You can contact me by clicking badges above or below badges, or e-mailing me directly. My email address is on my GitHub profile 😀.
 
