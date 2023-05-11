@@ -42,9 +42,6 @@ Languages I speak:
 
 - English (Professional working proficiency)
 - Chinese (Native proficiency)
-  - Mandarin (Standard Chinese)
-  - Minxian (My hometown dialect)
-  - Yumen (My second hometown dialect)
 
 You can contact me by clicking badges above or below badges, or e-mailing me directly. My email address is on my GitHub profile.
 
