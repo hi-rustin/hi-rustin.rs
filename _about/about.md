@@ -27,6 +27,9 @@ Programming languages I primarily code in:
   - [![rust-commits][rust-commits]](https://github.com/rust-lang/rust/commits?author=hi-rustin)
   - [![tikv-commits][tikv-commits]](https://github.com/tikv/tikv/commits?author=hi-rustin)
   - [![built-my-own-x-commits][built-my-own-x-commits]](https://github.com/hi-rustin/build-my-own-x/commits?author=hi-rustin)
+    - [Build my own database]
+    - [Build my own operating system]
+    - [Leetcode solutions in Rust]
 - Golang
   - [![tiflow-commits][tiflow-commits]](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
   - [![tichi-commits][tichi-commits]](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
@@ -73,3 +76,6 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [phlare-commits]: https://img.shields.io/badge/31+commits-black?logoColor=balck&logo=go&label=Phlare&style=social
 [ant-design-commits]: https://img.shields.io/badge/20+commits-black?logoColor=balck&logo=typescript&label=Ant%20Design&style=social
 [tispace-commits]: https://img.shields.io/badge/46+commits-black?logoColor=balck&logo=typescript&label=TiSpace&style=social
+[Build my own database]: https://github.com/hi-rustin/build-my-own-x/tree/main/rq
+[Build my own operating system]: https://github.com/hi-rustin/build-my-own-x/tree/main/blog_os
+[Leetcode solutions in Rust]: https://github.com/hi-rustin/build-my-own-x/tree/main/lr
