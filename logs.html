@@ -3,7 +3,7 @@ title: Logs
 layout: default
 ---
 
-{% assign sorted_logs = site.logs | sort: 'date' | reverse %}
+{% assign sorted_logs = site.logs | sort: 'title' | reverse %}
 
 <ul class="presentation-list list-unstyled">
   {% for log in sorted_logs %}
