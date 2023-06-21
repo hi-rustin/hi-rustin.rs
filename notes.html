@@ -1,0 +1,14 @@
+---
+title: Notes
+layout: default
+---
+
+{% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+
+<ul class="presentation-list list-unstyled">
+  {% for note in sorted_notes %}
+  <li class="presentation">
+    <a href="{{ note.url }}">{{ note.title }}</a>
+  </li>
+  {% endfor %}
+</ul>

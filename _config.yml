@@ -19,6 +19,10 @@ collections:
     output: true
     permalink: /:title/
 
+  notes:
+    output: true
+    permalink: /:title/
+
   about:
     output: true
     permalink: /about/
