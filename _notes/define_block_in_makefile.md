@@ -3,8 +3,6 @@ title: 'How to define a block in a Makefile?'
 layout: post
 ---
 
-## How to define a block in a Makefile?
-
 We can define a block in a Makefile by using the following syntax:
 
 ```makefile
