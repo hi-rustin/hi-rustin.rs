@@ -66,7 +66,7 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [Rust]: https://www.rust-lang.org/
 ["Cargo: The Rust package manager"]: https://github.com/rust-lang/cargo
 ["Rustup: The Rust toolchain installer"]: https://github.com/rust-lang/rustup
-[continuous profiling]: https://github.com/grafana/phlare
+[continuous profiling]: https://github.com/hi-rustin/rsspy
 [cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
 [rust-commits]: https://img.shields.io/badge/64+commits-black?logoColor=balck&logo=rust&label=Rust&style=social
