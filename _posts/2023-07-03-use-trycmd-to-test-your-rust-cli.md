@@ -145,9 +145,193 @@ Hello blah blah runtime-value blah!
 
 ### Create a CLI
 
+1. Use `cargo new` to create a new CLI.
+
+```sh
+cargo new --bin trycmd-example
+```
+
+2. Add clap as a dependency with `derive` feature.
+
+```sh
+cargo add clap --features derive
+```
+
+Check the `Cargo.toml` file. You should see the `clap` dependency.
+
+```toml
+[package]
+name = "trycmd-example"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.3.10", features = ["derive"] }
+```
+
+3. Add a simple CLI.
+
+```rust
+// src/main.rs
+use clap::Parser;
+
+/// Simple program to greet a person
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// Name of the person to greet
+    #[arg(short, long)]
+    name: String,
+
+    /// Number of times to greet
+    #[arg(short, long, default_value_t = 1)]
+    count: u8,
+}
+
+fn main() {
+    let args = Args::parse();
+
+    for _ in 0..args.count {
+        println!("Hello {}!", args.name)
+    }
+}
+```
+
+5. Build the CLI to make sure it works.
+
+```sh
+cargo build
+./target/debug/trycmd-example --help
+```
+
+Get the output:
+
+```console
+Simple program to greet a person
+
+Usage: trycmd-example [OPTIONS] --name <NAME>
+
+Options:
+  -n, --name <NAME>    Name of the person to greet
+  -c, --count <COUNT>  Number of times to greet [default: 1]
+  -h, --help           Print help
+  -V, --version        Print version
+```
+
+Now we have a simple CLI. Let's add some test cases.
+
 ### Add a TOML test case
 
+1. Create a `tests/cmd` directory.
+
+```sh
+mkdir -p tests/cmd
+```
+
+```console
+tree . --gitignore
+.
+├── Cargo.lock
+├── Cargo.toml
+├── src
+│   └── main.rs
+└── tests
+    └── cmd
+```
+
+2. Create a `tests/cmd/help.toml` file.
+
+```toml
+# tests/cmd/help.toml
+bin.name = "trycmd-example"
+args = ["--help"]
+status.code = 0
+stdout = ""
+stderr = ""
+```
+
+3. Add `trycmd` as a dev dependency.
+
+```sh
+cargo add trycmd --dev
+```
+
+Check the `Cargo.toml` file. You should see the `trycmd` dependency.
+
+```toml
+[package]
+name = "trycmd-example"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.3.10", features = ["derive"] }
+
+[dev-dependencies] # <-- Add this section
+trycmd = "0.14.16" # <-- Add this line
+```
+
+4. Add a Rust test case.
+
+```rust
+// tests/cmd.rs
+#[test]
+fn test_cmd() {
+    let t = trycmd::TestCases::new();
+    let trycmd_example_binary = trycmd::cargo::cargo_bin("trycmd-example");
+    t.register_bin("trycmd-example", &trycmd_example_binary);
+    t.case("tests/cmd/*.toml");
+}
+```
+
+In this test case, we use `trycmd::TestCases::new()` to create a new test case. Then we use `trycmd::cargo::cargo_bin("trycmd-example")` to get the path of the `trycmd-example` binary. Finally, we use `t.case("tests/cmd/*.toml")` to run all the test cases in the `tests/cmd` directory.
+
+5. Run the test case.
+
+```sh
+cargo test
+```
+
+The test case will fail because we don't have right output in the `tests/cmd/help.toml` file.
+
+```diff
+running 1 test
+Testing tests/cmd/help.toml ... failed
+Exit: success
+
+---- expected: stdout
+++++ actual:   stdout
+        1 + Simple program to greet a person
+        2 +
+        3 + Usage: trycmd-example [OPTIONS] --name <NAME>
+        4 +
+        5 + Options:
+        6 +   -n, --name <NAME>    Name of the person to greet
+        7 +   -c, --count <COUNT>  Number of times to greet [default: 1]
+        8 +   -h, --help           Print help
+        9 +   -V, --version        Print version
+stderr:
+
+Update snapshots with `TRYCMD=overwrite`
+Debug output with `TRYCMD=dump`
+test test_cmd ... FAILED
+```
+
 ### Overwrite the output
+
+AS you can see from the output, we can use `TRYCMD=overwrite` to overwrite the output.
+
+```sh
+TRYCMD=overwrite cargo test
+```
+
+`trycmd` will overwrite the output in the `tests/cmd/help.toml` file.
+
+After that, we can run the test case again and it will pass.
 
 ### Add a Markdown test case
 
