@@ -147,179 +147,179 @@ Hello blah blah runtime-value blah!
 
 1. Use `cargo new` to create a new CLI.
 
-```sh
-cargo new --bin trycmd-example
-```
+    ```sh
+    cargo new --bin trycmd-example
+    ```
 
 2. Add clap as a dependency with `derive` feature.
 
-```sh
-cargo add clap --features derive
-```
+    ```sh
+    cargo add clap --features derive
+    ```
 
-Check the `Cargo.toml` file. You should see the `clap` dependency.
+    Check the `Cargo.toml` file. You should see the `clap` dependency.
 
-```toml
-[package]
-name = "trycmd-example"
-version = "0.1.0"
-edition = "2021"
+    ```toml
+    [package]
+    name = "trycmd-example"
+    version = "0.1.0"
+    edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+    # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-clap = { version = "4.3.10", features = ["derive"] }
-```
+    [dependencies]
+    clap = { version = "4.3.10", features = ["derive"] }
+    ```
 
 3. Add a simple CLI.
 
-```rust
-// src/main.rs
-use clap::Parser;
+    ```rust
+    // src/main.rs
+    use clap::Parser;
 
-/// Simple program to greet a person
-#[derive(Parser, Debug)]
-#[command(author, version, about, long_about = None)]
-struct Args {
-    /// Name of the person to greet
-    #[arg(short, long)]
-    name: String,
+    /// Simple program to greet a person
+    #[derive(Parser, Debug)]
+    #[command(author, version, about, long_about = None)]
+    struct Args {
+        /// Name of the person to greet
+        #[arg(short, long)]
+        name: String,
 
-    /// Number of times to greet
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
-}
-
-fn main() {
-    let args = Args::parse();
-
-    for _ in 0..args.count {
-        println!("Hello {}!", args.name)
+        /// Number of times to greet
+        #[arg(short, long, default_value_t = 1)]
+        count: u8,
     }
-}
-```
 
-5. Build the CLI to make sure it works.
+    fn main() {
+        let args = Args::parse();
 
-```sh
-cargo build
-./target/debug/trycmd-example --help
-```
+        for _ in 0..args.count {
+            println!("Hello {}!", args.name)
+        }
+    }
+    ```
 
-Get the output:
+4. Build the CLI to make sure it works.
 
-```console
-Simple program to greet a person
+    ```sh
+    cargo build
+    ./target/debug/trycmd-example --help
+    ```
 
-Usage: trycmd-example [OPTIONS] --name <NAME>
+    Get the output:
 
-Options:
-  -n, --name <NAME>    Name of the person to greet
-  -c, --count <COUNT>  Number of times to greet [default: 1]
-  -h, --help           Print help
-  -V, --version        Print version
-```
+    ```console
+    Simple program to greet a person
 
-Now we have a simple CLI. Let's add some test cases.
+    Usage: trycmd-example [OPTIONS] --name <NAME>
+
+    Options:
+    -n, --name <NAME>    Name of the person to greet
+    -c, --count <COUNT>  Number of times to greet [default: 1]
+    -h, --help           Print help
+    -V, --version        Print version
+    ```
+
+    Now we have a simple CLI. Let's add some test cases.
 
 ### Add a TOML test case
 
 1. Create a `tests/cmd` directory.
 
-```sh
-mkdir -p tests/cmd
-```
+    ```sh
+    mkdir -p tests/cmd
+    ```
 
-```console
-tree . --gitignore
-.
-├── Cargo.lock
-├── Cargo.toml
-├── src
-│   └── main.rs
-└── tests
-    └── cmd
-```
+    ```console
+    tree . --gitignore
+    .
+    ├── Cargo.lock
+    ├── Cargo.toml
+    ├── src
+    │   └── main.rs
+    └── tests
+        └── cmd
+    ```
 
 2. Create a `tests/cmd/help.toml` file.
 
-```toml
-# tests/cmd/help.toml
-bin.name = "trycmd-example"
-args = ["--help"]
-status.code = 0
-stdout = ""
-stderr = ""
-```
+    ```toml
+    # tests/cmd/help.toml
+    bin.name = "trycmd-example"
+    args = ["--help"]
+    status.code = 0
+    stdout = ""
+    stderr = ""
+    ```
 
 3. Add `trycmd` as a dev dependency.
 
-```sh
-cargo add trycmd --dev
-```
+    ```sh
+    cargo add trycmd --dev
+    ```
 
-Check the `Cargo.toml` file. You should see the `trycmd` dependency.
+    Check the `Cargo.toml` file. You should see the `trycmd` dependency.
 
-```toml
-[package]
-name = "trycmd-example"
-version = "0.1.0"
-edition = "2021"
+    ```toml
+    [package]
+    name = "trycmd-example"
+    version = "0.1.0"
+    edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+    # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-clap = { version = "4.3.10", features = ["derive"] }
+    [dependencies]
+    clap = { version = "4.3.10", features = ["derive"] }
 
-[dev-dependencies] # <-- Add this section
-trycmd = "0.14.16" # <-- Add this line
-```
+    [dev-dependencies] # <-- Add this section
+    trycmd = "0.14.16" # <-- Add this line
+    ```
 
 4. Add a Rust test case.
 
-```rust
-// tests/cmd.rs
-#[test]
-fn test_cmd() {
-    let t = trycmd::TestCases::new();
-    let trycmd_example_binary = trycmd::cargo::cargo_bin("trycmd-example");
-    t.register_bin("trycmd-example", &trycmd_example_binary);
-    t.case("tests/cmd/*.toml");
-}
-```
+    ```rust
+    // tests/cmd.rs
+    #[test]
+    fn test_cmd() {
+        let t = trycmd::TestCases::new();
+        let trycmd_example_binary = trycmd::cargo::cargo_bin("trycmd-example");
+        t.register_bin("trycmd-example", &trycmd_example_binary);
+        t.case("tests/cmd/*.toml");
+    }
+    ```
 
-In this test case, we use `trycmd::TestCases::new()` to create a new test case. Then we use `trycmd::cargo::cargo_bin("trycmd-example")` to get the path of the `trycmd-example` binary. Finally, we use `t.case("tests/cmd/*.toml")` to run all the test cases in the `tests/cmd` directory.
+    In this test case, we use `trycmd::TestCases::new()` to create a new test case. Then we use `trycmd::cargo::cargo_bin("trycmd-example")` to get the path of the `trycmd-example` binary. Finally, we use `t.case("tests/cmd/*.toml")` to run all the test cases in the `tests/cmd` directory.
 
 5. Run the test case.
 
-```sh
-cargo test
-```
+    ```sh
+    cargo test
+    ```
 
-The test case will fail because we don't have right output in the `tests/cmd/help.toml` file.
+    The test case will fail because we don't have right output in the `tests/cmd/help.toml` file.
 
-```console
-running 1 test
-Testing tests/cmd/help.toml ... failed
-Exit: success
+    ```console
+    running 1 test
+    Testing tests/cmd/help.toml ... failed
+    Exit: success
 
----- expected: stdout
-++++ actual:   stdout
-        1 + Simple program to greet a person
-        2 +
-        3 + Usage: trycmd-example [OPTIONS] --name <NAME>
-        4 +
-        5 + Options:
-        6 +   -n, --name <NAME>    Name of the person to greet
-        7 +   -c, --count <COUNT>  Number of times to greet [default: 1]
-        8 +   -h, --help           Print help
-        9 +   -V, --version        Print version
-stderr:
+    ---- expected: stdout
+    ++++ actual:   stdout
+            1 + Simple program to greet a person
+            2 +
+            3 + Usage: trycmd-example [OPTIONS] --name <NAME>
+            4 +
+            5 + Options:
+            6 +   -n, --name <NAME>    Name of the person to greet
+            7 +   -c, --count <COUNT>  Number of times to greet [default: 1]
+            8 +   -h, --help           Print help
+            9 +   -V, --version        Print version
+    stderr:
 
-Update snapshots with `TRYCMD=overwrite`
-Debug output with `TRYCMD=dump`
-test test_cmd ... FAILED
-```
+    Update snapshots with `TRYCMD=overwrite`
+    Debug output with `TRYCMD=dump`
+    test test_cmd ... FAILED
+    ```
 
 ### Overwrite the output
 
@@ -339,69 +339,69 @@ Usually, we use this feature to test the `README.md` or other example files.
 
 1. Create a README.md file.
 
-~~~markdown
-# trycmd-example
+    ~~~markdown
+    # trycmd-example
 
-```console
-$ trycmd-example --help
-```
-~~~
+    ```console
+    $ trycmd-example --help
+    ```
+    ~~~
 
 2. Add README.md as a test case.
 
-```rust
-// tests/cmd.rs
-#[test]
-fn test_cmd() {
-    let t = trycmd::TestCases::new();
-    let trycmd_example_binary = trycmd::cargo::cargo_bin("trycmd-example");
-    t.register_bin("trycmd-example", &trycmd_example_binary);
-    t.case("tests/cmd/*.toml");
-    t.case("README.md"); // <-- Add this line
-}
-```
+    ```rust
+    // tests/cmd.rs
+    #[test]
+    fn test_cmd() {
+        let t = trycmd::TestCases::new();
+        let trycmd_example_binary = trycmd::cargo::cargo_bin("trycmd-example");
+        t.register_bin("trycmd-example", &trycmd_example_binary);
+        t.case("tests/cmd/*.toml");
+        t.case("README.md"); // <-- Add this line
+    }
+    ```
 
 3. Run the test case.
 
-```sh
-cargo test
-```
+    ```sh
+    cargo test
+    ```
 
-The test case will fail because we don't have right output in the `README.md` file.
+    The test case will fail because we don't have right output in the `README.md` file.
 
-```console
-running 1 test
-Testing tests/cmd/help.toml ... ok
-Testing README.md:4 ... failed
-Exit: success
+    ```console
+    running 1 test
+    Testing tests/cmd/help.toml ... ok
+    Testing README.md:4 ... failed
+    Exit: success
 
----- expected: stdout
-++++ actual:   stdout
-        1 + Simple program to greet a person
-        2 +
-        3 + Usage: trycmd-example [OPTIONS] --name <NAME>
-        4 +
-        5 + Options:
-        6 +   -n, --name <NAME>    Name of the person to greet
-        7 +   -c, --count <COUNT>  Number of times to greet [default: 1]
-        8 +   -h, --help           Print help
-        9 +   -V, --version        Print version
-stderr:
+    ---- expected: stdout
+    ++++ actual:   stdout
+            1 + Simple program to greet a person
+            2 +
+            3 + Usage: trycmd-example [OPTIONS] --name <NAME>
+            4 +
+            5 + Options:
+            6 +   -n, --name <NAME>    Name of the person to greet
+            7 +   -c, --count <COUNT>  Number of times to greet [default: 1]
+            8 +   -h, --help           Print help
+            9 +   -V, --version        Print version
+    stderr:
 
-Update snapshots with `TRYCMD=overwrite`
-Debug output with `TRYCMD=dump`
-test test_cmd ... FAILED
-```
+    Update snapshots with `TRYCMD=overwrite`
+    Debug output with `TRYCMD=dump`
+    test test_cmd ... FAILED
+    ```
 
 4. Overwrite the output.
 
-```sh
-TRYCMD=overwrite cargo test
-```
+    ```sh
+    TRYCMD=overwrite cargo test
+    ```
 
-`trycmd` will overwrite the output in the `README.md` file.
+    `trycmd` will overwrite the output in the `README.md` file.
 
-After that, we can run the test case again and it will pass.
+    After that, we can run the test case again and it will pass.
 
 ### Use directory to store input and output files
 
@@ -411,93 +411,94 @@ Right now, we print the output to the console. If we want to print the output to
 
 1. Change the `main.rs` file.
 
-```rust
-// src/main.rs
-use std::io::Write; // <-- Add this line
+    ```rust
+    // src/main.rs
+    use std::io::Write; // <-- Add this line
 
-use clap::Parser;
+    use clap::Parser;
 
-/// Simple program to greet a person
-#[derive(Parser, Debug)]
-#[command(author, version, about, long_about = None)]
-struct Args {
-    /// Name of the person to greet
-    #[arg(short, long)]
-    name: String,
+    /// Simple program to greet a person
+    #[derive(Parser, Debug)]
+    #[command(author, version, about, long_about = None)]
+    struct Args {
+        /// Name of the person to greet
+        #[arg(short, long)]
+        name: String,
 
-    /// Number of times to greet
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
-}
+        /// Number of times to greet
+        #[arg(short, long, default_value_t = 1)]
+        count: u8,
+    }
 
-fn main() {
-    let args = Args::parse();
+    fn main() {
+        let args = Args::parse();
 
-    // Print the greeting to a file. <-- Add this line
-    let mut file = std::fs::File::create("greeting.txt").unwrap(); // <-- Add this line
-    for _ in 0..args.count { // <-- Add this line
-        writeln!(file, "Hello, {}!", args.name).unwrap(); // <-- Add this line
-    } // <-- Add this line
-}
-```
+        // Print the greeting to a file. <-- Add this line
+        let mut file = std::fs::File::create("greeting.txt").unwrap(); // <-- Add this line
+        for _ in 0..args.count { // <-- Add this line
+            writeln!(file, "Hello, {}!", args.name).unwrap(); // <-- Add this line
+        } // <-- Add this line
+    }
+    ```
 
 2. Add a new TOML test case.
 
-```toml
-# tests/cmd/greeting.toml
-bin.name = "trycmd-example"
-args = ["--name", "foo"]
-status.code = 0
-stdout = ""
-stderr = ""
-```
+    ```toml
+    # tests/cmd/greeting.toml
+    bin.name = "trycmd-example"
+    args = ["--name", "foo"]
+    status.code = 0
+    stdout = ""
+    stderr = ""
+    ```
 
 3. Add a output directory.
 
-```sh
-mkdir tests/cmd/greeting.out
-```
+    ```sh
+    mkdir tests/cmd/greeting.out
+    ```
 
 4. Add an output file.
 
-```sh
-touch tests/cmd/greeting.out/greeting.txt
-```
+    ```sh
+    touch tests/cmd/greeting.out/greeting.txt
+    ```
 
 5. Run the test case.
 
-```sh
-cargo test
-```
-The test case will fail because we don't have right output in the `tests/cmd/greeting.out/greeting.txt` file.
+    ```sh
+    cargo test
+    ```
 
-```console
-running 1 test
-Testing README.md:4 ... ok
-Testing tests/cmd/help.toml ... ok
-Testing tests/cmd/greeting.toml ... ok
-Testing tests/cmd/greeting.toml:teardown ... failed
-Failed: Files left in unexpected state
+    The test case will fail because we don't have right output in the `tests/cmd/greeting.out/greeting.txt` file.
 
-tests/cmd/greeting.out: is good
+    ```console
+    running 1 test
+    Testing README.md:4 ... ok
+    Testing tests/cmd/help.toml ... ok
+    Testing tests/cmd/greeting.toml ... ok
+    Testing tests/cmd/greeting.toml:teardown ... failed
+    Failed: Files left in unexpected state
 
----- expected: tests/cmd/greeting.out/greeting.txt
-++++ actual:   /private/var/folders/76/zkdsk83x0dl3qydmhxf9dj3h0000gn/T/.tmpW1Aqys/greeting.txt
-        1 + Hello, foo!
-Update snapshots with `TRYCMD=overwrite`
-Debug output with `TRYCMD=dump`
-test test_cmd ... FAILED
-```
+    tests/cmd/greeting.out: is good
+
+    ---- expected: tests/cmd/greeting.out/greeting.txt
+    ++++ actual:   /private/var/folders/76/zkdsk83x0dl3qydmhxf9dj3h0000gn/T/.tmpW1Aqys/greeting.txt
+            1 + Hello, foo!
+    Update snapshots with `TRYCMD=overwrite`
+    Debug output with `TRYCMD=dump`
+    test test_cmd ... FAILED
+    ```
 
 6. Overwrite the output.
 
-```sh
-TRYCMD=overwrite cargo test
-```
+    ```sh
+    TRYCMD=overwrite cargo test
+    ```
 
-`trycmd` will overwrite the output in the `tests/cmd/greeting.out/greeting.txt` file.
+    `trycmd` will overwrite the output in the `tests/cmd/greeting.out/greeting.txt` file.
 
-After that, we can run the test case again and it will pass.
+    After that, we can run the test case again and it will pass.
 
 ## Summary
 
