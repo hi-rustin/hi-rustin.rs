@@ -403,6 +403,102 @@ TRYCMD=overwrite cargo test
 
 After that, we can run the test case again and it will pass.
 
+### Use directory to store input and output files
+
+We can use a directory to store the input and output files.
+
+Right now, we print the output to the console. If we want to print the output to a file, we also can test it with `trycmd`.
+
+1. Change the `main.rs` file.
+
+```rust
+// src/main.rs
+use std::io::Write; // <-- Add this line
+
+use clap::Parser;
+
+/// Simple program to greet a person
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// Name of the person to greet
+    #[arg(short, long)]
+    name: String,
+
+    /// Number of times to greet
+    #[arg(short, long, default_value_t = 1)]
+    count: u8,
+}
+
+fn main() {
+    let args = Args::parse();
+
+    // Print the greeting to a file. <-- Add this line
+    let mut file = std::fs::File::create("greeting.txt").unwrap(); // <-- Add this line
+    for _ in 0..args.count { // <-- Add this line
+        writeln!(file, "Hello, {}!", args.name).unwrap(); // <-- Add this line
+    } // <-- Add this line
+}
+```
+
+2. Add a new TOML test case.
+
+```toml
+# tests/cmd/greeting.toml
+bin.name = "trycmd-example"
+args = ["--name", "foo"]
+status.code = 0
+stdout = ""
+stderr = ""
+```
+
+3. Add a output directory.
+
+```sh
+mkdir tests/cmd/greeting.out
+```
+
+4. Add an output file.
+
+```sh
+touch tests/cmd/greeting.out/greeting.txt
+```
+
+5. Run the test case.
+
+```sh
+cargo test
+```
+The test case will fail because we don't have right output in the `tests/cmd/greeting.out/greeting.txt` file.
+
+```console
+running 1 test
+Testing README.md:4 ... ok
+Testing tests/cmd/help.toml ... ok
+Testing tests/cmd/greeting.toml ... ok
+Testing tests/cmd/greeting.toml:teardown ... failed
+Failed: Files left in unexpected state
+
+tests/cmd/greeting.out: is good
+
+---- expected: tests/cmd/greeting.out/greeting.txt
+++++ actual:   /private/var/folders/76/zkdsk83x0dl3qydmhxf9dj3h0000gn/T/.tmpW1Aqys/greeting.txt
+        1 + Hello, foo!
+Update snapshots with `TRYCMD=overwrite`
+Debug output with `TRYCMD=dump`
+test test_cmd ... FAILED
+```
+
+6. Overwrite the output.
+
+```sh
+TRYCMD=overwrite cargo test
+```
+
+`trycmd` will overwrite the output in the `tests/cmd/greeting.out/greeting.txt` file.
+
+After that, we can run the test case again and it will pass.
+
 ## Summary
 
 In this tutorial, we learned how to use `trycmd` to test a CLI program. We also learned how to use `TRYCMD=overwrite` to overwrite the output in the test case files. This feature is very useful when we want to update the output in the test case files. Hope you enjoy this tutorial and use `trycmd` to test your CLI programs.
