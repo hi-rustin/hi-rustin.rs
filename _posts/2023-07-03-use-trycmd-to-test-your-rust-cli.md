@@ -407,6 +407,8 @@ After that, we can run the test case again and it will pass.
 
 In this tutorial, we learned how to use `trycmd` to test a CLI program. We also learned how to use `TRYCMD=overwrite` to overwrite the output in the test case files. This feature is very useful when we want to update the output in the test case files. Hope you enjoy this tutorial and use `trycmd` to test your CLI programs.
 
+You can find the source code of this tutorial in [this repository](https://github.com/hi-rustin/trycmd-example).
+
 ## Reference
 
 - [trycmd](https://github.com/assert-rs/trycmd)
