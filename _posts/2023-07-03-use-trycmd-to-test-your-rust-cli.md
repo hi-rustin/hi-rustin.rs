@@ -335,6 +335,80 @@ After that, we can run the test case again and it will pass.
 
 ### Add a Markdown test case
 
-### Use directory to store input and output files
+Usually, we use this feature to test the `README.md` or other example files.
+
+1. Create a README.md file.
+
+~~~markdown
+# trycmd-example
+
+```console
+$ trycmd-example --help
+```
+~~~
+
+2. Add README.md as a test case.
+
+```rust
+// tests/cmd.rs
+#[test]
+fn test_cmd() {
+    let t = trycmd::TestCases::new();
+    let trycmd_example_binary = trycmd::cargo::cargo_bin("trycmd-example");
+    t.register_bin("trycmd-example", &trycmd_example_binary);
+    t.case("tests/cmd/*.toml");
+    t.case("README.md"); // <-- Add this line
+}
+```
+
+3. Run the test case.
+
+```sh
+cargo test
+```
+
+The test case will fail because we don't have right output in the `README.md` file.
+
+```diff
+running 1 test
+Testing tests/cmd/help.toml ... ok
+Testing README.md:4 ... failed
+Exit: success
+
+---- expected: stdout
+++++ actual:   stdout
+        1 + Simple program to greet a person
+        2 +
+        3 + Usage: trycmd-example [OPTIONS] --name <NAME>
+        4 +
+        5 + Options:
+        6 +   -n, --name <NAME>    Name of the person to greet
+        7 +   -c, --count <COUNT>  Number of times to greet [default: 1]
+        8 +   -h, --help           Print help
+        9 +   -V, --version        Print version
+stderr:
+
+Update snapshots with `TRYCMD=overwrite`
+Debug output with `TRYCMD=dump`
+test test_cmd ... FAILED
+```
+
+4. Overwrite the output.
+
+```sh
+TRYCMD=overwrite cargo test
+```
+
+`trycmd` will overwrite the output in the `README.md` file.
+
+After that, we can run the test case again and it will pass.
 
 ## Summary
+
+In this tutorial, we learned how to use `trycmd` to test a CLI program. We also learned how to use `TRYCMD=overwrite` to overwrite the output in the test case files. This feature is very useful when we want to update the output in the test case files. Hope you enjoy this tutorial and use `trycmd` to test your CLI programs.
+
+## Reference
+
+- [trycmd](https://github.com/assert-rs/trycmd)
+- [clap](https://github.com/clap-rs/clap)
+- [rustup](https://github.com/rust-lang/rustup)
