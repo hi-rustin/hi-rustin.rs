@@ -111,6 +111,46 @@ tree tests/cmd
 
 ### Markdown file
 
+We can use `console` or `trycmd` to indicate test cases in markdown files. Here is an example:
+
+~~~md
+```console
+$ command ...
+```
+Or
+```trycmd
+$ command ...
+```
+~~~
+
+Sometimes, your test might include output that is generated at runtime. When that's the case, you can use variables to replace those values.
+
+~~~md
+```console
+$ simple "blah blah runtime-value blah"
+Hello blah blah [REPLACEMENT] blah!
+```
+~~~
+
+In this example, we use `[REPLACEMENT]` to indicate the runtime value. We can use `trycmd::TestCases::new().case("README.md").insert_var("REPLACEMENT", "runtime-value")` to replace the runtime value.
+
+```console
+$ simple "blah blah runtime-value blah"
+Hello blah blah runtime-value blah!
+```
+
+`trycmd` will replace the `[REPLACEMENT]` with the value of `REPLACEMENT` variable. If the output is `Hello blah blah runtime-value blah!`, the test will pass. Otherwise, the test will fail.
+
 ## One Real Example
+
+### Create a CLI
+
+### Add a TOML test case
+
+### Overwrite the output
+
+### Add a Markdown test case
+
+### Use directory to store input and output files
 
 ## Summary
