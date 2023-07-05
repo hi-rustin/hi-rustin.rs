@@ -298,7 +298,7 @@ cargo test
 
 The test case will fail because we don't have right output in the `tests/cmd/help.toml` file.
 
-```diff
+```console
 running 1 test
 Testing tests/cmd/help.toml ... failed
 Exit: success
@@ -369,7 +369,7 @@ cargo test
 
 The test case will fail because we don't have right output in the `README.md` file.
 
-```diff
+```console
 running 1 test
 Testing tests/cmd/help.toml ... ok
 Testing README.md:4 ... failed
