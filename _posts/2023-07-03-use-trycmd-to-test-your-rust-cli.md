@@ -1,5 +1,5 @@
 ---
-title: 'How to use trycmd to test your cmd?'
+title: 'How to use trycmd to test your Rust CLI?'
 layout: post
 
 categories: post
@@ -11,7 +11,7 @@ tags:
 - Rustup
 ---
 
-Recently we released [Rustup 1.26.0], which includes a bunch of new features and bug fixes. We also upgraded the [clap] version to 3.2.25, which is a major version upgrade. This upgrade is a bit tricky, because clap 3.0.0 has a lot of breaking changes. We need to make sure that the new version of Rustup works as expected. So before we upgrade clap we added UI tests for Rustup. We use [trycmd] to test the CLI of Rustup. In this post I will show you how to use trycmd to test your CLI.
+Recently we released [Rustup 1.26.0], which includes a bunch of new features and bug fixes. We also upgraded the [clap] version to 3.2.25, which is a major version upgrade. This upgrade is a bit tricky, because clap 3.0.0 has a lot of breaking changes. We need to make sure that the new version of Rustup works as expected. So before we upgrade clap we added UI tests for Rustup. We use [trycmd] to test the CLI of Rustup. In this post I will show you how to use `trycmd` to test your CLI.
 
 [Rustup 1.26.0]: https://blog.rust-lang.org/2023/04/25/Rustup-1.26.0.html
 [clap]: https://github.com/clap-rs/clap
@@ -25,7 +25,7 @@ Because it is very easy to use and well developed. It is also very easy to integ
 
 ## What is trycmd?
 
-From the [README] of trycmd: "trycmd is a test harness that will enumerate test case files and run them to verify the results, taking inspiration from [trybuild] and [cram]."
+From the [README] of `trycmd`: "`trycmd` is a test harness that will enumerate test case files and run them to verify the results, taking inspiration from [trybuild] and [cram]."
 
 Here is an example:
 
@@ -61,8 +61,56 @@ In clap documentation, we can find a [simple example] of trycmd. But it is only 
 
 ### TOML file
 
+Here is an example of a TOML file:
+
+```toml
+# tests/cmd/help.toml
+bin.name = "YOUR_BIN_NAME"
+args = ["--help"]
+status.code = 0
+stdout = """
+HELP MESSAGE
+"""
+stderr = ""
+```
+
+We can use `bin.name` for the binary name, `args` for command arguments, `status.code` for the exit code, and `stdout` and `stderr` for command output.
+
+If your CLI will read some files, you can use a same name directory with `.in` suffix to store the input files. For example, if your CLI will read a file named `input.txt` and your test case is `tests/cmd/input.toml`, you can put the `input.txt` file in `tests/cmd/input.in/input.txt`.
+
+```toml
+# tests/cmd/input.toml
+bin.name = "YOUR_BIN_NAME"
+status.code = 0
+stdout = ""
+stderr = ""
+```
+
+```console
+tree tests/cmd
+.
+├── input.toml
+└── input.in
+    └── input.txt
+```
+
+If your CLI will write some files, you can use a same name directory with `.out` suffix to store the output files. For example, if your CLI read the `input.txt` file and write the `output.txt` file. You can put the `output.txt` file in `tests/cmd/input.out/output.txt`.
+
+```console
+tree tests/cmd
+.
+├── input.toml
+├── input.in
+│   └── input.txt
+└── input.out
+    ├── input.txt
+    └── output.txt
+```
+
+`trycmd` will compare the output file with the expected output file. If they are different, the test will fail.
+
 ### Markdown file
 
-## How to run the test cases?
+## One Real Example
 
 ## Summary
