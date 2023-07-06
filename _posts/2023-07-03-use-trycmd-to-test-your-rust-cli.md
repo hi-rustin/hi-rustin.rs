@@ -285,6 +285,10 @@ Hello blah blah runtime-value blah!
 
 4. Add a Rust test case.
 
+    ```sh
+    touch tests/cmd.rs
+    ```
+
     ```rust
     // tests/cmd.rs
     #[test]
@@ -346,6 +350,10 @@ After that, we can run the test case again and it will pass.
 Usually, we use this feature to test the `README.md` or other example files.
 
 1. Create a README.md file.
+
+    ```sh
+    touch README.md
+    ```
 
     ~~~markdown
     # trycmd-example
@@ -451,6 +459,10 @@ Right now, we print the output to the console. If we want to print the output to
 
 2. Add a new TOML test case.
 
+    ```sh
+    touch tests/cmd/greeting.toml
+    ```
+
     ```toml
     # tests/cmd/greeting.toml
     bin.name = "trycmd-example"
@@ -460,19 +472,14 @@ Right now, we print the output to the console. If we want to print the output to
     stderr = ""
     ```
 
-3. Add a output directory.
+3. Add a output directory and a output file.
 
     ```sh
     mkdir tests/cmd/greeting.out
-    ```
-
-4. Add an output file.
-
-    ```sh
     touch tests/cmd/greeting.out/greeting.txt
     ```
 
-5. Run the test case.
+4. Run the test case.
 
     ```sh
     cargo test
@@ -498,7 +505,7 @@ Right now, we print the output to the console. If we want to print the output to
     test test_cmd ... FAILED
     ```
 
-6. Overwrite the output.
+5. Overwrite the output.
 
     ```sh
     TRYCMD=overwrite cargo test
