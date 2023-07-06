@@ -147,13 +147,13 @@ Hello blah blah runtime-value blah!
 
 ### Create a CLI
 
-1. Use `cargo new` to create a new CLI.
+1. [Use `cargo new` to create a new CLI.](https://github.com/hi-rustin/trycmd-example/commit/ead3a18e2502f23ee856fe1d3fca8109b6e867cb)
 
     ```sh
     cargo new --bin trycmd-example
     ```
 
-2. Add clap as a dependency with `derive` feature.
+2. [Add clap as a dependency with `derive` feature.](https://github.com/hi-rustin/trycmd-example/commit/a7b10c45ad04b2c2667d5c7c2b48e659018eb9a9)
 
     ```sh
     cargo add clap --features derive
@@ -174,7 +174,7 @@ Hello blah blah runtime-value blah!
     clap = { version = "4.3.10", features = ["derive"] }
     ```
 
-3. Add a simple CLI.
+3. [Add a simple CLI.](https://github.com/hi-rustin/trycmd-example/commit/a9a227147b7918d7caa48c86095494f39a716d5d)
 
     ```rust
     // src/main.rs
@@ -244,7 +244,7 @@ Hello blah blah runtime-value blah!
         └── cmd
     ```
 
-2. Create a `tests/cmd/help.toml` file.
+2. [Create a `tests/cmd/help.toml` file.](https://github.com/hi-rustin/trycmd-example/commit/3af3e458b2f6e2316843a43aae6e28aff9c671bf)
 
     ```sh
     touch tests/cmd/help.toml
@@ -259,7 +259,7 @@ Hello blah blah runtime-value blah!
     stderr = ""
     ```
 
-3. Add `trycmd` as a dev dependency.
+3. [Add `trycmd` as a dev dependency.](https://github.com/hi-rustin/trycmd-example/commit/9c17c3d3ce756a00969cd0f72d92372dda930593)
 
     ```sh
     cargo add trycmd --dev
@@ -283,7 +283,7 @@ Hello blah blah runtime-value blah!
     trycmd = "0.14.16" # <-- Add this line
     ```
 
-4. Add a Rust test case.
+4. [Add a Rust test case.](https://github.com/hi-rustin/trycmd-example/commit/570561be3c96d6ce2e673836719a31e2bd51346d)
 
     ```sh
     touch tests/cmd.rs
@@ -333,7 +333,7 @@ Hello blah blah runtime-value blah!
     test test_cmd ... FAILED
     ```
 
-### Overwrite the output
+### [Overwrite the output](https://github.com/hi-rustin/trycmd-example/commit/6c8123d456c4c6333e1986db2fc7bf80d62f5cc9)
 
 AS you can see from the output, we can use `TRYCMD=overwrite` to overwrite the output.
 
@@ -351,7 +351,7 @@ After that, we can run the test case again and it will pass.
 
 Usually, we use this feature to test the `README.md` or other example files.
 
-1. Create a README.md file.
+1. [Create a README.md file.](https://github.com/hi-rustin/trycmd-example/commit/c8375173cbad8987f33f6c12ad9f0bb6fb4a85a8)
 
     ```sh
     touch README.md
@@ -365,7 +365,7 @@ Usually, we use this feature to test the `README.md` or other example files.
     ```
     ~~~
 
-2. Add README.md as a test case.
+2. [Add README.md as a test case.](https://github.com/hi-rustin/trycmd-example/commit/c7489852927e52efa6e4b7a805628d13e7bf1c55)
 
     ```rust
     // tests/cmd.rs
@@ -411,7 +411,7 @@ Usually, we use this feature to test the `README.md` or other example files.
     test test_cmd ... FAILED
     ```
 
-4. Overwrite the output.
+4. [Overwrite the output.](https://github.com/hi-rustin/trycmd-example/commit/80c3c9bad811bd11933935421c8f80b65ba74c17)
 
     ```sh
     TRYCMD=overwrite cargo test
@@ -427,7 +427,7 @@ We can use a directory to store the input and output files.
 
 Right now, we print the output to the console. If we want to print the output to a file, we also can test it with `trycmd`.
 
-1. Change the `main.rs` file.
+1. [Change the `main.rs` file.](https://github.com/hi-rustin/trycmd-example/commit/900cddd1ebedc3932f2bf6d7c3e98b60182b5976)
 
     ```rust
     // src/main.rs
@@ -459,7 +459,7 @@ Right now, we print the output to the console. If we want to print the output to
     }
     ```
 
-2. Add a new TOML test case.
+2. [Add a new TOML test case.](https://github.com/hi-rustin/trycmd-example/commit/d52071fe1d93c00c84a42a5fae68776d726c30a7)
 
     ```sh
     touch tests/cmd/greeting.toml
@@ -474,7 +474,7 @@ Right now, we print the output to the console. If we want to print the output to
     stderr = ""
     ```
 
-3. Add a output directory and a output file.
+3. [Add a output directory and a output file.](https://github.com/hi-rustin/trycmd-example/commit/92ca6c26f1f10a48a0df5ca5dbb6c9b477540bec)
 
     ```sh
     mkdir tests/cmd/greeting.out
@@ -507,7 +507,7 @@ Right now, we print the output to the console. If we want to print the output to
     test test_cmd ... FAILED
     ```
 
-5. Overwrite the output.
+5. [Overwrite the output.](https://github.com/hi-rustin/trycmd-example/commit/ecc694e73d0946bda0d5e65925dc6912ab3dee69)
 
     ```sh
     TRYCMD=overwrite cargo test
