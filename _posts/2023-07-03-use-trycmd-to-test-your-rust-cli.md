@@ -345,6 +345,8 @@ TRYCMD=overwrite cargo test
 
 After that, we can run the test case again and it will pass.
 
+> Note: If you are using Windows, your test output will be different from the output above. This is because on Windows the executable file extension is `.exe`. So the output will be `trycmd-example.exe` instead of `trycmd-example`. So you can set it to`trycmd-example[EXE]` in `tests/cmd/help.toml` to make it work on all platforms.
+
 ### Add a Markdown test case
 
 Usually, we use this feature to test the `README.md` or other example files.
