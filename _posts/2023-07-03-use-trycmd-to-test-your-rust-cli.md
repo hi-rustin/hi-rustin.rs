@@ -162,6 +162,7 @@ Hello blah blah runtime-value blah!
     Check the `Cargo.toml` file. You should see the `clap` dependency.
 
     ```toml
+    # Cargo.toml
     [package]
     name = "trycmd-example"
     version = "0.1.0"
@@ -245,6 +246,10 @@ Hello blah blah runtime-value blah!
 
 2. Create a `tests/cmd/help.toml` file.
 
+    ```sh
+    touch tests/cmd/help.toml
+    ```
+
     ```toml
     # tests/cmd/help.toml
     bin.name = "trycmd-example"
@@ -263,6 +268,7 @@ Hello blah blah runtime-value blah!
     Check the `Cargo.toml` file. You should see the `trycmd` dependency.
 
     ```toml
+    # Cargo.toml
     [package]
     name = "trycmd-example"
     version = "0.1.0"
