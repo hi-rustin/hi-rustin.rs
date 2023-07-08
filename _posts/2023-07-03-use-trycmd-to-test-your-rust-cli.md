@@ -11,7 +11,7 @@ tags:
 - Rustup
 ---
 
-Recently we released [Rustup 1.26.0], which includes a bunch of new features and bug fixes. We also upgraded the [clap] version to 3.2.25, which is a major version upgrade. This upgrade is a bit tricky, because clap 3.0.0 has a lot of breaking changes. We need to make sure that the new version of Rustup works as expected. So before we upgrade clap we added [UI tests] for Rustup. We use [trycmd] to test the CLI of Rustup. In this post I will show you how to use `trycmd` to test your CLI.
+Recently we released [Rustup 1.26.0], which includes a bunch of new features and bug fixes. We also upgraded the [clap] version to 3.2.25, which is a major version upgrade. This upgrade was a bit tricky, because clap 3.0.0 had a lot of breaking changes. We needed to make sure that the new version of Rustup worked as expected. So before we upgraded clap we added [UI tests] for Rustup. We use [trycmd] to test the CLI of Rustup. In this post I will show you how to use `trycmd` to test your CLI.
 
 [Rustup 1.26.0]: https://blog.rust-lang.org/2023/04/25/Rustup-1.26.0.html
 [clap]: https://github.com/clap-rs/clap
@@ -20,7 +20,7 @@ Recently we released [Rustup 1.26.0], which includes a bunch of new features and
 
 ## Why trycmd?
 
-Because it is very easy to use and well developed. It is also very easy to integrate with CI. We can use `cargo test` to run the test cases. Most importantly, it is recommended by the `clap` team. You can find it in the [clap upgrade guide].
+Because it is very easy to use and well developed. It is also very easy to integrate with CI. We can use `cargo test` to run the test cases. Most importantly, `trcmd` is recommended by the `clap` team. You can find its document in the [clap upgrade guide].
 
 [clap upgrade guide]: https://github.com/clap-rs/clap/blob/master/CHANGELOG.md#migrating
 
@@ -40,9 +40,9 @@ fn cli_tests() {
 }
 ```
 
-We can use `trycmd::TestCases::new()` to create a new test case. Then we can use `case()` to add test cases. The argument of `case()` is a glob pattern. It will enumerate all the files that match the pattern and run them as test cases.
+We can use `trycmd::TestCases::new()` to create a new test case. Then we can use `.case()` to add test cases. The argument of `.case()` is a glob pattern. It will enumerate all the files that match the pattern and run them as test cases.
 
-In this example, we use `tests/cmd/*.toml` to match all the files in `tests/cmd` that end with `.toml`. We also use `README.md` as a test case. The `README.md` file is a markdown file, but trycmd will treat it as a test case. It will run the command in the code block and verify the output and it is a very useful feature when you want to test the examples in your README.
+In this example, we used `tests/cmd/*.toml` to match all the files in `tests/cmd` that end with `.toml`. We also use `README.md` as a test case. The `README.md` file is a markdown file, but trycmd will treat it as a test case. It will run the command in the code block and verify the output, which is a very useful feature when you want to test the examples in your README.
 
 We can treat this test case as a normal test case and run it with `cargo test`.
 
@@ -52,9 +52,9 @@ We can treat this test case as a normal test case and run it with `cargo test`.
 
 ## How to write a test case?
 
-We can have two types of test cases: a TOML file or a Markdown file. The TOML file is a bit more powerful than the markdown file. We can use the TOML file to test the command line arguments and the output of the command. We can also use the TOML file to test the exit code of the command. The Markdown file is a bit simpler. We can only use it to test the output of the command.
+We have two types of test cases available: TOML files and Markdown files. The TOML file provides more flexibility compared to the Markdown file. It allows us to test command line arguments, command output, and even the exit code of the command. On the other hand, the Markdown file is a simpler option that allows us to focus on testing the output of the command.
 
-In clap documentation, we can find a [simple example] of trycmd. But it is only test a Markdown file. In this post, I will show you how to write a TOML file and a Markdown file test. You can find more examples from some real projects, like [typos tests], [clap tests] and [rustup tests].
+In clap documentation, we can find a [simple example] of trycmd. But it only tests a Markdown file. In this post, I will show you how to write a TOML file and a Markdown file test. You can find more examples from some real projects, like [typos tests], [clap tests] and [rustup tests].
 
 [simple example]: https://github.com/assert-rs/trycmd/tree/main/examples/demo_trycmd
 [typos tests]: https://github.com/crate-ci/typos/blob/master/crates/typos-cli/tests/cli_tests.rs
@@ -78,7 +78,7 @@ stderr = ""
 
 We can use `bin.name` for the binary name, `args` for command arguments, `status.code` for the exit code, and `stdout` and `stderr` for command output.
 
-If your CLI will read some files, you can use a same name directory with `.in` suffix to store the input files. For example, if your CLI will read a file named `input.txt` and your test case is `tests/cmd/input.toml`, you can put the `input.txt` file in `tests/cmd/input.in/input.txt`.
+If your CLI requires reading input files, you can organize them in a separate directory with the same name but with a `.in` suffix. For instance, if your CLI needs to read a file called `input.txt` and your test case is located at `tests/cmd/input.toml`, you can place the `input.txt` file in the directory `tests/cmd/input.in/input.txt`. This naming convention helps to distinguish input files from other files and maintain a structured organization for your test cases.
 
 ```toml
 # tests/cmd/input.toml
@@ -96,7 +96,7 @@ tree tests/cmd
     └── input.txt
 ```
 
-If your CLI will write some files, you can use a same name directory with `.out` suffix to store the output files. For example, if your CLI read the `input.txt` file and write the `output.txt` file. You can put the `output.txt` file in `tests/cmd/input.out/output.txt`.
+If your CLI involves writing output files, you can utilize a directory with the same name as the test file but with a `.out` suffix to store the generated output files. For instance, if your CLI reads the `input.txt` file and writes the `output.txt` file, you can place the `output.txt` file in the directory `tests/cmd/input.out/output.txt`.
 
 ```console
 tree tests/cmd
@@ -113,7 +113,7 @@ tree tests/cmd
 
 ### Markdown file
 
-We can use `console` or `trycmd` code block to indicate test cases in markdown files. Here is an example:
+In markdown files, we can utilize either the `console` or `trycmd` code block to represent test cases. Here's an example:
 
 ~~~md
 ```console
@@ -134,14 +134,14 @@ Hello blah blah [REPLACEMENT] blah!
 ```
 ~~~
 
-In this example, we use `[REPLACEMENT]` to indicate the runtime value. We can use `trycmd::TestCases::new().case("README.md").insert_var("REPLACEMENT", "runtime-value")` to replace the runtime value.
+In this example, we used `[REPLACEMENT]` to indicate the runtime value. We can use `trycmd::TestCases::new().case("README.md").insert_var("REPLACEMENT", "runtime-value")` to replace the runtime value.
 
 ```console
 $ simple "blah blah runtime-value blah"
 Hello blah blah runtime-value blah!
 ```
 
-`trycmd` will replace the `[REPLACEMENT]` with the value of `REPLACEMENT` variable. If the output is `Hello blah blah runtime-value blah!`, the test will pass. Otherwise, the test will fail.
+The `console` code block will substitute [REPLACEMENT] with the value of the `REPLACEMENT` variable. The test will pass if the output is `Hello blah blah runtime-value blah!`. If the output differs from this expected value, the test will fail.
 
 ## One Real Example
 
@@ -300,7 +300,7 @@ Hello blah blah runtime-value blah!
     }
     ```
 
-    In this test case, we use `trycmd::TestCases::new()` to create a new test case. Then we use `trycmd::cargo::cargo_bin("trycmd-example")` to get the path of the `trycmd-example` binary. Finally, we use `t.case("tests/cmd/*.toml")` to run all the test cases in the `tests/cmd` directory.
+    For this test case, we start by creating a new test case using `trycmd::TestCases::new()`. Next, we obtain the path of the trycmd-example binary by utilizing `trycmd::cargo::cargo_bin("trycmd-example")`. Lastly, we run all the test cases in the `tests/cmd` directory by invoking `t.case("tests/cmd/*.toml")`.
 
 5. Run the test case.
 
@@ -335,17 +335,15 @@ Hello blah blah runtime-value blah!
 
 ### [Overwrite the output](https://github.com/hi-rustin/trycmd-example/commit/6c8123d456c4c6333e1986db2fc7bf80d62f5cc9)
 
-AS you can see from the output, we can use `TRYCMD=overwrite` to overwrite the output.
+AS you can see from the output, we can use `TRYCMD=overwrite` to overwrite the output in the `tests/cmd/help.toml` file.
 
 ```sh
 TRYCMD=overwrite cargo test
 ```
 
-`trycmd` will overwrite the output in the `tests/cmd/help.toml` file.
+After this, we can run the test case again and it will pass.
 
-After that, we can run the test case again and it will pass.
-
-> Note: If you are using Windows, your test output will be different from the output above. This is because on Windows the executable file extension is `.exe`. So the output will be `trycmd-example.exe` instead of `trycmd-example`. So you can set it to`trycmd-example[EXE]` in `tests/cmd/help.toml` to make it work on all platforms.
+> Note: If you are using Windows, your test output will be different from the output above. This is because on Windows the executable file extension is `.exe`. So the output would be `trycmd-example.exe` instead of `trycmd-example`. So you can set it to`trycmd-example[EXE]` in `tests/cmd/help.toml` to make it work on all platforms.
 
 ### Add a Markdown test case
 
@@ -423,7 +421,7 @@ Usually, we use this feature to test the `README.md` or other example files.
 
 ### Use directory to store input and output files
 
-We can use a directory to store the input and output files.
+To organize input and output files effectively, we can utilize a dedicated directory specifically designed for storing these files.
 
 Right now, we print the output to the console. If we want to print the output to a file, we also can test it with `trycmd`.
 
@@ -474,7 +472,7 @@ Right now, we print the output to the console. If we want to print the output to
     stderr = ""
     ```
 
-3. [Add a output directory and a output file.](https://github.com/hi-rustin/trycmd-example/commit/92ca6c26f1f10a48a0df5ca5dbb6c9b477540bec)
+3. [Add an output directory and an output file.](https://github.com/hi-rustin/trycmd-example/commit/92ca6c26f1f10a48a0df5ca5dbb6c9b477540bec)
 
     ```sh
     mkdir tests/cmd/greeting.out
@@ -515,7 +513,7 @@ Right now, we print the output to the console. If we want to print the output to
 
     `trycmd` will overwrite the output in the `tests/cmd/greeting.out/greeting.txt` file.
 
-    After that, we can run the test case again and it will pass.
+    After this, we can run the test case again and it will pass.
 
 ## Summary
 
