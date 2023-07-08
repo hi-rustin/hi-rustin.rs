@@ -54,7 +54,7 @@ We can treat this test case as a normal test case and run it with `cargo test`.
 
 We have two types of test cases available: TOML files and Markdown files. The TOML file provides more flexibility compared to the Markdown file. It allows us to test command line arguments, command output, and even the exit code of the command. On the other hand, the Markdown file is a simpler option that allows us to focus on testing the output of the command.
 
-In clap documentation, we can find a [simple example] of trycmd. But it only tests a Markdown file. In this post, I will show you how to write a TOML file and a Markdown file test. You can find more examples from some real projects, like [typos tests], [clap tests] and [rustup tests].
+In clap documentation, you can find a [simple example] of trycmd. But it only tests a Markdown file. In this post, I will show you how to write a TOML file and a Markdown file test. You can find more examples from some real projects, like [typos tests], [clap tests] and [rustup tests].
 
 [simple example]: https://github.com/assert-rs/trycmd/tree/main/examples/demo_trycmd
 [typos tests]: https://github.com/crate-ci/typos/blob/master/crates/typos-cli/tests/cli_tests.rs
@@ -341,8 +341,6 @@ AS you can see from the output, we can use `TRYCMD=overwrite` to overwrite the o
 TRYCMD=overwrite cargo test
 ```
 
-After this, we can run the test case again and it will pass.
-
 > Note: If you are using Windows, your test output will be different from the output above. This is because on Windows the executable file extension is `.exe`. So the output would be `trycmd-example.exe` instead of `trycmd-example`. So you can set it to`trycmd-example[EXE]` in `tests/cmd/help.toml` to make it work on all platforms.
 
 ### Add a Markdown test case
@@ -416,8 +414,6 @@ Usually, we use this feature to test the `README.md` or other example files.
     ```
 
     `trycmd` will overwrite the output in the `README.md` file.
-
-    After that, we can run the test case again and it will pass.
 
 ### Use directory to store input and output files
 
@@ -512,8 +508,6 @@ Right now, we print the output to the console. If we want to print the output to
     ```
 
     `trycmd` will overwrite the output in the `tests/cmd/greeting.out/greeting.txt` file.
-
-    After this, we can run the test case again and it will pass.
 
 ## Summary
 
