@@ -17,7 +17,7 @@ I am also a big believer in open source. I contribute to the [Rust] community, w
 
 - [axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
 
-I used to be a maintainer of ["Rustup: The Rust toolchain installer"], which is a toolchain manager for Rust.
+I used to be a maintainer of [Rustup], which is a toolchain manager for Rust.
 
 Currently learning: I am exploring the field of [continuous profiling] and trying to build a tool to help developers profile their applications in production.
 
@@ -68,7 +68,7 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [Rust]: https://www.rust-lang.org/
 [Cargo]: https://github.com/rust-lang/cargo
 [axum]: https://github.com/tokio-rs/axum
-["Rustup: The Rust toolchain installer"]: https://github.com/rust-lang/rustup
+[Rustup]: https://github.com/rust-lang/rustup
 [continuous profiling]: https://github.com/grafana/pyroscope
 [cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
