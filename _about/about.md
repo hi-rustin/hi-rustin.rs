@@ -9,13 +9,17 @@ layout: default
 
 My name is Rustin Liu and I’m a passionate software engineer who specializes in distributed systems, build systems, and programming tools.
 
-As a software engineer at [PingCAP], my main focus is on enhancing [TiCDC], which serves as the change data capture tool for [TiDB].
+As a software engineer at [PingCAP], my main focus is on enhancing [TiDB], which is an open-source distributed SQL database. I am also a core maintainer of [TiCDC], which is a Change Data Capture (CDC) system for [TiDB].
 
 I am also a big believer in open source. I contribute to the [Rust] community, where I am working on two projects:
 
-- ["Cargo: The Rust package manager"] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
+- [Cargo] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
 
-- ["Rustup: The Rust toolchain installer"] - Rustup installs Rust from the official release channels, enabling you to easily switch between stable, beta, and nightly compilers and keep them updated.
+- [axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
+
+I used to be a maintainer of ["Rustup: The Rust toolchain installer"], which is a toolchain manager for Rust.
+
+Currently learning: I am exploring the field of [continuous profiling] and trying to build a tool to help developers profile their applications in production.
 
 Programming languages I primarily code in:
 
@@ -62,8 +66,10 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [TiDB]: https://github.com/pingcap/tidb
 [TiCDC]: https://github.com/pingcap/tiflow
 [Rust]: https://www.rust-lang.org/
-["Cargo: The Rust package manager"]: https://github.com/rust-lang/cargo
+[Cargo]: https://github.com/rust-lang/cargo
+[axum]: https://github.com/tokio-rs/axum
 ["Rustup: The Rust toolchain installer"]: https://github.com/rust-lang/rustup
+[continuous profiling]: https://github.com/grafana/pyroscope
 [cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
 [rust-commits]: https://img.shields.io/badge/64+commits-black?logoColor=balck&logo=rust&label=Rust&style=social
