@@ -11,11 +11,13 @@ My name is Rustin Liu and I’m a passionate software engineer who specializes i
 
 As a software engineer at [PingCAP], my main focus is on enhancing [TiDB], which is an open-source distributed SQL database. I am also a core maintainer of [TiCDC], which is a Change Data Capture (CDC) system for [TiDB].
 
-I am also a big believer in open source. I contribute to the [Rust] community, where I am working on two projects:
+I am also a big believer in open source. I contribute to the Rust and Golang community, where I am working on three projects:
 
 - [Cargo] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
 
-- [axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
+- [Axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
+
+- [Pyroscope] - Continuous Profiling Platform. Debug performance issues down to a single line of code.
 
 I used to be a maintainer of [Rustup], which is a toolchain manager for Rust.
 
@@ -31,6 +33,7 @@ Programming languages I primarily code in:
     - [Build my own operating system]
     - [Leetcode solutions in Rust]
 - Golang
+  - [![tidb-commits][tidb-commits]](https://github.com/pingcap/tidb/commits?author=hi-rustin)
   - [![tiflow-commits][tiflow-commits]](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
   - [![tichi-commits][tichi-commits]](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
   - [![kubernetes-test-infra-commits][kubernetes-test-infra-commits]](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
@@ -63,7 +66,7 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [PingCAP]: https://www.pingcap.com/
 [TiDB]: https://github.com/pingcap/tidb
 [TiCDC]: https://github.com/pingcap/tiflow
-[Rust]: https://www.rust-lang.org/
+[Pyroscope]: https://github.com/grafana/pyroscope
 [Cargo]: https://github.com/rust-lang/cargo
 [axum]: https://github.com/tokio-rs/axum
 [Rustup]: https://github.com/rust-lang/rustup
@@ -72,6 +75,7 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [rust-commits]: https://img.shields.io/badge/64+commits-black?logoColor=balck&logo=rust&label=Rust&style=social
 [tikv-commits]: https://img.shields.io/badge/45+commits-black?logoColor=balck&logo=rust&label=TiKV&style=social
 [built-my-own-x-commits]: https://img.shields.io/badge/449+commits-black?logoColor=balck&logo=rust&label=Build%20my%20own%20X&style=social
+[tidb-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=TiDB&style=social
 [tiflow-commits]: https://img.shields.io/badge/299+commits-black?logoColor=balck&logo=go&label=TiFlow&style=social
 [tichi-commits]: https://img.shields.io/badge/365+commits-black?logoColor=balck&logo=go&label=TiChi&style=social
 [kubernetes-test-infra-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=Kubernetes%20Test%20Infra&style=social
