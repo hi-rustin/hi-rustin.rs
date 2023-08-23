@@ -11,11 +11,13 @@ My name is Rustin Liu and I’m a passionate software engineer who specializes i
 
 As a software engineer at [PingCAP], my main focus is on enhancing [TiDB], which is an open-source distributed SQL database. I am also a core maintainer of [TiCDC], which is a Change Data Capture (CDC) system for [TiDB].
 
-I am also a big believer in open source. I contribute to the Rust community, where I am working on two projects:
+I am also a big believer in open source. I contribute to the Rust and Golang community, where I am working on three projects:
 
 - [Cargo] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
 
 - [Axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
+
+- [Pyroscope] - Continuous Profiling Platform. Debug performance issues down to a single line of code.
 
 I used to be a maintainer of [Rustup], which is a toolchain manager for Rust.
 
@@ -34,8 +36,8 @@ Programming languages I primarily code in:
   - [![tidb-commits][tidb-commits]](https://github.com/pingcap/tidb/commits?author=hi-rustin)
   - [![tiflow-commits][tiflow-commits]](https://github.com/pingcap/tiflow/commits?author=hi-rustin)
   - [![tichi-commits][tichi-commits]](https://github.com/ti-community-infra/tichi/commits?author=hi-rustin)
+  - [![pyroscope-commits][pyroscope-commits]](https://github.com/grafana/phlare/commits?author=hi-rustin)
   - [![kubernetes-test-infra-commits][kubernetes-test-infra-commits]](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
-  - [![phlare-commits][phlare-commits]](https://github.com/grafana/phlare/commits?author=hi-rustin)
 - TypeScript/JavaScript
   - [![ant-design-commits][ant-design-commits]](https://github.com/ant-design/ant-design/commits?author=hi-rustin)
   - [![tispace-commits][tispace-commits]](https://github.com/tispace-dev/tispace/commits?author=hi-rustin)
@@ -66,6 +68,7 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [TiCDC]: https://github.com/pingcap/tiflow
 [Cargo]: https://github.com/rust-lang/cargo
 [axum]: https://github.com/tokio-rs/axum
+[Pyroscope]: https://github.com/grafana/pyroscope
 [Rustup]: https://github.com/rust-lang/rustup
 [cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
@@ -76,7 +79,7 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [tiflow-commits]: https://img.shields.io/badge/299+commits-black?logoColor=balck&logo=go&label=TiFlow&style=social
 [tichi-commits]: https://img.shields.io/badge/365+commits-black?logoColor=balck&logo=go&label=TiChi&style=social
 [kubernetes-test-infra-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=Kubernetes%20Test%20Infra&style=social
-[phlare-commits]: https://img.shields.io/badge/31+commits-black?logoColor=balck&logo=go&label=Phlare&style=social
+[pyroscope-commits]: https://img.shields.io/badge/40+commits-black?logoColor=balck&logo=go&label=Pyroscope&style=social
 [ant-design-commits]: https://img.shields.io/badge/20+commits-black?logoColor=balck&logo=typescript&label=Ant%20Design&style=social
 [tispace-commits]: https://img.shields.io/badge/46+commits-black?logoColor=balck&logo=typescript&label=TiSpace&style=social
 [Build my own database]: https://github.com/hi-rustin/build-my-own-x/tree/main/rq
