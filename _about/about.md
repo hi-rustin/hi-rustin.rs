@@ -11,13 +11,11 @@ My name is Rustin Liu and I’m a passionate software engineer who specializes i
 
 As a software engineer at [PingCAP], my main focus is on enhancing [TiDB], which is an open-source distributed SQL database. I am also a core maintainer of [TiCDC], which is a Change Data Capture (CDC) system for [TiDB].
 
-I am also a big believer in open source. I contribute to the Rust and Golang community, where I am working on three projects:
+I am also a big believer in open source. I contribute to the Rust community, where I am working on two projects:
 
 - [Cargo] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
 
 - [Axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
-
-- [Pyroscope] - Continuous Profiling Platform. Debug performance issues down to a single line of code.
 
 I used to be a maintainer of [Rustup], which is a toolchain manager for Rust.
 
@@ -68,7 +66,6 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [TiCDC]: https://github.com/pingcap/tiflow
 [Cargo]: https://github.com/rust-lang/cargo
 [axum]: https://github.com/tokio-rs/axum
-[Pyroscope]: https://github.com/grafana/pyroscope
 [Rustup]: https://github.com/rust-lang/rustup
 [cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
