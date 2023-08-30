@@ -5,8 +5,6 @@ layout: post
 
 ### Goals for this year:
 
-### Goals for next year:
-
 ### Projects
 
 ### Collaboration & mentorship
