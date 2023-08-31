@@ -231,3 +231,8 @@ img.float-right {
 .anchorjs-link, .anchorjs-link:hover {
   text-decoration: none;
 }
+
+.giscus {
+  margin-left: 10%;
+  width: 80%;
+}
