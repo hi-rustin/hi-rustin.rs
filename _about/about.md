@@ -14,7 +14,7 @@ As a software engineer at [PingCAP], my main focus is on enhancing [TiDB], which
 I am also a big believer in open source. I contribute to the Rust community, where I am working on two projects:
 
 - [Cargo] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
-- [crates.io] - The Rust package registry.
+- [crates.io][crates.io] - The Rust package registry.
 
 I used to be a maintainer of [Rustup], which is a toolchain manager for Rust.
 
