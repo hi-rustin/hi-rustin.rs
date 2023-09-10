@@ -14,8 +14,7 @@ As a software engineer at [PingCAP], my main focus is on enhancing [TiDB], which
 I am also a big believer in open source. I contribute to the Rust community, where I am working on two projects:
 
 - [Cargo] - Cargo downloads your Rust package’s dependencies, compiles your packages, makes distributable packages.
-
-- [Axum] - Ergonomic and modular web framework built with Tokio, Tower, and Hyper.
+- [crates.io] - The Rust package registry.
 
 I used to be a maintainer of [Rustup], which is a toolchain manager for Rust.
 
@@ -23,6 +22,7 @@ Programming languages I primarily code in:
 
 - Rust
   - [![cargo-commits][cargo-commits]](<https://github.com/rust-lang/cargo/commits?author=hi-rustin>)
+  - [![crates-io-commits][crates-io-commits]](<https://github.com/rust-lang/crates.io/commits?author=hi-rustin>)
   - [![rustup-commits][rustup-commits]](https://github.com/rust-lang/rustup/commits?author=hi-rustin)
   - [![rust-commits][rust-commits]](https://github.com/rust-lang/rust/commits?author=hi-rustin)
   - [![tikv-commits][tikv-commits]](https://github.com/tikv/tikv/commits?author=hi-rustin)
@@ -64,14 +64,15 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [TiDB]: https://github.com/pingcap/tidb
 [TiCDC]: https://github.com/pingcap/tiflow
 [Cargo]: https://github.com/rust-lang/cargo
-[axum]: https://github.com/tokio-rs/axum
+[crates.io]: https://github.com/rust-lang/crates.io
 [Rustup]: https://github.com/rust-lang/rustup
 [cargo-commits]: https://img.shields.io/badge/156+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
+[crates-io-commits]: https://img.shields.io/badge/34+commits-black?logoColor=balck&logo=rust&label=crates.io&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
 [rust-commits]: https://img.shields.io/badge/64+commits-black?logoColor=balck&logo=rust&label=Rust&style=social
 [tikv-commits]: https://img.shields.io/badge/45+commits-black?logoColor=balck&logo=rust&label=TiKV&style=social
 [built-my-own-x-commits]: https://img.shields.io/badge/449+commits-black?logoColor=balck&logo=rust&label=Build%20my%20own%20X&style=social
-[tidb-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=TiDB&style=social
+[tidb-commits]: https://img.shields.io/badge/52+commits-black?logoColor=balck&logo=go&label=TiDB&style=social
 [tiflow-commits]: https://img.shields.io/badge/299+commits-black?logoColor=balck&logo=go&label=TiFlow&style=social
 [tichi-commits]: https://img.shields.io/badge/365+commits-black?logoColor=balck&logo=go&label=TiChi&style=social
 [kubernetes-test-infra-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=Kubernetes%20Test%20Infra&style=social
