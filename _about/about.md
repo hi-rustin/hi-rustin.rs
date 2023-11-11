@@ -69,13 +69,13 @@ You can contact me by clicking badges above or below badges, or e-mailing me dir
 [Cargo]: https://github.com/rust-lang/cargo
 [console]: https://github.com/tokio-rs/console
 [Rustup]: https://github.com/rust-lang/rustup
-[cargo-commits]: https://img.shields.io/badge/169+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
-[crates-io-commits]: https://img.shields.io/badge/36+commits-black?logoColor=balck&logo=rust&label=crates.io&style=social
+[cargo-commits]: https://img.shields.io/badge/200+commits-black?logoColor=balck&logo=rust&label=Cargo&style=social
+[crates-io-commits]: https://img.shields.io/badge/45+commits-black?logoColor=balck&logo=rust&label=crates.io&style=social
 [rustup-commits]: https://img.shields.io/badge/110+commits-black?logoColor=balck&logo=rust&label=Rustup&style=social
 [rust-commits]: https://img.shields.io/badge/64+commits-black?logoColor=balck&logo=rust&label=Rust&style=social
 [tikv-commits]: https://img.shields.io/badge/45+commits-black?logoColor=balck&logo=rust&label=TiKV&style=social
 [built-my-own-x-commits]: https://img.shields.io/badge/449+commits-black?logoColor=balck&logo=rust&label=Build%20my%20own%20X&style=social
-[tidb-commits]: https://img.shields.io/badge/56+commits-black?logoColor=balck&logo=go&label=TiDB&style=social
+[tidb-commits]: https://img.shields.io/badge/74+commits-black?logoColor=balck&logo=go&label=TiDB&style=social
 [tiflow-commits]: https://img.shields.io/badge/299+commits-black?logoColor=balck&logo=go&label=TiFlow&style=social
 [tichi-commits]: https://img.shields.io/badge/365+commits-black?logoColor=balck&logo=go&label=TiChi&style=social
 [kubernetes-test-infra-commits]: https://img.shields.io/badge/39+commits-black?logoColor=balck&logo=go&label=Kubernetes%20Test%20Infra&style=social
