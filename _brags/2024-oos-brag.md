@@ -10,10 +10,4 @@ layout: post
 
 ### Projects
 
-### Collaboration & mentorship
-
-### Design & documentation
-
-### Community building
-
-### What you learned
+TBD
