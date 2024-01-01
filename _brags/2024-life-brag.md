@@ -1,5 +1,5 @@
 ---
-title: '2023 Life Brag'
+title: '2024 Life Brag'
 layout: post
 ---
 
