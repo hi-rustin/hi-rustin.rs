@@ -16,12 +16,12 @@ layout: post
 
 ### Exercising
 
-#### Weekly summary
+#### Weekly Summary
 
 - 2024-01-07: 4 times running
 
 ### English
 
-#### Weekly summary
+#### Weekly Summary
 
 - 2024-01-07: 2 IELTS Reading exercises and 2 IELTS Listening exercises

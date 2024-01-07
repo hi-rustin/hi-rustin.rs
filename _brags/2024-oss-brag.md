@@ -12,7 +12,7 @@ layout: post
 
 #### Cargo
 
-##### Weekly summary
+##### Weekly Summary
 
 - 2024-01-07:
   - Cargo-Information
@@ -26,7 +26,7 @@ layout: post
 
 #### Tokio
 
-##### Weekly summary
+##### Weekly Summary
 
 - 2024-01-07:
   - console-web
