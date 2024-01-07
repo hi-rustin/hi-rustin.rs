@@ -14,4 +14,14 @@ layout: post
 
 ## Projects
 
-TBD
+### Exercising
+
+#### Weekly summary
+
+- 2024-01-07: 4 times running
+
+### English
+
+#### Weekly summary
+
+- 2024-01-07: 2 IELTS Reading exercises and 2 IELTS Listening exercises
