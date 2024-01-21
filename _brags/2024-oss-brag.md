@@ -21,7 +21,7 @@ layout: post
     - Added a new feature `vendored-openssl` to allow users to use vendored OpenSSL. [cargo-information#90](https://github.com/hi-rustin/cargo-information/pull/90)
     - Discussed with crates.io team about showing the crates.io metrics [cargo-information#20](https://github.com/hi-rustin/cargo-information/issues/20)
   - Cargo
-    - Tried to fix [cargo#13127](https://arc.net/l/quote/qcgvfpst) in [cargo#13204](https://github.com/rust-lang/cargo/pull/13204)
+    - Tried to fix [cargo#13127](https://github.com/rust-lang/cargo/issues/13127) in [cargo#13204](https://github.com/rust-lang/cargo/pull/13204)
     - Tried to analyze [cargo#13235](https://github.com/rust-lang/cargo/issues/13235)
 
 #### Tokio
