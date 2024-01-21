@@ -19,9 +19,13 @@ layout: post
 #### Weekly Summary
 
 - 2024-01-07: 4 times running
+- 2024 01-14: 3 times running :(
+- 2024-01-21: 4 times running :(
 
 ### English
 
 #### Weekly Summary
 
 - 2024-01-07: 2 IELTS Reading exercises and 2 IELTS Listening exercises
+- 2024-01-14: 1 IELTS Reading exercise and 1 IELTS Listening exercise
+- 2024-01-21: 1 IELTS Reading exercise and 1 IELTS Listening exercise
