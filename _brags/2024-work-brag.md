@@ -21,6 +21,8 @@ layout: post
   - Updated the new design of the priority queue.
   - Added the basic heap implementation [tidb#50126](https://github.com/pingcap/tidb/pull/50126)
   - Added the interval util function for the priority queue [tidb#50035](https://github.com/pingcap/tidb/pull/50035)
+- 2024-01-14:
+  - Added some interval util functions [tidb#50035](https://github.com/pingcap/tidb/pull/50035)
 
 #### TiDB
 
@@ -28,6 +30,11 @@ layout: post
 
 - 2024-01-07:
   - Tried to fix [tidb#38756](https://github.com/pingcap/tidb/pull/50020) in [50020](https://github.com/pingcap/tidb/pull/50020)
+- 2024-01-14:
+  - Made `SELECT DISTINCT SQRT(1) FROM t` work [tidb#50020](https://github.com/pingcap/tidb/pull/50020)
+- 2024-01-21:
+  - Set the correct type for `REMAINING_SECONDS` [tidb#50421](https://github.com/pingcap/tidb/pull/50421)
+  - Added stack information for runtime error [tidb#50449](https://github.com/pingcap/tidb/pull/50449)
 
 #### LeetCode
 
@@ -35,6 +42,10 @@ layout: post
 
 - 2024-01-07:
   - Finished [LeetCode#49](https://leetcode.com/problems/group-anagrams/description/) in TypeScript
+- 2024-01-14:
+  - Finished 349, 238
+- 2024-01-21:
+  - Finished 271, 167
 
 #### Data Structures and Algorithms
 
