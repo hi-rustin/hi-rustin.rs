@@ -67,7 +67,9 @@ Another motivation is to make the workflow of finding and evaluating crates more
 
 ## Inspect a crate from crates.io outside of the workspace
 
-Users can run `cargo info` command to get information in any directory. This command will fetch the information from the crates.io index and display it in the terminal.
+Users can utilize the `cargo` info command to retrieve details in any directory. This command extracts information from crates.io and presents it in the terminal.
+
+For example, let's run the `cargo info` command for the `home` crate.
 
 ```sh
 cargo info home
@@ -94,7 +96,7 @@ It will display the name, description, version, license, rust version, documenta
 
 ## Inspect a crate from crates.io inside of the workspace
 
-Users can run `cargo info` command to get information in a workspace directory. This command will fetch the information from the crates.io index and display it in the terminal. But it will pick the version used in the workspace.
+In a workspace directory, the `cargo info` command can also be used to gather details. While it retrieves information from crates.io for display in the terminal, it specifically selects the version used in the workspace.
 
 Let's run the same command in the local [rustup repository]. Rustup uses the `home` crate as a dependency.
 
@@ -122,9 +124,11 @@ note: to see how you depend on home, run `cargo tree --invert --package home@0.5
 
 As you can see, it displays the same information as the previous example, but it also displays a note to see how you depend on the crate.
 
+[rustup repository]: https://github.com/rust-lang/rustup
+
 ## Inspect a local crate
 
-Users can run `cargo info` command to get information about a local crate. This command will display the information from the local `Cargo.toml` file.
+To obtain information about a local crate, users can execute the `cargo info` command. This command will showcase details from the local Cargo.toml file.
 
 Let's run the same command the local [cargo repository]. It manages the `home` crate.
 
@@ -143,6 +147,8 @@ dependencies:
 ```
 
 As you can see, it inspects the local crate and displays the information from the `Cargo.toml` file. Because we get the information from the `Cargo.toml` file, it doesn't display the owners of the crate.
+
+[cargo repository]: https://github.com/rust-lang/cargo
 
 # Reference-level explanation
 
