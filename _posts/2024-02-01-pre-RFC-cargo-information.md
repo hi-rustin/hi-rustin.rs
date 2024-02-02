@@ -203,8 +203,7 @@ The following hierarchy is used to determine the MSRV:
 
 ## NPM
 
-npm has a similar command called `npm info`. This command allows users to get information about a package from the command line.
-
+npm has a similar command called `npm info`.
 For example:
 
 ```sh
@@ -235,7 +234,7 @@ published over a year ago by bnjmnt4n <benjamin@dev.ofcr.se>
 
 ## Poetry
 
-Poetry has a similar command called `poetry show`. This command allows users to get information about a package from the command line.
+Poetry has a similar command called `poetry show`.
 
 For example:
 
