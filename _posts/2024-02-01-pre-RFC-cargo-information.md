@@ -150,8 +150,109 @@ As you can see, it inspects the local crate and displays the information from th
 
 [cargo repository]: https://github.com/rust-lang/cargo
 
+## Inspect a specific version of a crate
+
+`cargo info` supports inspecting a specific version of a crate. It uses the same package ID specification as `cargo install` and other Cargo commands. You can find more information about the package ID specification in the [Cargo documentation].
+
+Let's run the `cargo info` command for the `home` crate with the version `0.5.9`.
+
+```sh
+cargo info home@0.5.9
+    Updating crates.io index
+home
+Shared definitions of home directories.
+version: 0.5.9
+license: MIT OR Apache-2.0
+rust-version: 1.70.0
+documentation: https://docs.rs/home
+repository: https://github.com/rust-lang/cargo
+dependencies:
+  windows-sys@0.52
+owners:
+  alexcrichton (Alex Crichton)
+  brson (Brian Anderson)
+  LucioFranco (Lucio Franco)
+  ehuss (Eric Huss)
+  kinnison (Daniel Silverstone)
+  rust-lang-owner
+```
+
+[Cargo documentation]: https://doc.rust-lang.org/cargo/reference/pkgid-spec.html
+
 # Reference-level explanation
 
+## Downloading the crate from any Cargo compatible registry
+
+The `cargo info` command will download the crate from any Cargo compatible registry. It will then extract the information from the `Cargo.toml` file and display it in the terminal.
+
+If the crate is already in the local cache, it will not download the crate again. It will get the information from the local cache.
+
+## Pick the correct version from the workspace
+
+When executed in a workspace directory, the cargo info command chooses the version that the workspace is currently using.
+
+If there's a lock file available, the version from this file will be used. In the absence of a lock file, the command attempts to select a version that is compatible with the Minimum Supported Rust Version (MSRV). And the lock file will be generated automatically.
+
+The following hierarchy is used to determine the MSRV:
+
+- First, the MSRV of the parent directory package is checked, if it exists.
+- If the parent directory package does not specify an MSRV, the minimal MSRV of the workspace is checked.
+- If neither the workspace nor the parent directory package specify an MSRV, the version of the current Rust compiler (rustc --version) is used.
+
 # Prior art
+
+## NPM
+
+npm has a similar command called `npm info`. This command allows users to get information about a package from the command line.
+
+For example:
+
+```sh
+npm info lodash
+
+lodash@4.17.21 | MIT | deps: none | versions: 114
+Lodash modular utilities.
+https://lodash.com/
+
+keywords: modules, stdlib, util
+
+dist
+.tarball: https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz
+.shasum: 679591c564c3bffaae8454cf0b3df370c3d6911c
+.integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+.unpackedSize: 1.4 MB
+
+maintainers:
+- mathias <mathias@qiwi.be>
+- jdalton <john.david.dalton@gmail.com>
+- bnjmnt4n <benjamin@dev.ofcr.se>
+
+dist-tags:
+latest: 4.17.21
+
+published over a year ago by bnjmnt4n <benjamin@dev.ofcr.se>
+```
+
+## Poetry
+
+Poetry has a similar command called `poetry show`. This command allows users to get information about a package from the command line.
+
+For example:
+
+```sh
+poetry show pendulum
+
+name        : pendulum
+version     : 1.4.2
+description : Python datetimes made easy
+
+dependencies
+ - python-dateutil >=2.6.1
+ - tzlocal >=1.4
+ - pytzdata >=2017.2.2
+
+required by
+ - calendar >=1.4.0
+```
 
 # Unresolved questions
