@@ -203,7 +203,7 @@ The following hierarchy is used to determine the MSRV:
 
 ## NPM
 
-npm has a similar command called `npm info`.
+[npm] has a similar command called `npm info`.
 For example:
 
 ```sh
@@ -232,9 +232,11 @@ latest: 4.17.21
 published over a year ago by bnjmnt4n <benjamin@dev.ofcr.se>
 ```
 
+[npm]: https://www.npmjs.com/
+
 ## Poetry
 
-Poetry has a similar command called `poetry show`.
+[Poetry] has a similar command called `poetry show`.
 
 For example:
 
@@ -253,5 +255,7 @@ dependencies
 required by
  - calendar >=1.4.0
 ```
+
+[Poetry]: https://python-poetry.org/
 
 # Unresolved questions
