@@ -15,8 +15,8 @@ This adds a new subcommand to Cargo, `cargo info`. This subcommand would allow u
 
 Example usage:
 
-```sh
-cargo info clap
+```console
+$ cargo info clap
     Updating crates.io index
 clap #argument #cli #arg #parser #parse
 A simple to use, efficient, and full-featured Command Line Argument Parser
@@ -87,8 +87,8 @@ Users can utilize the `cargo` info command to retrieve details in any directory.
 
 For example, let's run the `cargo info` command for the `home` crate.
 
-```sh
-cargo info home
+```console
+$ cargo info home
     Updating crates.io index
 home
 Shared definitions of home directories.
@@ -116,8 +116,8 @@ In a workspace directory, the `cargo info` command can also be used to gather de
 
 Let's run the same command in the local [rustup repository]. Rustup uses the `home` crate as a dependency.
 
-```sh
-cargo info home
+```console
+$ cargo info home
     Updating crates.io index
 home
 Shared definitions of home directories.
@@ -148,8 +148,8 @@ To obtain information about a local crate, users can execute the `cargo info` co
 
 Let's run the same command the local [cargo repository]. It manages the `home` crate.
 
-```sh
-cargo info home
+```console
+$ cargo info home
 home
 Shared definitions of home directories.
 version: 0.5.11 (from ./crates/home)
@@ -172,8 +172,8 @@ As you can see, it inspects the local crate and displays the information from th
 
 Let's run the `cargo info` command for the `home` crate with the version `0.5.9`.
 
-```sh
-cargo info home@0.5.9
+```console
+$ cargo info home@0.5.9
     Updating crates.io index
 home
 Shared definitions of home directories.
@@ -222,8 +222,8 @@ The following hierarchy is used to determine the MSRV:
 [npm] has a similar command called `npm info`.
 For example:
 
-```sh
-npm info lodash
+```console
+$ npm info lodash
 
 lodash@4.17.21 | MIT | deps: none | versions: 114
 Lodash modular utilities.
@@ -256,8 +256,8 @@ published over a year ago by bnjmnt4n <benjamin@dev.ofcr.se>
 
 For example:
 
-```sh
-poetry show pendulum
+```console
+$ poetry show pendulum
 
 name        : pendulum
 version     : 1.4.2
