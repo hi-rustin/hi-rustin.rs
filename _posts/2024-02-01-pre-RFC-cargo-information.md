@@ -275,3 +275,29 @@ required by
 [Poetry]: https://python-poetry.org/
 
 # Unresolved questions
+
+1. Report crates metrics?
+
+    Proposal:
+
+    - recent download count (popularity)
+    - last updated (give a feel for how active development is)
+    - Only for crates.io.
+
+2. What dependency fields might be relevant to indicate?
+
+    Proposal: From @epage: Dependencies are mostly an implementation detail (except public) but people sometimes care, so I figure that holding off on private dependencies to --verbose might buy us more space.
+
+3. How should we render features?
+
+    Proposal: Currently, it's a simple list of features and their dependencies. We could consider a tree view:
+
+    ```console
+    features:
+      parent1
+        child1
+      parent2
+        child1*
+    ```
+
+4. What version should we default to within a workspace? What if it isn't the direct dependency but is a transitive dependency?
