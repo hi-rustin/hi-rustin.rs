@@ -286,7 +286,10 @@ required by
 
 2. What dependency fields might be relevant to indicate?
 
-    Proposal: From @epage: Dependencies are mostly an implementation detail (except public) but people sometimes care, so I figure that holding off on private dependencies to --verbose might buy us more space.
+    Proposal:
+
+    - From @epage: Dependencies are mostly an implementation detail (except public) but people sometimes care, so I figure that holding off on private dependencies to --verbose might buy us more space.
+    - From @hi-rustin: How about we show all the dependencies and only show the dev-dependencies and build-dependencies for a --verbose. I guess checking its dependencies before you use it in your project would always be considered.
 
 3. How should we render features?
 
