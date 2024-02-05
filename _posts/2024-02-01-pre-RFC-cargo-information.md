@@ -1,5 +1,5 @@
 ---
-title: 'pre-RFC: `cargo-info` for everyone'
+title: 'pre-RFC: cargo-info for everyone'
 layout: post
 
 categories: post
@@ -52,6 +52,22 @@ owners:
   github:rust-cli:maintainers (Maintainers)
   github:clap-rs:admins (Admins)
 ```
+
+## Detailed design
+
+| Content                                                                    | Explanation                         | Why                                                                               |
+|----------------------------------------------------------------------------|-------------------------------------|-----------------------------------------------------------------------------------|
+| clap                                                                       | Name                                | The basic information.                                                            |
+| #argument #cli #arg #parser #parse                                         | Keywords                            | It's more like a category, which you can use to search for relevant alternatives. |
+| A simple to use, efficient, and full-featured Command Line Argument Parser | Description                         | The basic information.                                                            |
+| version: 4.4.18                                                            | Version                             | The basic information.                                                            |
+| license: MIT OR Apache-2.0                                                 | License                             | When choosing a package, it is crucial to consider the license.                   |
+| rust-version: 1.70.0                                                       | MSRV                                | When choosing a package, it is crucial to make sure it can work with your MSRV.   |
+| documentation: <https://docs.rs/clap/4.4.18>                               | Documentation Link                  | Use these links can find more docs and information.                               |
+| repository: <https://github.com/clap-rs/clap>                              | Repo Link                           | Use these links can find more docs and information.                               |
+| features:                                                                  | Default Features And Other Features | It helps for enabling features.                                                   |
+| dependencies:                                                              | All dependencies                    | It indicates what it depends on.                                                  |
+| owners:                                                                    | Owners                              | It indicates who maintains the package.                                           |
 
 # Motivation
 
