@@ -5,8 +5,8 @@ layout: post
 
 ### Goals for this year
 
-1. Keep contributing to Cargo and become a member of the Cargo team
-2. Learn async Rust and contribute to Tokio
+1. Continue contributing to Cargo and crates.io. Identify specific areas of interest and actively work on them with the goal of becoming a maintainer.
+2. Deepen my understanding of asynchronous runtime internals by actively contributing to projects like Tokio's console and Golang's pprof, focusing on understanding their architecture and design.
 
 ### Projects
 
