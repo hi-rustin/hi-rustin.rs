@@ -23,6 +23,9 @@ layout: post
   - Added the interval util function for the priority queue [tidb#50035](https://github.com/pingcap/tidb/pull/50035)
 - 2024-01-14:
   - Added some interval util functions [tidb#50035](https://github.com/pingcap/tidb/pull/50035)
+- 2024-02-11:
+  - Added the refresher for the priority queue [tidb#50845](https://github.com/pingcap/tidb/pull/50845)
+  - Finished building the priority queue [tidb#51045](https://github.com/pingcap/tidb/pull/51045)
 
 #### TiDB
 
@@ -35,6 +38,8 @@ layout: post
 - 2024-01-21:
   - Set the correct type for `REMAINING_SECONDS` [tidb#50421](https://github.com/pingcap/tidb/pull/50421)
   - Added stack information for runtime error [tidb#50449](https://github.com/pingcap/tidb/pull/50449)
+- 2024-02-11:
+  - Made the used stats info thread-safe [tidb#51029](https://github.com/pingcap/tidb/pull/51029)
 
 #### LeetCode
 
@@ -46,10 +51,15 @@ layout: post
   - Finished 349, 238
 - 2024-01-21:
   - Finished 271, 167
+- 2024-02-11:
+  - Finished 1343, 0235, 0217 and 0097
 
 #### Data Structures and Algorithms
 
 ##### Weekly Summary
 
 - 2024-01-07:
-  - Finished the lecture 1 and 2 of the course [MIT 6.006](https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY)
+  - Finished the lecture 1 and 2 of the course [MIT 6.006]
+  - Finished the lecture 3, 4 and 5 of the course [MIT 6.006]
+
+[MIT 6.006]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY
