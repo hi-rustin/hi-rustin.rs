@@ -31,8 +31,11 @@ layout: post
 - 2024-01-21:
   - Cargo-Information
     - Support display non-registries dependencies [cargo-information#100](https://github.com/hi-rustin/cargo-information/pull/100)
-- Cargo
-  - Tried to analyze [cargo#13310](https://github.com/rust-lang/cargo/issues/13310)
+  - Cargo
+    - Tried to analyze [cargo#13310](https://github.com/rust-lang/cargo/issues/13310)
+- 2024-02-11:
+  - Cargo-Information
+    - Worked on the pre-RFC for the `cargo info` command [hi-rustin.rs#108](https://github.com/hi-rustin/hi-rustin.rs/pull/108)
 
 #### Tokio
 
@@ -57,3 +60,7 @@ layout: post
   - console
     - Added flags and configurations for warnings [console#493](https://github.com/tokio-rs/console/pull/493)
     - Added some comments to the `h2` dependency [console#499](https://github.com/tokio-rs/console/pull/499)
+- 2024-02-11:
+  - console
+    - Added `--allow` flag to the `tokio-console` [console#513](https://github.com/tokio-rs/console/pull/513)
+    - Finished `grpc-web` support [console#498](https://github.com/tokio-rs/console/pull/498)
