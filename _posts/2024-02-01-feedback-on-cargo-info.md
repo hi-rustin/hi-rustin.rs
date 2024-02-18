@@ -1,5 +1,5 @@
 ---
-title: 'pre-RFC: cargo-info for everyone'
+title: 'Feedback on `cargo-info` to prepare it for merging'
 layout: post
 
 categories: post
