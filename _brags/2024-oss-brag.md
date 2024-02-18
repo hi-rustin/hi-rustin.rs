@@ -36,6 +36,13 @@ layout: post
 - 2024-02-11:
   - Cargo-Information
     - Worked on the pre-RFC for the `cargo info` command [hi-rustin.rs#108](https://github.com/hi-rustin/hi-rustin.rs/pull/108)
+- 2024-02-18:
+  - Cargo-Information
+    - Bumped a bunch of dependencies
+    - Released 0.4.2
+  - crates.io
+    - Added prettier as a CI action [crates.io#8140](https://github.com/rust-lang/crates.io/pull/8140)
+    - Review couple of PRs
 
 #### Tokio
 
@@ -64,3 +71,7 @@ layout: post
   - console
     - Added `--allow` flag to the `tokio-console` [console#513](https://github.com/tokio-rs/console/pull/513)
     - Finished `grpc-web` support [console#498](https://github.com/tokio-rs/console/pull/498)
+- 2024-02-18:
+  - console
+    - Merged `grpc-web` support [console#498](https://github.com/tokio-rs/console/pull/498)
+    - Added a `grpc-web` nodejs example [console#526](https://github.com/tokio-rs/console/pull/526)
