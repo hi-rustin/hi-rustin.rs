@@ -9,6 +9,11 @@ tags:
 - CLI
 ---
 
+# Reminder
+
+I am working on merging the `cargo-info` subcommand into Cargo. There are a few points that need to be addressed before merging. I would like to get feedback on these points.
+You can find the key points of concern at the end of this post.
+
 # Background
 
 This adds a new subcommand to Cargo, `cargo info`. This subcommand would allow users to get information about a crate from the command line, without having to go to the web.
