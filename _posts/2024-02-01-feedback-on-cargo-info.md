@@ -9,9 +9,17 @@ tags:
 - CLI
 ---
 
-# Summary
+# Background
 
 This adds a new subcommand to Cargo, `cargo info`. This subcommand would allow users to get information about a crate from the command line, without having to go to the web.
+
+The main motivation for this is to make it easier to get information about a crate from the command line. Currently, the way to get information about a crate is to go to the web and look it up on [crates.io] or find the crate's source code and look at the `Cargo.toml` file. This is not very convenient, especially not all information is displayed on the [crates.io] page.
+This command also has been requested by the community for a long time. You can find more discussion about this in [cargo#948].
+
+Another motivation is to make the workflow of finding and evaluating crates more efficient. In the current workflow, users can search for crates using `cargo search`, but then they have to go to the web to get more information about the crate. This is not very efficient, especially if the user is just trying to get a quick overview of the crate. This would allow users to quickly get information about a crate without having to leave the terminal.
+
+[crates.io]: https://crates.io
+[cargo#948]: https://github.com/rust-lang/cargo/issues/948
 
 Example usage:
 
@@ -69,133 +77,7 @@ owners:
 | dependencies:                                                              | All dependencies                    | It indicates what it depends on.                                                  |
 | owners:                                                                    | Owners                              | It indicates who maintains the crate.                                             |
 
-# Motivation
-
-The main motivation for this is to make it easier to get information about a crate from the command line. Currently, the way to get information about a crate is to go to the web and look it up on [crates.io] or find the crate's source code and look at the `Cargo.toml` file. This is not very convenient, especially not all information is displayed on the [crates.io] page.
-This command also has been requested by the community for a long time. You can find more discussion about this in [cargo#948].
-
-Another motivation is to make the workflow of finding and evaluating crates more efficient. In the current workflow, users can search for crates using `cargo search`, but then they have to go to the web to get more information about the crate. This is not very efficient, especially if the user is just trying to get a quick overview of the crate. This would allow users to quickly get information about a crate without having to leave the terminal.
-
-[crates.io]: https://crates.io
-[cargo#948]: https://github.com/rust-lang/cargo/issues/948
-
-# Guide-level explanation
-
-## Inspect a crate from crates.io outside of the workspace
-
-Users can utilize the `cargo` info command to retrieve details in any directory. This command extracts information from crates.io and presents it in the terminal.
-
-For example, let's run the `cargo info` command for the `home` crate.
-
-```console
-$ cargo info home
-    Updating crates.io index
-home
-Shared definitions of home directories.
-version: 0.5.9
-license: MIT OR Apache-2.0
-rust-version: 1.70.0
-documentation: https://docs.rs/home
-repository: https://github.com/rust-lang/cargo
-dependencies:
-  windows-sys@0.52
-owners:
-  alexcrichton (Alex Crichton)
-  brson (Brian Anderson)
-  LucioFranco (Lucio Franco)
-  ehuss (Eric Huss)
-  kinnison (Daniel Silverstone)
-  rust-lang-owner
-```
-
-It will display the name, description, version, license, rust version, documentation, repository, and dependencies of the crate. It will also display the owners of the crate if available.
-
-## Inspect a crate from crates.io inside of the workspace
-
-In a workspace directory, the `cargo info` command can also be used to gather details. While it retrieves information from crates.io for display in the terminal, it specifically selects the version used in the workspace.
-
-Let's run the same command in the local [rustup repository]. Rustup uses the `home` crate as a dependency.
-
-```console
-$ cargo info home
-    Updating crates.io index
-home
-Shared definitions of home directories.
-version: 0.5.9
-license: MIT OR Apache-2.0
-rust-version: 1.70.0
-documentation: https://docs.rs/home
-repository: https://github.com/rust-lang/cargo
-dependencies:
-  windows-sys@0.52
-owners:
-  alexcrichton (Alex Crichton)
-  brson (Brian Anderson)
-  LucioFranco (Lucio Franco)
-  ehuss (Eric Huss)
-  kinnison (Daniel Silverstone)
-  rust-lang-owner
-note: to see how you depend on home, run `cargo tree --invert --package home@0.5.9`
-```
-
-As you can see, it displays the same information as the previous example, but it also displays a note to see how you depend on the crate.
-
-[rustup repository]: https://github.com/rust-lang/rustup
-
-## Inspect a local crate
-
-To obtain information about a local crate, users can execute the `cargo info` command. This command will showcase details from the local Cargo.toml file.
-
-Let's run the same command the local [cargo repository]. It manages the `home` crate.
-
-```console
-$ cargo info home
-home
-Shared definitions of home directories.
-version: 0.5.11 (from ./crates/home)
-license: MIT OR Apache-2.0
-rust-version: 1.73
-documentation: https://docs.rs/home
-homepage: https://github.com/rust-lang/cargo
-repository: https://github.com/rust-lang/cargo
-dependencies:
-  windows-sys@0.52
-```
-
-As you can see, it inspects the local crate and displays the information from the `Cargo.toml` file. Because we get the information from the `Cargo.toml` file, it doesn't display the owners of the crate.
-
-[cargo repository]: https://github.com/rust-lang/cargo
-
-## Inspect a specific version of a crate
-
-`cargo info` supports inspecting a specific version of a crate. It uses the same package ID specification as `cargo install` and other Cargo commands. You can find more information about the package ID specification in the [Cargo documentation].
-
-Let's run the `cargo info` command for the `home` crate with the version `0.5.9`.
-
-```console
-$ cargo info home@0.5.9
-    Updating crates.io index
-home
-Shared definitions of home directories.
-version: 0.5.9
-license: MIT OR Apache-2.0
-rust-version: 1.70.0
-documentation: https://docs.rs/home
-repository: https://github.com/rust-lang/cargo
-dependencies:
-  windows-sys@0.52
-owners:
-  alexcrichton (Alex Crichton)
-  brson (Brian Anderson)
-  LucioFranco (Lucio Franco)
-  ehuss (Eric Huss)
-  kinnison (Daniel Silverstone)
-  rust-lang-owner
-```
-
-[Cargo documentation]: https://doc.rust-lang.org/cargo/reference/pkgid-spec.html
-
-# Reference-level explanation
+# Some important notes
 
 ## Downloading the crate from any Cargo compatible registry
 
@@ -274,7 +156,7 @@ required by
 
 [Poetry]: https://python-poetry.org/
 
-# Unresolved questions
+# Known Points of Concern
 
 1. Report crates metrics? [cargo-information#20]
 
