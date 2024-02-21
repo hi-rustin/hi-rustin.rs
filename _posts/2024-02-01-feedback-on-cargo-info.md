@@ -9,12 +9,10 @@ tags:
 - CLI
 ---
 
-# Reminder
-
 I am working on merging the `cargo-info` subcommand into Cargo. There are a few points that need to be addressed before merging. I would like to get feedback on these points.
 You can find the key points of concern at the end of this post.
 
-# Background
+### Background
 
 This adds a new subcommand to Cargo, `cargo info`. This subcommand would allow users to get information about a crate from the command line, without having to go to the web.
 
@@ -65,50 +63,35 @@ owners:
   github:rust-cli:maintainers (Maintainers)
   github:clap-rs:admins (Admins)
 ```
+Questions we expect users will be asking when wanting to run this:
+- Is this the dependency I intended?
+- What version should I use?
+- What `features` can I use?  What are there impacts?
+- Where are the docs?
+- Where can I open an issue or create a PR?
+- Is this compatible with my project wrt
+  - licensing
+  - MSRV
+ 
+Behavior notes:
+- Information sources
+  - Index: relies on cargo's caches
+  - `.crate`: relies on cargo's caches
+  - crates.io API
+- Implicit version selection
+  - Prefers version already in your lockfile when run inside of a project
+  - Prefers a version with a `rust-version` that is the same or older as your `rust-version` when run inside of a project
+  - Prefers a version with a `rust-version` that is the same or older than your toolchain
+- A note will be added to the version field if the latest is not selected
 
-## Detailed design
+#### Prior art
 
-| Content                                                                    | Explanation                         | Why                                                                               |
-|----------------------------------------------------------------------------|-------------------------------------|-----------------------------------------------------------------------------------|
-| clap                                                                       | Name                                | The basic information.                                                            |
-| #argument #cli #arg #parser #parse                                         | Keywords                            | It's more like a category, which you can use to search for relevant alternatives. |
-| A simple to use, efficient, and full-featured Command Line Argument Parser | Description                         | The basic information.                                                            |
-| version: 4.4.18                                                            | Version                             | The basic information.                                                            |
-| license: MIT OR Apache-2.0                                                 | License                             | When choosing a crate, it is crucial to consider the license.                     |
-| rust-version: 1.70.0                                                       | MSRV                                | When choosing a crate, it is crucial to make sure it can work with your MSRV.     |
-| documentation: <https://docs.rs/clap/4.4.18>                               | Documentation Link                  | Use these links can find more docs and information.                               |
-| repository: <https://github.com/clap-rs/clap>                              | Repo Link                           | Use these links can find more docs and information.                               |
-| features:                                                                  | Default Features And Other Features | It helps for enabling features.                                                   |
-| dependencies:                                                              | All dependencies                    | It indicates what it depends on.                                                  |
-| owners:                                                                    | Owners                              | It indicates who maintains the crate.                                             |
-
-# Some important notes
-
-## Downloading the crate from any Cargo compatible registry
-
-The `cargo info` command will download the crate from any Cargo compatible registry. It will then extract the information from the `Cargo.toml` file and display it in the terminal.
-
-If the crate is already in the local cache, it will not download the crate again. It will get the information from the local cache.
-
-## Pick the correct version from the workspace
-
-When executed in a workspace directory, the cargo info command chooses the version that the workspace is currently using.
-
-If there's a lock file available, the version from this file will be used. In the absence of a lock file, the command attempts to select a version that is compatible with the Minimum Supported Rust Version (MSRV). And the lock file will be generated automatically.
-
-The following hierarchy is used to determine the MSRV:
-
-- First, the MSRV of the parent directory package is checked, if it exists.
-- If the parent directory package does not specify an MSRV, the minimal MSRV of the workspace is checked.
-- If neither the workspace nor the parent directory package specify an MSRV, the version of the current Rust compiler (rustc --version) is used.
-
-# Prior art
-
-## NPM
+##### `npm info`
 
 [npm] has a similar command called `npm info`.
-For example:
 
+<details summary="For example:">
+    
 ```console
 $ npm info lodash
 
@@ -135,13 +118,16 @@ latest: 4.17.21
 published over a year ago by bnjmnt4n <benjamin@dev.ofcr.se>
 ```
 
+</details>
+
+
 [npm]: https://www.npmjs.com/
 
-## Poetry
+##### `poetry show`
 
 [Poetry] has a similar command called `poetry show`.
 
-For example:
+<details summary="For example:">
 
 ```console
 $ poetry show pendulum
@@ -159,38 +145,44 @@ required by
  - calendar >=1.4.0
 ```
 
+
+</details>
+
 [Poetry]: https://python-poetry.org/
 
-# Known Points of Concern
+### Known Points of Concern
 
-1. Report crates metrics? [cargo-information#20]
+**What other questions would people want to ask?**
 
-    Proposal:
+e.g. [cargo-information#20] is about other crates.io metrics would be useful.
 
-    - recent download count (popularity)
-    - last updated (give a feel for how active development is)
-    - Only for crates.io.
+Proposal:
+- recent download count (popularity)
+- last updated (give a feel for how active development is)
 
-2. What dependency fields might be relevant to indicate? [cargo-information#23]
+**What would people like to get out of dependencies?**
 
-    Proposal:
+We have [cargo-information#23] about what dependency fields are relevant to show but there is a broader question of what dependencies themselves are relevant to show.
+Dependencies can take up a lot of space and make it harder to browse what content is already there.
 
-    - From @epage: Dependencies are mostly an implementation detail (except public) but people sometimes care, so I figure that holding off on private dependencies to --verbose might buy us more space.
-    - From @hi-rustin: How about we show all the dependencies and only show the dev-dependencies and build-dependencies for a --verbose. I guess checking its dependencies before you use it in your project would always be considered.
+Ideas
+- Only show public dependencies, show normal and build dependencies on `--verbose` and maybe also dev dependencies on `--verbose --verbose`
+- Show all normal and build dependencies, relegating dev dependencies to `--verbose`
 
-3. How should we render features? [cargo-information#26]
+**What do people want to get out of the features view?**
 
-    Proposal: Currently, it's a simple list of features and their dependencies. We could consider a tree view:
+[cargo-information#26] asks how we should render dependencies.
 
-    ```console
-    features:
-      parent1
-        child1
-      parent2
-        child1*
-    ```
+Currently, we show a flat list with all activations and highlight what gets enabled by `default`.
+In  [rust-lang/cargo#10681](https://github.com/rust-lang/cargo/issues/10681), people have asked to see a visual tree.
+In doing so, we might lose dependency activations.
+We could have the dependency view specially render activated and inactive optional dependencies but we wouldn't get cause and effect.
 
-4. What version should we default to within a workspace? What if it isn't the direct dependency but is a transitive dependency? [cargo-information#29]
+**What dependency version from your lockfile would be most useful?**
+
+We currently select the latest.  [cargo-information#29] calls out that we might want to do it differently, including
+- depth in the tree
+- only use direct dependencies from lockfile and get the absolute latest if its a transitive dependency
 
 [cargo-information#20]: https://github.com/hi-rustin/cargo-information/issues/20
 [cargo-information#23]: https://github.com/hi-rustin/cargo-information/issues/23
