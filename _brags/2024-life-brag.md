@@ -23,6 +23,7 @@ layout: post
 - 2024-01-21: 4 times running :(
 - 2024-02-11: No running :(
 - 2024-02-18: 1 time running, 2 times walking and 2 times hinting
+- 2024-02-25: 1 time running, 1 time hinting
 
 ### English
 
@@ -33,3 +34,8 @@ layout: post
 - 2024-01-21: 1 IELTS Reading exercise and 1 IELTS Listening exercise
 - 2024-02-11: No IELTS exercises :(
 - 2024-02-18: 1 IELTS Reading exercise and 3 shadowing exercises
+- 2024-02-25: No IELTS exercises :(
+
+### Driving
+
+- 2024-02-25: Tried to sign up, failed :(
