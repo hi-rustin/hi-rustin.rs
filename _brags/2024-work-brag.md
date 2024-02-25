@@ -28,6 +28,10 @@ layout: post
   - Finished building the priority queue [tidb#51045](https://github.com/pingcap/tidb/pull/51045)
 - 2024-02-18:
   - Merged the design of the priority queue [tidb#49018](https://github.com/pingcap/tidb/pull/49018)
+- 2024-02-25:
+  - Merged the priority queue for non-partitioned tables [tidb#51045](https://github.com/pingcap/tidb/pull/51045)
+  - Used the correct time to calculate the last analyze time [tidb#51287](https://github.com/pingcap/tidb/pull/51287)
+  - Finished the priority queue for partitioned tables [tidb#51152](https://github.com/pingcap/tidb/pull/51152)
 
 #### TiDB
 
@@ -44,6 +48,8 @@ layout: post
   - Made the used stats info thread-safe [tidb#51029](https://github.com/pingcap/tidb/pull/51029)
 - 2024-02-18:
   - Skip create pseudo stats for partitions during auto-analyze process [tidb#51123](https://github.com/pingcap/tidb/pull/51123)
+- 2024-02-25:
+  - No Progress
 
 #### LeetCode
 
@@ -59,6 +65,9 @@ layout: post
   - Finished 1343, 0235, 0217 and 0097
 - 2024-02-18:
   - Finished 1584, 0743, 0787 and 0332.
+- 2024-02-25:
+  - Finished all neetcode problems
+  - Started solve those problems in Rust and Go again
 
 #### Data Structures and Algorithms
 
@@ -70,5 +79,8 @@ layout: post
 - 2024-02-18:
   - Finished the lecture 6, 7 and 8 of the course [MIT 6.006]
   - Finished my own implementation of the [Vector in Rust](https://github.com/hi-rustin/build-my-own-x/pull/87)
+- 2024-02-25:
+  - Finished the lecture 9, 10 and 11 of the course [MIT 6.006]
+  - Added insert API for the Vector in Rust [build-my-own-x#95](https://github.com/hi-rustin/build-my-own-x/pull/95)
 
 [MIT 6.006]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY
