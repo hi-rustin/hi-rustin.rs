@@ -43,6 +43,11 @@ layout: post
   - crates.io
     - Added prettier as a CI action [crates.io#8140](https://github.com/rust-lang/crates.io/pull/8140)
     - Review couple of PRs
+- 2024-02-25:
+  - Cargo-Information
+    - Publish the internals post [Feedback on `cargo-info` to prepare it for merging](https://internals.rust-lang.org/t/feedback-on-cargo-info-to-prepare-it-for-merging/20369)
+  - crates.io
+    - No Progress
 
 #### Tokio
 
@@ -75,3 +80,9 @@ layout: post
   - console
     - Merged `grpc-web` support [console#498](https://github.com/tokio-rs/console/pull/498)
     - Added a `grpc-web` nodejs example [console#526](https://github.com/tokio-rs/console/pull/526)
+- 2024-02-25:
+  - console
+    - Joined the team!
+    - Reviewed a couple of PRs
+  - console-web
+    - Updated the `console-web` to use the latest `console` version [console-web#102](https://github.com/hi-rustin/console-web/pull/102)
