@@ -24,6 +24,10 @@ layout: post
 - 2024-02-11: No running :(
 - 2024-02-18: 1 time running, 2 times walking and 2 times hinting
 - 2024-02-25: 1 time running, 1 time hinting
+- 2024-03-10: 1 time running :(
+- 2024-03-17:
+  - Goals: 2 times running, 1 time hinting, 1 time walking
+  - Achieved: TBD
 
 ### English
 
@@ -35,7 +39,15 @@ layout: post
 - 2024-02-11: No IELTS exercises :(
 - 2024-02-18: 1 IELTS Reading exercise and 3 shadowing exercises
 - 2024-02-25: No IELTS exercises :(
+- 2024-03-10: 1 IELTS Reading exercise :(
+- 2024-03-17:
+  - Goals: 2 IELTS Reading exercises, 2 IELTS Listening exercises and 2 English In Use exercises
+  - Achieved: TBD
 
 ### Driving
 
 - 2024-02-25: Tried to sign up, failed :(
+- 2024-03-10: Signed up, waiting for the exam
+- 2024-03-17:
+  - Goals: Pass the first exam
+  - Achieved: TBD
