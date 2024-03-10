@@ -48,6 +48,21 @@ layout: post
     - Publish the internals post [Feedback on `cargo-info` to prepare it for merging](https://internals.rust-lang.org/t/feedback-on-cargo-info-to-prepare-it-for-merging/20369)
   - crates.io
     - No Progress
+- 2024-03-10:
+  - Cargo-Information
+    - Used the latest `snapbox` to verify the style of the `cargo-info` [hi-rustin.rs#119](https://github.com/hi-rustin/cargo-information/pull/119)
+    - Added crates.io link to the `cargo info` command [hi-rustin.rs#122](https://github.com/hi-rustin/cargo-information/pull/122)
+  - Cargo
+    - Discussed the `yanking message` with the team 😆
+  - crates.io
+    - Discussed the `yanking message` with the team 😆
+- 2024-03-17:
+  - Goals
+    - Discussed the `yanking message` with the team again
+    - Added some test cases to the `cargo info`
+    - Finish the crates.io email PR
+  - Achieved
+    - TBD
 
 #### Tokio
 
@@ -86,3 +101,19 @@ layout: post
     - Reviewed a couple of PRs
   - console-web
     - Updated the `console-web` to use the latest `console` version [console-web#102](https://github.com/hi-rustin/console-web/pull/102)
+- 2024-03-10:
+  - console
+    - Did a tiny refactor [console#533](https://github.com/tokio-rs/console/pull/533)
+  - console-web
+    - Added the `tokio-console-web` CLI [console-web#129](https://github.com/hi-rustin/tokio-console-web/pull/129)
+    - Used `cargo-dist` to build the `tokio-console-web` [console-web#129](https://github.com/hi-rustin/tokio-console-web/pull/129)
+    - Added backoff to the `tokio-console-web` [console-web#153](https://github.com/hi-rustin/tokio-console-web/pull/153)
+    - Added logs and comments to the tasks page [console-web#155](https://github.com/hi-rustin/tokio-console-web/pull/155)
+    - Used the correct last wake time [console-web#159](https://github.com/hi-rustin/tokio-console-web/pull/159)
+- 2024-03-17:
+  - Goals
+    - Finish the task details page refactoring
+    - Finish the resource table page refactoring
+    - Read the tokio runtime source code
+  - Achieved
+    - TBD
