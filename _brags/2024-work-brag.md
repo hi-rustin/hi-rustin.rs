@@ -32,6 +32,15 @@ layout: post
   - Merged the priority queue for non-partitioned tables [tidb#51045](https://github.com/pingcap/tidb/pull/51045)
   - Used the correct time to calculate the last analyze time [tidb#51287](https://github.com/pingcap/tidb/pull/51287)
   - Finished the priority queue for partitioned tables [tidb#51152](https://github.com/pingcap/tidb/pull/51152)
+- 2024-03-10:
+  - Added the priority calculator [tidb#51346](https://github.com/pingcap/tidb/pull/51346)
+  - Fixed the issue of using the wrong time to calculate the last analyze time [tidb#51395](https://github.com/pingcap/tidb/pull/51395)
+  - Fixed the issue of using the wrong SQL to analyze static partitioned tables [tidb#51479](https://github.com/pingcap/tidb/pull/51479)
+  - Refactored the priority queue job [tidb#51531](https://github.com/pingcap/tidb/pull/51531)
+  - Enabled the priority queue by default [tidb#515327](https://github.com/pingcap/tidb/pull/51537)
+- 2024-03-17:
+  - Goals: Finish the testing of the priority queue
+  - Achieved: TBD
 
 #### TiDB
 
@@ -50,6 +59,11 @@ layout: post
   - Skip create pseudo stats for partitions during auto-analyze process [tidb#51123](https://github.com/pingcap/tidb/pull/51123)
 - 2024-02-25:
   - No Progress
+- 2024-03-10:
+  - No Progress
+- 2024-03-17:
+  - Goals: Fix a bug in the TiDB and read the join algorithm in TiDB
+  - Achieved: TBD
 
 #### LeetCode
 
@@ -68,6 +82,11 @@ layout: post
 - 2024-02-25:
   - Finished all neetcode problems
   - Started solve those problems in Rust and Go again
+- 2024-03-10:
+  - Finished 0020, 0139, 0704 and 0206 in both Rust and Go
+- 2024-03-17:
+  - Goals: Finish one problem every day
+  - Achieved: TBD
 
 #### Data Structures and Algorithms
 
@@ -82,5 +101,11 @@ layout: post
 - 2024-02-25:
   - Finished the lecture 9, 10 and 11 of the course [MIT 6.006]
   - Added insert API for the Vector in Rust [build-my-own-x#95](https://github.com/hi-rustin/build-my-own-x/pull/95)
+- 2024-03-10:
+  - Finished the my-vec implementation in Rust
+  - Finished the linked list implementation in Rust
+- 2024-03-17:
+  - Goals: Finish the Hash Table implementation in Rust and read the data structure book
+  - Achieved: TBD
 
 [MIT 6.006]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY
