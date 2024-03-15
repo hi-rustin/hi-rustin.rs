@@ -41,7 +41,7 @@ Programming languages I primarily code in:
   - [![pyroscope-commits][pyroscope-commits]](https://github.com/grafana/phlare/commits?author=hi-rustin)
   - [![kubernetes-test-infra-commits][kubernetes-test-infra-commits]](https://github.com/kubernetes/test-infra/commits?author=hi-rustin)
 - TypeScript/JavaScript
-  - [![tokio-console-web-commits][tokio-console-web-commits]](https://github.com/hi-ruistin/tokio-console-web/commits?author=hi-rustin)
+  - [![tokio-console-web-commits][tokio-console-web-commits]](https://github.com/hi-rustin/tokio-console-web/commits?author=hi-rustin)
   - [![ant-design-commits][ant-design-commits]](https://github.com/ant-design/ant-design/commits?author=hi-rustin)
   - [![tispace-commits][tispace-commits]](https://github.com/tispace-dev/tispace/commits?author=hi-rustin)
 
