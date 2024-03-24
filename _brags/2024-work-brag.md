@@ -40,7 +40,7 @@ layout: post
   - Enabled the priority queue by default [tidb#515327](https://github.com/pingcap/tidb/pull/51537)
 - 2024-03-17:
   - Goals: Finish the testing of the priority queue
-  - Achieved: TBD
+  - Achieved: Finished one benchmark test
 
 #### TiDB
 
@@ -63,7 +63,7 @@ layout: post
   - No Progress
 - 2024-03-17:
   - Goals: Fix a bug in the TiDB and read the join algorithm in TiDB
-  - Achieved: TBD
+  - Achieved: No Progress
 
 #### LeetCode
 
@@ -86,7 +86,7 @@ layout: post
   - Finished 0020, 0139, 0704 and 0206 in both Rust and Go
 - 2024-03-17:
   - Goals: Finish one problem every day
-  - Achieved: TBD
+  - Achieved: Finished 0143, 0139, 0226, 0104, 0208 and 0078
 
 #### Data Structures and Algorithms
 
@@ -106,6 +106,6 @@ layout: post
   - Finished the linked list implementation in Rust
 - 2024-03-17:
   - Goals: Finish the Hash Table implementation in Rust and read the data structure book
-  - Achieved: TBD
+  - Achieved: Read some chapters of the book but no progress on the Hash Table implementation
 
 [MIT 6.006]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY
