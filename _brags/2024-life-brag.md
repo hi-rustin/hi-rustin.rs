@@ -30,6 +30,9 @@ layout: post
   - Achieved: 3 times running
 - 2024-03-24:
   - Achieved: 3 times running
+- 2024-03-31:
+  - Goals: 3 times running, 1 time hinting
+  - Achieved: TBD
 
 ### English
 
@@ -47,6 +50,9 @@ layout: post
   - Achieved: No IELTS exercises, 1 English In Use exercise
 - 2024-03-24:
   - Achieved: No Progress
+- 2024-03-31:
+  - Goals: Wordlist every day
+  - Achieved: TBD
 
 ### Driving
 
@@ -57,8 +63,14 @@ layout: post
   - Achieved: Not yet
 - 2024-03-24:
   - Achieved: Still preparing
+- 2024-03-31:
+  - Goals: Pass the first exam(Wednesday)
+  - Achieved: TBD
 
 ### Traveling
 
 - 2024-03-24:
   - Achieved: Preparing paperwork
+- 2024-03-31:
+  - Goals: Finish the paperwork(Thursday)
+  - Achieved: TBD
