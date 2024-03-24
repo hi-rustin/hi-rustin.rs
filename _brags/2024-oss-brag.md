@@ -62,7 +62,9 @@ layout: post
     - Added some test cases to the `cargo info`
     - Finish the crates.io email PR
   - Achieved
-    - TBD
+    - [Discussed the `yanking message` with the team again](https://hackmd.io/_K2Le1ZbQEykvhIQvQI7Hw#2024-03-12)
+    - [Added some test cases to the `cargo info`](https://github.com/hi-rustin/cargo-information/pull/126)
+    - [Still working on the crates.io email PR](https://github.com/rust-lang/crates.io/pull/8290)
 
 #### Tokio
 
@@ -116,4 +118,4 @@ layout: post
     - Finish the resource table page refactoring
     - Read the tokio runtime source code
   - Achieved
-    - TBD
+    - Finished the task details page refactoring
