@@ -43,6 +43,9 @@ layout: post
   - Achieved: Finished one benchmark test
 - 2024-03-24:
   - Achieved: Finished some benchmark tests
+- 2024-03-31:
+  - Goals: Finish the testing of the priority queue
+  - Achieved: TBD
 
 #### TiDB
 
@@ -68,6 +71,9 @@ layout: post
   - Achieved: No Progress
 - 2024-03-24:
   - Achieved: Skip alway false DNF(Disjunctive Normal Form) condition in TiDB [tidb#51901](https://github.com/pingcap/tidb/pull/51901)
+- 2024-03-31:
+  - Goals: Fix a bug in the TiDB and read the hash join algorithm in TiDB
+  - Achieved: TBD
 
 #### LeetCode
 
@@ -93,6 +99,9 @@ layout: post
   - Achieved: Finished 0143, 0139, 0226, 0104, 0208 and 0078
 - 2024-03-24:
   - Achieved: Finished 0200, 0070, 0133 and 0746
+- 2024-03-31:
+  - Goals: Finish one problem every day
+  - Achieved: TBD
 
 #### Data Structures and Algorithms
 
@@ -115,5 +124,8 @@ layout: post
   - Achieved: Read some chapters of the book but no progress on the Hash Table implementation
 - 2024-03-24:
   - Achieved: No Progress :(
+- 2024-03-31:
+  - Goals: Finish the sorting algorithms in Rust and finish the graph lecture in the course [MIT 6.006]
+  - Achieved: TBD
 
 [MIT 6.006]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY
