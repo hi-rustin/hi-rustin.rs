@@ -28,6 +28,8 @@ layout: post
 - 2024-03-17:
   - Goals: 2 times running, 1 time hinting, 1 time walking
   - Achieved: 3 times running
+- 2024-03-24:
+  - Achieved: 3 times running
 
 ### English
 
@@ -43,6 +45,8 @@ layout: post
 - 2024-03-17:
   - Goals: 2 IELTS Reading exercises, 2 IELTS Listening exercises and 2 English In Use exercises
   - Achieved: No IELTS exercises, 1 English In Use exercise
+- 2024-03-24:
+  - Achieved: No Progress
 
 ### Driving
 
@@ -51,3 +55,10 @@ layout: post
 - 2024-03-17:
   - Goals: Pass the first exam
   - Achieved: Not yet
+- 2024-03-24:
+  - Achieved: Still preparing
+
+### Traveling
+
+- 2024-03-24:
+  - Achieved: Preparing paperwork
