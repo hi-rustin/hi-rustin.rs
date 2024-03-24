@@ -65,6 +65,8 @@ layout: post
     - [Discussed the `yanking message` with the team again](https://hackmd.io/_K2Le1ZbQEykvhIQvQI7Hw#2024-03-12)
     - [Added some test cases to the `cargo info`](https://github.com/hi-rustin/cargo-information/pull/126)
     - [Still working on the crates.io email PR](https://github.com/rust-lang/crates.io/pull/8290)
+- 2024-03-24:
+  - Achieved: Still working on the crates.io email PR
 
 #### Tokio
 
@@ -119,3 +121,5 @@ layout: post
     - Read the tokio runtime source code
   - Achieved
     - Finished the task details page refactoring
+- 2024-03-24:
+  - Achieved: [Released the `tokio-console-web` 0.1.1-beta.2](https://github.com/hi-rustin/tokio-console-web/releases/tag/0.1.1-beta.2)
