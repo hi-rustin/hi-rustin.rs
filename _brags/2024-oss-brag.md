@@ -67,6 +67,9 @@ layout: post
     - [Still working on the crates.io email PR](https://github.com/rust-lang/crates.io/pull/8290)
 - 2024-03-24:
   - Achieved: Still working on the crates.io email PR
+- 2024-03-31:
+  - Goals: Finish the crates.io email PR and fix one Cargo issue
+  - Achieved: TBD
 
 #### Tokio
 
@@ -123,3 +126,6 @@ layout: post
     - Finished the task details page refactoring
 - 2024-03-24:
   - Achieved: [Released the `tokio-console-web` 0.1.1-beta.2](https://github.com/hi-rustin/tokio-console-web/releases/tag/0.1.1-beta.2)
+- 2024-03-31:
+  - Goals: Resolve histogram rendering issue
+  - Achieved: TBD
