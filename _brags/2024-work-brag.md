@@ -45,7 +45,10 @@ layout: post
   - Achieved: Finished some benchmark tests
 - 2024-03-31:
   - Goals: Finish the testing of the priority queue
-  - Achieved: TBD
+  - Achieved: Have not finished the testing yet
+- 2024-04-07:
+  - Goals: Finish the testing of the priority queue
+  - Achieved: TB
 
 #### TiDB
 
@@ -72,6 +75,12 @@ layout: post
 - 2024-03-24:
   - Achieved: Skip alway false DNF(Disjunctive Normal Form) condition in TiDB [tidb#51901](https://github.com/pingcap/tidb/pull/51901)
 - 2024-03-31:
+  - Goals: Fix a bug in the TiDB and read the hash join algorithm in TiDB
+  - Achieved:
+    - Fixed the stuck issue in the TiDB [tidb#52107](https://github.com/pingcap/tidb/pull/52107)
+    - Removed the unnecessary atomic when generating the hash join plan [tidb#52060](https://github.com/pingcap/tidb/pull/52060)
+    - Do not allow set `tidb_auto_analyze_ratio` to 0 [tidb#52190](https://github.com/pingcap/tidb/pull/52190)
+- 2024-04-07:
   - Goals: Fix a bug in the TiDB and read the hash join algorithm in TiDB
   - Achieved: TBD
 
@@ -101,6 +110,9 @@ layout: post
   - Achieved: Finished 0200, 0070, 0133 and 0746
 - 2024-03-31:
   - Goals: Finish one problem every day
+  - Achieved: Finished 1584, 0198, 0213 and 0005
+- 2024-04-07:
+  - Goals: Finish one problem every day
   - Achieved: TBD
 
 #### Data Structures and Algorithms
@@ -126,6 +138,9 @@ layout: post
   - Achieved: No Progress :(
 - 2024-03-31:
   - Goals: Finish the sorting algorithms in Rust and finish the graph lecture in the course [MIT 6.006]
+  - Achieved: Finished the sorting algorithms in Rust and finished the graph lecture in the course [MIT 6.006]
+- 2024-04-07:
+  - Goals: Implement a hash map in Rust and finish the rest graph lectures in the course [MIT 6.006]
   - Achieved: TBD
 
 [MIT 6.006]: https://www.youtube.com/playlist?list=PLUl4u3cNGP63EdVPNLG3ToM6LaEUuStEY
