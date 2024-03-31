@@ -32,6 +32,9 @@ layout: post
   - Achieved: 3 times running
 - 2024-03-31:
   - Goals: 3 times running, 1 time hinting
+  - Achieved: 2 times running, 1 time hinting
+- 2024-04-07:
+  - Goals: 3 times running, 1 time hinting
   - Achieved: TBD
 
 ### English
@@ -52,6 +55,9 @@ layout: post
   - Achieved: No Progress
 - 2024-03-31:
   - Goals: Wordlist every day
+  - Achieved: 1 day
+- 2024-04-07:
+  - Goals: Wordlist every day
   - Achieved: TBD
 
 ### Driving
@@ -65,6 +71,9 @@ layout: post
   - Achieved: Still preparing
 - 2024-03-31:
   - Goals: Pass the first exam(Wednesday)
+  - Achieved: Hadn't taken the exam yet
+- 2024-04-07:
+  - Goals: Pass the first exam
   - Achieved: TBD
 
 ### Traveling
@@ -73,4 +82,7 @@ layout: post
   - Achieved: Preparing paperwork
 - 2024-03-31:
   - Goals: Finish the paperwork(Thursday)
+  - Achieved: Submitted the paperwork and waiting for the visa
+- 2024-04-07:
+  - Goals: Finish the visa application
   - Achieved: TBD
