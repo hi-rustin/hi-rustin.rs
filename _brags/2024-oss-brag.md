@@ -69,6 +69,9 @@ layout: post
   - Achieved: Still working on the crates.io email PR
 - 2024-03-31:
   - Goals: Finish the crates.io email PR and fix one Cargo issue
+  - Achieved: Finished the crates.io email PR and reviewed a couple of PRs
+- 2024-04-07:
+  - Goals: Merge the crates.io email PR, fix one Cargo issue and publish the new version of `cargo-information`
   - Achieved: TBD
 
 #### Tokio
@@ -127,5 +130,8 @@ layout: post
 - 2024-03-24:
   - Achieved: [Released the `tokio-console-web` 0.1.1-beta.2](https://github.com/hi-rustin/tokio-console-web/releases/tag/0.1.1-beta.2)
 - 2024-03-31:
+  - Goals: Resolve histogram rendering issue
+  - Achieved: Hadn't resolved the issue yet, but submitted a PR to console to refactor code
+- 2024-04-07:
   - Goals: Resolve histogram rendering issue
   - Achieved: TBD
