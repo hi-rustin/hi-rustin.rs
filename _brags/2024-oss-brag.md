@@ -73,6 +73,8 @@ layout: post
 - 2024-04-07:
   - Goals: Merge the crates.io email PR, fix one Cargo issue and publish the new version of `cargo-information`
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: Fixed [an issue](https://github.com/rust-lang/cargo/issues/13752) in Cargo
 
 #### Tokio
 
@@ -135,3 +137,5 @@ layout: post
 - 2024-04-07:
   - Goals: Resolve histogram rendering issue
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: Reviewed a couple of PRs
