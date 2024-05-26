@@ -56,6 +56,9 @@ layout: post
 
 - 2024-05-26:
   - Achieved: Finished the design of the predicate columns [tidb#53511](https://github.com/pingcap/tidb/pull/53511)
+- 2024-06-02:
+  - Goals: Finish the design document of the predicate columns and fix the cleanup issue
+  - Achieved: TBD
 
 #### TiDB
 
@@ -88,6 +91,9 @@ layout: post
     - Removed the unnecessary atomic when generating the hash join plan [tidb#52060](https://github.com/pingcap/tidb/pull/52060)
     - Do not allow set `tidb_auto_analyze_ratio` to 0 [tidb#52190](https://github.com/pingcap/tidb/pull/52190)
 - 2024-04-07:
+  - Goals: Fix a bug in the TiDB and read the hash join algorithm in TiDB
+  - Achieved: TBD
+- 2024-06-02:
   - Goals: Fix a bug in the TiDB and read the hash join algorithm in TiDB
   - Achieved: TBD
 
