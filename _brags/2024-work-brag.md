@@ -50,6 +50,13 @@ layout: post
   - Goals: Finish the testing of the priority queue
   - Achieved: TB
 
+#### TiDB Predicate Columns
+
+##### Weekly Summary
+
+- 2024-05-26:
+  - Achieved: Finished the design of the predicate columns [tidb#53511](https://github.com/pingcap/tidb/pull/53511)
+
 #### TiDB
 
 ##### Weekly Summary
@@ -114,6 +121,8 @@ layout: post
 - 2024-04-07:
   - Goals: Finish one problem every day
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: Finished 0167, 0015, 0424, 0155, 0875, 0021, 0235 and 0973
 
 #### Data Structures and Algorithms
 
