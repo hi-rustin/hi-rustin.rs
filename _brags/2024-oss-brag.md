@@ -75,6 +75,9 @@ layout: post
   - Achieved: TBD
 - 2024-05-26:
   - Achieved: Fixed [an issue](https://github.com/rust-lang/cargo/issues/13752) in Cargo
+- 2024-06-02:
+  - Goals: Add crates.io metrics to `cargo-information`
+  - Achieved: TBD
 
 #### Tokio
 
@@ -139,3 +142,6 @@ layout: post
   - Achieved: TBD
 - 2024-05-26:
   - Achieved: Reviewed a couple of PRs
+- 2024-06-02:
+  - Goals: Fix the Windows path issue and add pause status to the stream
+  - Achieved: TBD
