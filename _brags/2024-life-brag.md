@@ -37,6 +37,9 @@ layout: post
   - Achieved: TBD
 - 2024-05-26:
   - Achieved: 2 times running
+- 2024-06-02:
+  - Goals: 4 times running
+  - Achieved: TBD
 
 ### English
 
@@ -62,6 +65,9 @@ layout: post
   - Achieved: TBD
 - 2024-05-26:
   - Achieved: Wordlist every day
+- 2024-06-02:
+  - Goals: Wordlist, Grammar and Speaking every day
+  - Achieved: TBD
 
 ### Driving
 
@@ -77,9 +83,12 @@ layout: post
   - Achieved: Hadn't taken the exam yet
 - 2024-04-07:
   - Goals: Pass the first exam
-  - Achieved: TBD
+  - Achieved: Passed the first exam
 - 2024-05-26:
   - Achieved: No progress
+- 2024-06-02:
+  - Goals: Attend the driving school twice
+  - Achieved: TBD
 
 ### Traveling
 
@@ -93,3 +102,6 @@ layout: post
   - Achieved: TBD
 - 2024-05-26:
   - Achieved: Went to Japan and preparing for Canada
+- 2024-06-02:
+  - Goals: Finish the paperwork for Canada
+  - Achieved: TBD
