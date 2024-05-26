@@ -7,10 +7,9 @@ layout: post
 
 1. Get married
 2. Keep exercising, 4 times a week
-3. Release a YouTube video every month
-4. IELTS 7.5
-5. Get driver's license
-6. Travel to Japan and Europe
+3. IELTS 7.5
+4. Get driver's license
+5. Travel to Japan and Canada
 
 ## Projects
 
@@ -36,6 +35,8 @@ layout: post
 - 2024-04-07:
   - Goals: 3 times running, 1 time hinting
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: 2 times running
 
 ### English
 
@@ -59,6 +60,8 @@ layout: post
 - 2024-04-07:
   - Goals: Wordlist every day
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: Wordlist every day
 
 ### Driving
 
@@ -75,6 +78,8 @@ layout: post
 - 2024-04-07:
   - Goals: Pass the first exam
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: No progress
 
 ### Traveling
 
@@ -86,3 +91,5 @@ layout: post
 - 2024-04-07:
   - Goals: Finish the visa application
   - Achieved: TBD
+- 2024-05-26:
+  - Achieved: Went to Japan and preparing for Canada
